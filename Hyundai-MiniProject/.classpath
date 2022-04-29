@@ -13,15 +13,15 @@
 	</classpathentry>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
+			<attribute name="test" value="true"/>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
 		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="test" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
@@ -35,42 +35,42 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/illo0/OneDrive/바탕 화면/ojdbc8/ojdbc8/ojdbc8.jar">
+	<classpathentry kind="lib" path="/Users/youngsuh/sts3/ojdbc8/ojdbc8.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/illo0/OneDrive/바탕 화면/ojdbc8/ojdbc8/ons.jar">
+	<classpathentry kind="lib" path="/Users/youngsuh/sts3/ojdbc8/ons.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/illo0/OneDrive/바탕 화면/ojdbc8/ojdbc8/oraclepki.jar">
+	<classpathentry kind="lib" path="/Users/youngsuh/sts3/ojdbc8/oraclepki.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/illo0/OneDrive/바탕 화면/ojdbc8/ojdbc8/orai18n.jar">
+	<classpathentry kind="lib" path="/Users/youngsuh/sts3/ojdbc8/orai18n.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/illo0/OneDrive/바탕 화면/ojdbc8/ojdbc8/osdt_cert.jar">
+	<classpathentry kind="lib" path="/Users/youngsuh/sts3/ojdbc8/osdt_cert.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/illo0/OneDrive/바탕 화면/ojdbc8/ojdbc8/osdt_core.jar">
+	<classpathentry kind="lib" path="/Users/youngsuh/sts3/ojdbc8/osdt_core.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/illo0/OneDrive/바탕 화면/ojdbc8/ojdbc8/ucp.jar">
+	<classpathentry kind="lib" path="/Users/youngsuh/sts3/ojdbc8/ucp.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/illo0/OneDrive/바탕 화면/ojdbc8/ojdbc8/xdb.jar">
+	<classpathentry kind="lib" path="/Users/youngsuh/sts3/ojdbc8/xdb.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>

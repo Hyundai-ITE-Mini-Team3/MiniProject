@@ -9,8 +9,4 @@ public class QnAVO {
 	private String qtitle;
 	private String qcontent;
 	private Date qdate;
-	private Date qreplydate;
-	private String qreplytitle;
-	private String qreplycontent;
-	private String qmanager;
 }

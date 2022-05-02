@@ -13,7 +13,7 @@
 		<property name="driverClassName"
 			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="jdbcUrl"
-			value="jdbc:log4jdbc:oracle:thin:@edudb_high?TNS_ADMIN=C:/dev/OracleWallet/project/Wallet_edudb"></property>
+			value="jdbc:log4jdbc:oracle:thin:@edudb_high?TNS_ADMIN=//Users//youngsuh//project//Wallet_edudb//"></property>
 		<property name="username" value="miniproj"></property>
 		<property name="password" value="Guseo3whghkdlxld"></property>
 	</bean>
@@ -31,7 +31,9 @@
 
 	<mybatis-spring:scan
 		base-package="com.hyundai.mapper" />
-
+	<context:component-scan
+		base-package="com.hyundai.service">
+	</context:component-scan>
 	<context:component-scan
 		base-package="com.hyundai.sample">
 	</context:component-scan>

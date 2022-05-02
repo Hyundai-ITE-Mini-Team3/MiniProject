@@ -25,7 +25,7 @@ public class JDBCTests {
 		try {
 			Connection con = 
 					DriverManager.getConnection(
-							"jdbc:oracle:thin:@edudb_high?TNS_ADMIN=C:/dev/OracleWallet/project/Wallet_edudb"
+							"jdbc:oracle:thin:@edudb_high?TNS_ADMIN=//Users//youngsuh//project//Wallet_edudb//"
 							,"miniproj","Guseo3whghkdlxld");
 			log.info(con);
 		} catch (SQLException e) {

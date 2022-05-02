@@ -12,13 +12,17 @@
    		CALL sp_qna_insert(
    			#{mid},
    			#{qtitle},
-   			#{qcontent},
-   			#{qdate}
+   			#{qcontent}
    		)
    	
    	}
    
    </insert>
+   <select id="read" resultType="com.hyundai.domain.QnAVO">
+   	select * from qna where qid=#{qid}
+   
+   </select>
+   
    <delete id="delete" statementType="CALLABLE">
    {
    		CALL sp_qna_delete(#{qid})
@@ -31,8 +35,7 @@
 	   			#{qid},
 	   			#{mid},
 	   			#{qtitle},
-	   			#{qcontent},
-	   			#{qdate}
+	   			#{qcontent}
 	   		)
    }
    </update>

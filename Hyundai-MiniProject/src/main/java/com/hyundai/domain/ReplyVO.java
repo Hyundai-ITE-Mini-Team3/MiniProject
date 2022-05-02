@@ -8,5 +8,4 @@ public class ReplyVO {
 	private long qid;
 	private String rcontent;
 	private Date rdate;
-
 }

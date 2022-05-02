@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.hyundai.mini">
+	<logger name="com.hyundai.controller">
 		<level value="info" />
 	</logger>
 	

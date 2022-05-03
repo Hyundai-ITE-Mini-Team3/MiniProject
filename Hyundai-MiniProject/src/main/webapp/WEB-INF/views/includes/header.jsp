@@ -149,9 +149,9 @@ function gaBrandType(brandCode){
     
     var favoriteBrands = new Array();
 </script>
-<script type="text/javascript" src="/_ui/desktop/common/wisenut/ark/js/beta.fix.js"></script>
-<script type="text/javascript" src="/_ui/desktop/common/wisenut/ark/js/ark.js"></script>
-<script type="text/javascript" src="/_ui/desktop/common/wisenut/js/search.js"></script>
+<script type="text/javascript" src="/resources/js/ark.js"></script>
+<script type="text/javascript" src="/resources/js/beta.fix.js"></script>
+<script type="text/javascript" src="/resources/js/search.js"></script>
 <script type="text/javascript">
 //<![CDATA[
     // #1067 - 201803 메인 개편

@@ -9,6 +9,8 @@
 	href="/resources/css/main.css?after">
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/swiper.css?after">
+	
+<script type="text/javascript" src="/resources/js/jquery.vticker.js"></script>
 </head>
 <body>
 	<%@include file="../views/includes/header.jsp"%>
@@ -52,7 +54,7 @@
 									style="border-color: #000000; color: #000000">이벤트 자세히 보기</div>
 							</div>
 							<div class="v_img">
-								<img src="/img/main/220428-2-1-mine-01.jpg" alt=""
+								<img src="resources/img/main/220502-A-liquidesbar-07.jpg" alt=""
 									class="entity-img">
 							</div>
 					</a>

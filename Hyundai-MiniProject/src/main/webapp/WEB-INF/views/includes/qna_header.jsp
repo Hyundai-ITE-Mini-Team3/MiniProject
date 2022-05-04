@@ -5,12 +5,53 @@
 <head>
 <meta charset="UTF-8">
 <title>header</title>
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css?after">
+<link rel="stylesheet" type="text/css" href="/resources/css/swiper.css?after">
+<link rel="stylesheet" type="text/css" href="/resources/css/common.css?after">
+<link rel="stylesheet" type="text/css" href="/resources/css/layout.css?after">
+<link rel="stylesheet" type="text/css" href="/resources/css/contents.css?after">
+<link rel="stylesheet" type="text/css" href="/resources/css/popup.css?after">
+<link rel="stylesheet" type="text/css" href="/resources/css/jquery-ui.min.css?after">
+<link rel="stylesheet" type="text/css" href="/resources/css/products.css?after">
+
+<script type="text/javascript" src="/resources/js/common.js"></script>
+<script type="text/javascript" src="/resources/js/html5shiv-printshiv.js"></script>
+<script type="text/javascript" src="/resources/js/jquery.flexslider.js"></script>
+<script type="text/javascript" src="/resources/js/ui.js"></script>
+<script type="text/javascript" src="/resources/js/jquery.form-3.51.js"></script>
+<script type="text/javascript" src="/resources/js/common_function.js?20220411"></script>
+<script type="text/javascript" src="/resources/js/videojs-ie8.min.js"></script>
+<script type="text/javascript" src="/resources/js/jquery-ui-1.11.2.min.js"></script>
+<script type="text/javascript" src="/resources/js/instagramAPI.js"></script>
+<script type="text/javascript" src="/resources/js/makePCookie.js"></script>
+<script type="text/javascript" src="/resources/js/jquery.min.js"></script>
+<script type="text/javascript" src="/resources/js/netfunnel.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/resources/js/netfunnel_skin.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/resources/js/unorm.js"></script>
+<script type="text/javascript" src="/resources/js/appboy.min.js"></script>
+<script type="text/javascript" src="/resources/js/kp.js"></script>
+<script type="text/javascript" src="/resources/js/SsoAjax.js"></script>
+<script type="text/javascript" src="/resources/js/beta.fix.js"></script>
+<script type="text/javascript" src="/resources/js/ark.js"></script>
+<script type="text/javascript" src="/resources/js/search.js"></script>
+<script type="text/javascript" src="/resources/js/production.min.js"></script>
+<script type="text/javascript" src="/resources/js/fbevents.js"></script>
+<script type="text/javascript" src="/resources/js/analytics.js"></script>
+<script type="text/javascript" src="/resources/js/gtm.js"></script>
+<script type="text/javascript" src="/resources/js/conversion.js"></script>
+<script type="text/javascript" src="/resources/js/wcslog.js"></script>
+<script type="text/javascript" src="/resources/js/enp_tracker_self_hosted.min.js"></script>
+<script type="text/javascript" src="/resources/js/AceCounter_CW.js"></script>
+<script type="text/javascript" src="/resources/js/trs_esc.js"></script>
+<script type="text/javascript" src="/resources/js/enp_uni_id_adver.js"></script>
+<script type="text/javascript" src="/resources/js/social_sns_config_min.js"></script>
+
 </head>
 <body>
 
 <div id="headerWrap">
 			<div class="header header_fixed header_main1903"> 
-				<script type="text/javascript" src="/_ui/desktop/common/js/SsoAjax.js"></script>
+				<script type="text/javascript" src="/resources/js/SsoAjax.js"></script>
 
 <script>
 var arkQuery = $.noConflict(true);
@@ -30,7 +71,7 @@ function callChatbot(token, talkId) {
         $.ajax({
             type:"POST",
             url:"/ko/chatbot/token",
-            data: {"CSRFToken":"48c5b6c6-f642-4320-a33f-bb18a6dd1a19"},
+            data: {"CSRFToken":"32fb7c45-9b5c-42f3-a0cf-5925ed2feae5"},
             async : false,
             success:function(data){
                 if(data.result == "SHOULD_LOGIN") {
@@ -148,9 +189,9 @@ function gaBrandType(brandCode){
     
     var favoriteBrands = new Array();
 </script>
-<script type="text/javascript" src="/_ui/desktop/common/wisenut/ark/js/beta.fix.js"></script>
-<script type="text/javascript" src="/_ui/desktop/common/wisenut/ark/js/ark.js"></script>
-<script type="text/javascript" src="/_ui/desktop/common/wisenut/js/search.js"></script>
+<script type="text/javascript" src="/resources/js/beta.fix.js"></script>
+<script type="text/javascript" src="/resources/js/ark.js"></script>
+<script type="text/javascript" src="/resources/js/search.js"></script>
 <script type="text/javascript">
 //<![CDATA[
     // #1067 - 201803 메인 개편
@@ -418,7 +459,7 @@ $(document).ready(function() {
     
     //vip 채팅 서비스
     if("PASS" != ""){
-	    var pag = "myManToManInquiryPage";
+	    var pag = "myMainPage";
 
 	    var chkPag = ["svCenterMainPage", "noticePage", "manToManInquiryPage", "faqPage",
 	                  "mendingPage", "vocProvisionPage", "vocInfoFormPage", "memberJoinGuidePage", "theClubInfoPage",
@@ -439,7 +480,7 @@ $(document).ready(function() {
 	            $.ajax({
 	                type:"POST",
 	                url:"/ko/chatbot/chkholiday",
-	                data: {"CSRFToken":"48c5b6c6-f642-4320-a33f-bb18a6dd1a19"},
+	                data: {"CSRFToken":"32fb7c45-9b5c-42f3-a0cf-5925ed2feae5"},
 	                async : false,
 	                success:function(result){
 	                    if(result == true) {
@@ -453,7 +494,7 @@ $(document).ready(function() {
 	        }
 	    }
     
-	    if ((vipPassCheck == "Y" || timePassCheck == "Y") && "myManToManInquiryPage" == "main201903Page") {
+	    if ((vipPassCheck == "Y" || timePassCheck == "Y") && "myMainPage" == "main201903Page") {
 	        $('#chatbotMain').show(); 
 	    }else{
 	        $('#chatbotMain').hide(); 
@@ -869,7 +910,7 @@ function GA_search(){
 				<!-- 201705 search_box_wrap -->
 				<div class="search_box_wrap sbw1803" id="searchBox">
                     <form name="search" id="search" action="/ko/hssearch/searchCount" method="post" onsubmit="return false;">           
-                        <input type="hidden" name="CSRFToken" value="48c5b6c6-f642-4320-a33f-bb18a6dd1a19">
+                        <input type="hidden" name="CSRFToken" value="32fb7c45-9b5c-42f3-a0cf-5925ed2feae5">
                         <input type="hidden" name="searchwords" value="">
                         <input type="hidden" name="startCount" value="">
                         <input type="hidden" name="mode" value="">
@@ -915,7 +956,7 @@ function GA_search(){
                             <form id="searchStyle" name="searchStyle" action="/ko/hssearch/searchCount" method="post" onsubmit="return false;">
                                 <input type="hidden" name="query" value="">
                                 <input type="hidden" name="collection" value="">
-                                <input type="hidden" id="CSRFToken" name="CSRFToken" value="48c5b6c6-f642-4320-a33f-bb18a6dd1a19">
+                                <input type="hidden" id="CSRFToken" name="CSRFToken" value="32fb7c45-9b5c-42f3-a0cf-5925ed2feae5">
                                 <input type="hidden" id="searchStyleYn" name="searchStyleYn" value="searchStyle">
                             </form>
 
@@ -957,7 +998,7 @@ function GA_search(){
                                     <ul>                            
                                     </ul>
                                 </div>
-                                <div id="ark" style="height:170px;"><div class="ark_wrap" id="ark_wrap" style="display: none;"><ul id="ark_content_list"></ul></div></div>
+                                <div id="ark" style="height:170px;"><div class="ark_wrap" id="ark_wrap"><ul id="ark_content_list"></ul></div></div>
                             </div>
                             <div class="autocomplete_right">
                                 <div class="category_brand">
@@ -987,8 +1028,8 @@ function GA_search(){
 						<li><a href="javascript:setLogout();" onclick="GA_Event('공통','헤더_메뉴','로그아웃')">로그아웃</a></li>
 						<li class="header_dropmemu mypage">
 							
-						<a href="/ko/mypage" class="btn" onclick="GA_Event('공통','헤더_메뉴','마이페이지')">마이페이지</a>
-							<div class="list">
+						<a href="/mypage/mypage" class="btn" onclick="GA_Event('공통','헤더_메뉴','마이페이지')">마이페이지</a>
+							<div class="list" style="display: none; height: 101px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
 								<ul>
 									<li><a href="/ko/mypage/order/myorders" onclick="GA_Event('공통','헤더_메뉴','마이페이지_주문조회')">주문조회<!-- 주문조회 --></a></li>
 									<li><a href="/ko/mypage/voucher" onclick="GA_Event('공통','헤더_메뉴','마이페이지_쿠폰조회')">쿠폰조회<!-- 쿠폰조회 --></a></li>
@@ -1044,10 +1085,10 @@ function GA_search(){
 		<form id="chatbotForm" action="https://talk.thehandsome.com/front/v1/jsp/view/chat.jsp" method="post" target="chatwindow"><input type="hidden" name="token" id="chatbot_token">
           <input type="hidden" name="talkId" id="chatbot_talkId">
         <div>
-<input type="hidden" name="CSRFToken" value="48c5b6c6-f642-4320-a33f-bb18a6dd1a19">
+<input type="hidden" name="CSRFToken" value="32fb7c45-9b5c-42f3-a0cf-5925ed2feae5">
 </div></form><!-- //headerWrap --><div class="gnbwarp new201608 clearfix">
         <h1 class="logo logo1903">
-            <a href="/ko/main" onclick="GA_Event('공통', '로고', '상단');">thehandsome.com</a>
+            <a href="/" onclick="GA_Event('공통', '로고', '상단');">thehandsome.com</a>
         </h1>
         <!-- 첫번째 c:if -->
 
@@ -1065,6 +1106,5 @@ function GA_search(){
     <!-- //201803 util menu -->
     </div>
 		</div>
-
 </body>
 </html>

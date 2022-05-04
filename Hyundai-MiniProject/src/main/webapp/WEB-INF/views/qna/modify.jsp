@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -2238,17 +2240,7 @@ $(document).ready(function() {
 		$("#email").val('');
 		$("#emailDomain").val($("#uidDomainSel").val());
 	});
-	//취소버튼
-	$("#cancleBtn").click(function(){
-		var lc = new layerConfirm("문의 내용 작성을 취소하시겠습니까?");
-		lc.confirmAction = function(){
-			if("" == "mypage") {
-				location.href="/ko/mypage/mymantomaninquiry?refererUrl=";
-			} else {
-				location.href="/ko/svcenter/mantomaninquiry";
-			}
-		};
-	});
+	
 	
     // 소분류 값 null체크 된 경우, redirect 후 다시 값 세팅
     $(function(){
@@ -2270,9 +2262,9 @@ $(document).ready(function() {
                 contents = contents.replace(/&#40;/gim,'(');
                 contents = contents.replace(/&#41;/gim,')');
                 contents = contents.replace(/&#39;/gim,'\'');
-                $("#contents").val(contents);
+               
             }
-            var subject = '';
+            
             var mobilePhoneNumber = '';
             var hpSplit = [];
             hpSplit = mobilePhoneNumber.split('-');
@@ -2284,7 +2276,7 @@ $(document).ready(function() {
             } else {
                 $("#smsAlarmReceiveYN").remove('checked');
             }
-            $("#subject").val(subject);
+           
             $("#hp1").val(hpSplit[0]);
             $("#hp2").val(hpSplit[1]);
             $("#hp3").val(hpSplit[2]);
@@ -2296,48 +2288,10 @@ $(document).ready(function() {
         
     })
 	
-	// 등록버튼
-	$("#registerBtn").click(function(){
-		var pk = "";
-		
-		//20180608 답변완료 후, 수정못하게
-		if(pk != "") {
-			$.ajax({
-				type:"GET",
-				url : "/qna/register",
-				async : false,
-				success:function(data){
-					if(data == false) {
-						var lc = new layerAlert("답변이 완료되어 수정하실 수 없습니다.");
-						lc.confirmAction = function(){
-							return false;
-						};
-					}else {
-						registerMantomaninquiry();
-					}
-				}
-			});
-		}else {
-			registerMantomaninquiry();
-		}
-	});
+	
 	
 	function registerMantomaninquiry() {
 
-		if ($("select[name=largeClassificationCode]").val()=="") {
-			var lc = new layerAlert("대분류를 선택해주시길 바랍니다.");
-			lc.confirmAction = function(){
-				$('#largeClassificationCode').focus();
-			};
-			return false;
-		}
-		if ($("select[name=smallClassificationCode]").val()=="") {
-			var lc = new layerAlert("소분류를 선택해주시길 바랍니다.");
-			lc.confirmAction = function(){
-				$('#smallClassificationCode').focus();
-			};
-			return false;
-		}
 		if ($('#subject').val()=="") {
 			var lc = new layerAlert("문의제목을 입력해주시길 바랍니다.");
 			lc.confirmAction = function(){
@@ -2407,8 +2361,7 @@ $(document).ready(function() {
 		
 		var tUrl = "";
 		var dbTxt = $('#contents').val(); 
-		var replacement = replaceAll(dbTxt, /\n/g, '<br/>');
-		$('#contents').val(replacement) ;
+	
 		$("#productList").remove();
 		var productCdList = "";
 		var orderPkList = "";
@@ -2430,21 +2383,6 @@ $(document).ready(function() {
 		
 	}
 	
-	var ph = "문의하실 상품의 상품명/제품코드/사이즈/컬러를 정확히 적어주세요.\n\n";
-	ph += "주문하신 상품이라면 주문번호와 문의 하실 상품명/제품코드/사이즈/컬러와 함께 궁금하신 사항을 적어 주시면\n";
-	
-	ph += "정확한 답변을 드리는데 도움이 됩니다.";
-	ph += "\n";
-	
-	ph += '\n반품접수는 마이페이지 주문내역에서 “반품 신청“ 버튼을 클릭하여 반품을 접수해주셔야 합니다.';
-	
-	$("#contents").attr("placeholder", ph);
-	$("#contents").focus(function(){
-		$("#contents").attr("placeholder", "");
-	});
-	$("#contents").focusout(function(){
-		$("#contents").attr("placeholder", ph);
-	});
 	
 	var hp1='';
 	$("select#hp1 option").each(function() { this.selected = (this.text == hp1); });
@@ -2577,8 +2515,8 @@ $(document).ready(function() {
 function setContents() {
 	
 	var pkInquiry = "";
-	var subject = "";
-	var contents = "";
+	var subject = "${qna.qtitle}";
+	var contents = "${qna.qcontent}";
 	var largeClassificationCode = "";
 	var smallClassificationCode = "";
 	var smsAlarmReceiveYN = "";
@@ -2604,7 +2542,7 @@ function setContents() {
     
     $("#pkInquiry").val(pkInquiry);
     $("#subject").val(subject);    
-    $("#contents").val(contents);    
+  //  $("#contents").val(contents);    
     if( smsAlarmReceiveYN === "true" ){
 		$("#smsAlarmReceiveYN").prop('checked', true);
 	} else {
@@ -2946,7 +2884,7 @@ function checkboxChecked(el){
 <!-- bodyWrap -->
 <div id="bodyWrap">
 <h3 class="cnts_title">
-		<span>상품 QnA 문의하기</span>
+		<span>상품 QnA 수정하기</span>
 	</h3>
 	<div class="sub_container clearfix">
 		<!-- lnbWrap -->
@@ -2983,16 +2921,13 @@ function checkboxChecked(el){
 				</div><!-- //lnbWrap -->
 		<div class="sub_cnts">
 			<div class="title_wrap mt30 clearfix">
-				<h4 class="float_left">상품 QnA 문의 등록</h4>
+				<h4 class="float_left">상품 QnA 문의 수정</h4>
 				<p class="reqd_txt"><strong class="reqd">*</strong> 표시는 필수항목입니다.</p>
 			</div>
-			<form role="form" id="manToManInquiryForm" name="manToManInquiryForm" action="/qna/register" method="post" enctype="multipart/form-data">
+			<form role="form" id="manToManInquiryForm" name="manToManInquiryForm" action="/qna/modify" method="post" enctype="multipart/form-data">
 			
-			<input type="hidden" id="mid" name="mid" value="${user.mid }">
-		<!-- 	<input type="hidden" id="orderPk" name="orderPk">
-				<input type="hidden" id="pkInquiry" name="pkInquiry" value="">
-				<input type="hidden" id="mobilePhoneNumber" name="mobilePhoneNumber" value="">
-				<input type="hidden" id="emailAddress" name="emailAddress" value=""> -->
+			<input type="hidden" id="mid" name="mid" value="${qna.mid }">
+			<input type="hidden" id="qid" name="qid" value="${qna.qid }">
 				<fieldset>
 					<legend>상품 QnA 문의 입력</legend>
 					<div class="tblwrap">
@@ -3031,21 +2966,17 @@ function checkboxChecked(el){
 								<tr>
 									<th scope="row"><strong class="reqd">*</strong>문의제목</th>
 									<td>
-										<input type="text" id="subject" name="qtitle" title="문의제목" class="w_all">
+										<input type="text" id="subject" name="qtitle" title="문의제목" class="w_all" value="${qna.qtitle }">
 									</td>
 								</tr>
 								<tr>
 									<th scope="row">
 										<strong class="reqd">*</strong>문의 내용<span class="com_txt_p">(2000자 이하)</span>
+
 									</th>
 									<td>
 										<!-- textarea -->
-										<textarea id="contents" name="qcontent" title="문의내용" cols="30" rows="10" placeholder="문의하실 상품의 상품명/제품코드/사이즈/컬러를 정확히 적어주세요.
-				
-주문하신 상품이라면 주문번호와 문의 하실 상품명/제품코드/사이즈/컬러와 함께 궁금하신 사항을 적어 주시면
-정확한 답변을 드리는데 도움이 됩니다.
-
-반품접수는 마이페이지 주문내역에서 “반품 신청“ 버튼을 클릭하여 반품을 접수해주셔야 합니다."></textarea>
+										<textarea id="contents" name="qcontent" title="문의내용" cols="30" rows="10"><c:out value="${qna.qcontent}" /></textarea>
 										<!-- //textarea -->
 									</td>
 								</tr>
@@ -3127,7 +3058,7 @@ function checkboxChecked(el){
 					<!-- btn -->
 					<div class="btnwrap">
 						<input type="button" id="cancleBtn" value="취소" class="btn wt">
-						<button type="submit" class="btn gray mr0">등록</button>
+						<button type="submit" class="btn gray mr0">수정</button>
 						<!-- <input type="button" id="registerBtn" value="등록" class="btn gray mr0"> -->
 						</div>
 					<!-- //btn -->

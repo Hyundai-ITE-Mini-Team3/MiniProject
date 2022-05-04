@@ -12,7 +12,7 @@ public class MemberVO {
 	private String mname;
 	private String memail;
 	private String mtel;
-	private long mzipcode;
+	private Date mbirth;
 	private String maddress1;
 	private String maddress2;
 	private String mgrade;

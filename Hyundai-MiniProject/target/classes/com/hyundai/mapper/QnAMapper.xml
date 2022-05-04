@@ -5,7 +5,7 @@
   
 <mapper namespace="com.hyundai.mapper.QnAMapper">
    <select id="getList" resultType="com.hyundai.domain.QnAVO">
-       select * from qna
+       select * from qna ORDER BY qdate DESC
    </select> 
    <insert id="insert" statementType="CALLABLE">
    	{

@@ -83,13 +83,13 @@ public class QnAController {
 		}
 		return "redirect:/qna/list";
 	}
-	@RequestMapping(value = "/remove", method = RequestMethod.POST)
+	@RequestMapping(value = "/remove", method = RequestMethod.GET)
 	public String remove(@RequestParam("qid") Long qid, RedirectAttributes rttr) {
 		logger.info("============Remove=============");
 		if(service.remove(qid)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/qna/qnalist";
+		return "redirect:/qna/list";
 	}
 	
 }

@@ -984,8 +984,15 @@ function GA_search(){
 			            	</c:otherwise>
 			            </c:choose>
 						<li class="header_dropmemu mypage">
-							
-						<a href="/mypage/mypage" class="btn" onclick="GA_Event('공통','헤더_메뉴','마이페이지')">마이페이지</a>
+						<c:choose>
+							<c:when test="${empty sessionScope.member_id }">
+								<a href="/login/loginform" class="btn">마이페이지</a>
+							</c:when>
+							<c:otherwise>
+								<a href="/mypage/mypage" class="btn">마이페이지</a>
+							</c:otherwise>
+						</c:choose>
+						
 							<div class="list">
 								<ul>
 									<li><a href="/ko/mypage/order/myorders" onclick="GA_Event('공통','헤더_메뉴','마이페이지_주문조회')">주문조회<!-- 주문조회 --></a></li>

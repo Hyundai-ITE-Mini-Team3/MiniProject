@@ -1,5 +1,8 @@
 package com.hyundai.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +26,16 @@ public class MypageController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public String mypage(Model model) {
+	public String mypage(HttpServletRequest request, Model model) {
 		logger.info("=============mypage=============");
+		HttpSession session = request.getSession();
+		String mid = (String)session.getAttribute("member_id");
+		String mname = (String)session.getAttribute("member_name");
+		logger.info("Session(mid): " + mid);
+		logger.info("Session(mname): " + mname);
 		MemberVO user = new MemberVO();
-		user.setMname("사용자");
+		user.setMid(mid);
+		user.setMname(mname);
 		model.addAttribute("user", user);
 		return "/mypage/mypage";
 	}

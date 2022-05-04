@@ -7,6 +7,9 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,10 +58,14 @@ public class QnAController {
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void qna_register(Model model) {
+	public void qna_register(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		String mid = (String)session.getAttribute("member_id");
+		//String mname = (String)session.getAttribute("member_name");
+		logger.info("Session(mid): " + mid);
 		MemberVO user = new MemberVO();
-		user.setMname("사용자");
-		user.setMid("newbie");
+		user.setMid(mid);
+		//user.setMname(mname);
 		model.addAttribute("user", user);
 	}
 	

@@ -1025,7 +1025,7 @@ function GA_search(){
                 <!--// 201705 search_box_wrap -->
                 <div class="util_menu" style="display:block;">
 					<ul class="clearfix">
-						<li><a href="javascript:setLogout();" onclick="GA_Event('공통','헤더_메뉴','로그아웃')">로그아웃</a></li>
+						<li><a href="/login/logout">로그아웃 [${sessionScope.member_id}님]</a></li>
 						<li class="header_dropmemu mypage">
 							
 						<a href="/mypage/mypage" class="btn" onclick="GA_Event('공통','헤더_메뉴','마이페이지')">마이페이지</a>

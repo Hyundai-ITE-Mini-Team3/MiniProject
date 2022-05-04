@@ -51,6 +51,7 @@ public class LoginController {
 			// 세션 저장
 			HttpSession session = request.getSession();
 			session.setAttribute("member_id", member.getMid());
+			session.setAttribute("member_name", member.getMname());
 			response.getWriter().print(true);
 		} else {
 			response.getWriter().print(false);

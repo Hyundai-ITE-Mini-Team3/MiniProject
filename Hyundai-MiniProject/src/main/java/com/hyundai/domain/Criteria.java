@@ -13,7 +13,7 @@ public class Criteria {
 	private int amount;
 	
 	public Criteria() {
-		this(1,6);
+		this(1,5);
 	}//end cri...	
 
 	public Criteria(int pageNum, int amount) {

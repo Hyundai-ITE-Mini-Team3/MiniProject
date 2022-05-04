@@ -2924,10 +2924,11 @@ function checkboxChecked(el){
 				<h4 class="float_left">상품 QnA 문의 수정</h4>
 				<p class="reqd_txt"><strong class="reqd">*</strong> 표시는 필수항목입니다.</p>
 			</div>
-			<form role="form" id="manToManInquiryForm" name="manToManInquiryForm" action="/qna/modify" method="post" enctype="multipart/form-data">
+			<form role="form" id="manToManInquiryForm" name="manToManInquiryForm" action="/qna/modify?pageNum=${cri.pageNum}&amount=${cri.amount}" method="post" enctype="multipart/form-data">
 			
 			<input type="hidden" id="mid" name="mid" value="${qna.mid }">
 			<input type="hidden" id="qid" name="qid" value="${qna.qid }">
+			
 				<fieldset>
 					<legend>상품 QnA 문의 입력</legend>
 					<div class="tblwrap">
@@ -3057,7 +3058,7 @@ function checkboxChecked(el){
 					</div>
 					<!-- btn -->
 					<div class="btnwrap">
-						<a href="/qna/list" class="btn wt">취소</a>
+						<a href="/qna/list?&pageNum=${cri.pageNum}&amount=${cri.amount}" class="btn wt">취소</a>
 						<button type="submit" class="btn gray mr0">수정</button>
 						<!-- <input type="button" id="registerBtn" value="등록" class="btn gray mr0"> -->
 						</div>

@@ -12,12 +12,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.hyundai.domain.Criteria;
 import com.hyundai.domain.MemberVO;
+import com.hyundai.domain.PageDTD;
 import com.hyundai.domain.QnAVO;
 import com.hyundai.service.QnAService;
 
@@ -34,13 +37,23 @@ public class QnAController {
 	private QnAService service;
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	
+	//페이징 처리X
+//	public String qna_getlist(Model model) {
+//		logger.info("=============qna page=============");
+//		model.addAttribute("list", service.getList());
+//		
+//		return "/qna/list";
+//	}
+	//페이징 처리O
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String qna_getlist(Model model) {
-		logger.info("=============qna page=============");
-		model.addAttribute("list", service.getList());
-		
-		return "/qna/qnalist";
+	public void qna_getlist(Criteria cri, Model model) {
+		log.info("=============list"+cri+"=============");
+		model.addAttribute("list", service.getList(cri));
+		int total = service.getTotal(cri);
+		model.addAttribute("pageMaker", new PageDTD(cri, total));
 	}
+	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void qna_register(Model model) {
 		MemberVO user = new MemberVO();
@@ -59,12 +72,14 @@ public class QnAController {
 	}
 	
 	@RequestMapping(value = {"/get"}, method = RequestMethod.GET)
-	public void get(@RequestParam("qid") Long qid, Model model) {
+	public void get(@RequestParam("qid") Long qid, 
+			@ModelAttribute("cri") Criteria cri, Model model) {
 		logger.info("============Get=============");
 		model.addAttribute("qna", service.get(qid));
 	}
 	@RequestMapping(value = {"/modify"}, method = RequestMethod.GET)
-	public String modify(@RequestParam("qid") Long qid, Model model) {
+	public String modify(@RequestParam("qid") Long qid,
+			@ModelAttribute("cri") Criteria cri, Model model) {
 		logger.info("============Modify=============");
 		model.addAttribute("qna", service.get(qid));
 		QnAVO qna = new QnAVO();
@@ -75,20 +90,28 @@ public class QnAController {
 
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modify(QnAVO qna, RedirectAttributes rttr) {
+	public String modify(QnAVO qna, RedirectAttributes rttr,
+			@ModelAttribute("cri") Criteria cri) {
 		logger.info("============Modify: "+qna+"=============");
 		if(service.modify(qna)) {
 			logger.info("============Modify: "+qna+"=============");
 			rttr.addFlashAttribute("result", "success");
 		}
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount",cri.getAmount());
+
 		return "redirect:/qna/list";
 	}
 	@RequestMapping(value = "/remove", method = RequestMethod.GET)
-	public String remove(@RequestParam("qid") Long qid, RedirectAttributes rttr) {
+	public String remove(@RequestParam("qid") Long qid, RedirectAttributes rttr,
+			@ModelAttribute("cri") Criteria cri) {
 		logger.info("============Remove=============");
 		if(service.remove(qid)) {
 			rttr.addFlashAttribute("result", "success");
 		}
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount",cri.getAmount());
+
 		return "redirect:/qna/list";
 	}
 	

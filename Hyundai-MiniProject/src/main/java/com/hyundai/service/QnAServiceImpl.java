@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hyundai.domain.Criteria;
 import com.hyundai.domain.QnAVO;
 import com.hyundai.mapper.QnAMapper;
 
@@ -44,10 +45,22 @@ public class QnAServiceImpl implements QnAService {
 		return mapper.delete(qid)==1;
 	}
 
+//	@Override
+//	public List<QnAVO> getList() {
+//		log.info("[get list]");
+//		return mapper.getList();
+//	}
+	
 	@Override
-	public List<QnAVO> getList() {
-		log.info("[get list]");
-		return mapper.getList();
+	public List<QnAVO> getList(Criteria cri){
+		log.info("[get List with criteria] "+cri);
+		return mapper.getListWithPaging(cri);
+	}
+	
+	@Override
+	public int getTotal(Criteria cri) {
+		log.info("[get total count]");
+		return mapper.getTotalCount(cri);
 	}
 
 }

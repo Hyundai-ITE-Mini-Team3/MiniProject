@@ -644,9 +644,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 		</div>
 		<div class="btnwrap">
-						<a href="/qna/list" class="btn wt">목록</a>
-						<a href="/qna/remove?qid=${qna.qid }" class="btn gray mr0">삭제</a>
-						<a href="/qna/modify?qid=${qna.qid }" class="btn gray mr0">수정</a>
+						<a href="/qna/list?&pageNum=${cri.pageNum}&amount=${cri.amount}" class="btn wt">목록</a>
+						<a href="/qna/remove?qid=${qna.qid }&pageNum=${cri.pageNum}&amount=${cri.amount}" class="btn gray mr0">삭제</a>
+						<a href="/qna/modify?qid=${qna.qid }&pageNum=${cri.pageNum}&amount=${cri.amount}" class="btn gray mr0">수정</a>
 						
 						</div>
 		<!-- //cnts -->

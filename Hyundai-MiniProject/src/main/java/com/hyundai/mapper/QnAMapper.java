@@ -4,9 +4,12 @@ package com.hyundai.mapper;
 
 import java.util.List;
 
+import com.hyundai.domain.Criteria;
 import com.hyundai.domain.QnAVO;
 
 public interface QnAMapper {
+	public int getTotalCount(Criteria cri);
+	public List<QnAVO> getListWithPaging(Criteria cri);
 	public List<QnAVO> getList();
 	public void insert(QnAVO qna);
 	public QnAVO read(long qid);

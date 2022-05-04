@@ -6,7 +6,7 @@ public class ProductVO {
 	private String pid;
 	private long bno;
 	private String clarge;
-	private String cmedium;
+	private String cmdedium;
 	private String csmall;
 	private long pno;
 	private String pname;

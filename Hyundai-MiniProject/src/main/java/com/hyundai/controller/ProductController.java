@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.hyundai.service.ProductService;
 import com.hyundai.domain.ProductVO;
 
@@ -20,25 +23,30 @@ public class ProductController {
 	@Autowired
 	private ProductService service;
 
-	@RequestMapping(value = "/fabric", method = { RequestMethod.GET, RequestMethod.POST })
-	public String fabricGetList(Model model) {
+	@RequestMapping(value = "/{csmall}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String fabricGetList(@PathVariable("csmall") String csmall, Model model) {
 		
-		List<ProductVO> productList = service.getList();
+		List<ProductVO> productList = service.getList(csmall);
 		System.out.println(productList);
 		
 		
-		log.info("fabric 상품 페이지 접속하기");
+		log.info("소분류 상품 페이지 접속하기");
 		model.addAttribute("result", productList);
-		return "product/fabric";
+		return "product/" + csmall;
 	}// end 
 	
-	// 테스트
-	@RequestMapping(value = "/fabric2", method = { RequestMethod.GET, RequestMethod.POST })
-	public String test() {
+	@RequestMapping(value = "/{csmall}/detail", method = { RequestMethod.GET, RequestMethod.POST })
+	public String productGetDetails(@PathVariable("csmall") String csmall, Model model, @RequestParam("pid") String pid) {
+		
+		ProductVO product = service.get(pid);
+		System.out.println("-----------테스트-----------------");
+		System.out.println(product);
 		
 		
-		log.info("fabric2 상품 페이지 접속하기");
-		return "product/fabric2";
-	}// end 
+		//log.info("소분류 상품 페이지 접속하기");
+		model.addAttribute("product", product);
+		return "product/details";
+	}// end
+	
 
 }// end class

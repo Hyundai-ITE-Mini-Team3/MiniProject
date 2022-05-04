@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>fabric 테스트 페이지</title>
+<title>stationery 테스트 페이지</title>
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/product.css?after">
 </head>
@@ -22,14 +22,13 @@
 				onclick="GA_Event('카테고리_리스트','카테고리','라이프스타일')"> 라이프스타일</a> <img
 				src="http://cdn.thehandsome.com/_ui/desktop/common/images/products/ou_location_arr.png"
 				alt="location arr"> <a href="/ko/c/LS01/"
-				onclick="GA_Event('카테고리_리스트','카테고리','홈')"> 홈</a> <img
+				onclick="GA_Event('카테고리_리스트','카테고리','홈')"> 배스</a> <img
 				src="http://cdn.thehandsome.com/_ui/desktop/common/images/products/ou_location_arr.png"
 				alt="location arr"> <a href="javascript:void(0);"
-				onclick="GA_Event('카테고리_리스트','카테고리','패브릭')"> 패브릭</a>
+				onclick="GA_Event('카테고리_리스트','카테고리','패브릭')"> 욕실용품</a>
 			</span>
 		</h3>
 		<div class="adaptive_wrap">
-
 			<form id="categoryListForm" action="/ko/c/categoryList">
 				<input type="hidden" id="brandCode" name="brandCode" value="">
 				<input type="hidden" id="brandName" name="brandName" value="">
@@ -344,56 +343,133 @@
 					</div>
 				</div>
 			</form>
-			<!-- sort wrap -->
-			<!-- items list -->
-			<div class="items_list cate_item4" id="listContent"
-				style="display: block;">
+			<div class="items_list cate_item4" id="listContent" style="display:block;">
 				<ul class="clearfix" id="listBody">
-					<li>
-						<div class="item_box">
-							<a href="/ko/p/CS2C3HLV012LHY_GN?categoryCode=ls011"
-								class="item_info1" onclick="setEcommerceData('0', 'CATEGORY');">
-								<span class="item_img"> <img
-									src="/resources/img/product/fabric/fabric1.jpg"
-									id="T01_IMG_0" alt="[HAY] 도어 매트" targetcode="CS2C3HLV012LHY_GN"
-									class="respon_image"
-									onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img3.jpg'">
-									<img
-									src="/resources/img/product/fabric/fabric2.jpg"
-									id="T02_IMG_0" alt="[HAY] 도어 매트" targetcode="CS2C3HLV012LHY_GN"
-									class="respon_image on"
-									onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img3.jpg'"
-									style="display: none; opacity: 1;"> <input type="hidden"
-									id="newImage1_0"
-									value="http://newmedia.thehandsome.com/CS/2C/SS/CS2C3HLV012LHY_GN_T01.jpg">
-									<input type="hidden" id="newImage2_0"
-									value="http://newmedia.thehandsome.com/CS/2C/SS/CS2C3HLV012LHY_GN_T02.jpg">
-							</span> <span class="item_size" id="itemsize_0"
-								style="display: none; height: 20px; padding-top: 15px; margin-top: 0px; padding-bottom: 15px; margin-bottom: 0px;">
-									<div id="CS2C3HLV012LHY_GN">
-										<span>FR</span>
+					<c:forEach items="${result }" var="product" varStatus="loop">
+						<c:choose>
+							<c:when test="${loop.count % 4 !=0}">
+								<li>
+									<div class="item_box">
+										<a href="" class="item_info1"
+											onclick="setEcommerceData('0', 'CATEGORY');"> <span
+											class="item_img"> <img src="/resources/img/product/stationery/${product.pid }.jpg" id="T01_IMG_0"
+												alt="<c:out value="${product.pname }"/>" targetcode=""
+												class="respon_image"
+												onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img3.jpg'">
+												<img src="/resources/img/product/fabric/${product.pid }.jpg" id="T02_IMG_0"
+												alt="<c:out value="${product.pname }"/>" targetcode=""
+												class="respon_image on"
+												onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img3.jpg'"
+												style="display: none; opacity: 1;"> <input
+												type="hidden" id="newImage1_0" value=""> <input
+												type="hidden" id="newImage2_0" value="">
+										</span> <span class="item_size" id="itemsize_0"
+											style="display: none; height: 9.64602px; padding-top: 6.67699px; margin-top: 0px; padding-bottom: 6.67699px; margin-bottom: 0px;">
+												<div id="" style="display: none">
+													<span>FR</span>
+												</div>
+												<div id="" style="display: none">
+													<span>FR</span>
+												</div>
+												<div id="">
+													<span>FR</span>
+												</div>
+										</span>
+										</a> <a href="/ko/p/FL2C1HLV034LRN_BG?categoryCode=ls011"
+											class="item_info2"
+											onclick="setEcommerceData('0', 'CATEGORY');"> <span
+											class="brand"></span> <span class="title"><c:out
+													value="${product.pname }" /></span> <span class="price"><span
+												id="price_FL2C1HLV034LRN_BG"><span>￦<c:out
+															value="${product.pprice }" /></span></span></span> <span class="flag">
+												<span class="product">BEST</span> <span
+												class="review1902 ch1904">183</span>
+										</span>
+										</a>
+										<div class="color_more_wrap">
+											<a href="javascript:chgColorChip(0, 'FL2C1HLV034LRN_BG')"
+												class="cl wt"
+												style="background: #cca07c url('http://newmedia.thehandsome.com/FL/2C/SS/FL2C1HLV034LRN_BG_C01.jpg/dims/resize/13x14');"
+												onclick="GA_Event('카테고리_리스트','컬러칩','BG')"></a> <a
+												href="javascript:chgColorChip(0, 'FL2C1HLV034LRN_BC')"
+												class="cl wt"
+												style="background: #af4c46 url('http://newmedia.thehandsome.com/FL/2C/SS/FL2C1HLV034LRN_BC_C01.jpg/dims/resize/13x14');"
+												onclick="GA_Event('카테고리_리스트','컬러칩','BC')"></a> <a
+												href="javascript:chgColorChip(0, 'FL2C1HLV034LRN_BR')"
+												class="cl wt"
+												style="background: #694b41 url('http://newmedia.thehandsome.com/FL/2C/SS/FL2C1HLV034LRN_BR_C01.jpg/dims/resize/13x14');"
+												onclick="GA_Event('카테고리_리스트','컬러칩','BR')"></a>
+										</div>
+										<a href="javascript:addWishListClick('FL2C1HLV034LRN');"
+											class="add_wishlist " id="wish_FL2C1HLV034LRN"
+											onclick="GA_Category('wish', $(this));brazeLogCustomEvent('0');"
+											data-value="FL2C1HLV034LRN_BG">위시리스트 담기</a>
 									</div>
-							</span>
-							</a> <a href="/ko/p/CS2C3HLV012LHY_GN?categoryCode=ls011"
-								class="item_info2" onclick="setEcommerceData('0', 'CATEGORY');">
-								<span class="brand">FOURM STUDIO</span> <span class="title">[HAY]
-									도어 매트</span> <span class="price"><span
-									id="price_CS2C3HLV012LHY_GN"><span>￦69,000</span></span></span> <span
-								class="flag"> <span class="product">NEW</span>
-							</span>
-							</a>
-							<div class="color_more_wrap">
-								<a href="javascript:void(0);" class="cl wt"
-									style="background: #316948 url('http://newmedia.thehandsome.com/CS/2C/SS/CS2C3HLV012LHY_GN_C01.jpg/dims/resize/13x14');"
-									onclick="GA_Event('카테고리_리스트','컬러칩','GN')"></a>
-							</div>
-							<a href="javascript:addWishListClick('CS2C3HLV012LHY');"
-								class="add_wishlist " id="wish_CS2C3HLV012LHY"
-								onclick="GA_Category('wish', $(this));brazeLogCustomEvent('0');"
-								data-value="CS2C3HLV012LHY_GN">위시리스트 담기</a>
-						</div>
-					</li>
-					
+								</li>
+							</c:when>
+
+							<c:when test="${loop.count % 4 ==0}">
+								<li class="mr1m">
+									<div class="item_box">
+										<a href="" class="item_info1"
+											onclick="setEcommerceData('0', 'CATEGORY');"> <span
+											class="item_img"> <img src="/resources/img/product/stationery/${product.pid }.jpg" id="T01_IMG_0"
+												alt="<c:out value="${product.pname }"/>" targetcode=""
+												class="respon_image"
+												onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img3.jpg'">
+												<img src="/resources/img/product/fabric/${product.pid }.jpg" id="T02_IMG_0"
+												alt="<c:out value="${product.pname }"/>" targetcode=""
+												class="respon_image on"
+												onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img3.jpg'"
+												style="display: none; opacity: 1;"> <input
+												type="hidden" id="newImage1_0" value=""> <input
+												type="hidden" id="newImage2_0" value="">
+										</span> <span class="item_size" id="itemsize_0"
+											style="display: none; height: 9.64602px; padding-top: 6.67699px; margin-top: 0px; padding-bottom: 6.67699px; margin-bottom: 0px;">
+												<div id="" style="display: none">
+													<span>FR</span>
+												</div>
+												<div id="" style="display: none">
+													<span>FR</span>
+												</div>
+												<div id="">
+													<span>FR</span>
+												</div>
+										</span>
+										</a> <a href="/ko/p/FL2C1HLV034LRN_BG?categoryCode=ls011"
+											class="item_info2"
+											onclick="setEcommerceData('0', 'CATEGORY');"> <span
+											class="brand"></span> <span class="title"><c:out
+													value="${product.pname }" /></span> <span class="price"><span
+												id="price_FL2C1HLV034LRN_BG"><span>￦<c:out
+															value="${product.pprice }" /></span></span></span> <span class="flag">
+												<span class="product">BEST</span> <span
+												class="review1902 ch1904">183</span>
+										</span>
+										</a>
+										<div class="color_more_wrap">
+											<a href="javascript:chgColorChip(0, 'FL2C1HLV034LRN_BG')"
+												class="cl wt"
+												style="background: #cca07c url('http://newmedia.thehandsome.com/FL/2C/SS/FL2C1HLV034LRN_BG_C01.jpg/dims/resize/13x14');"
+												onclick="GA_Event('카테고리_리스트','컬러칩','BG')"></a> <a
+												href="javascript:chgColorChip(0, 'FL2C1HLV034LRN_BC')"
+												class="cl wt"
+												style="background: #af4c46 url('http://newmedia.thehandsome.com/FL/2C/SS/FL2C1HLV034LRN_BC_C01.jpg/dims/resize/13x14');"
+												onclick="GA_Event('카테고리_리스트','컬러칩','BC')"></a> <a
+												href="javascript:chgColorChip(0, 'FL2C1HLV034LRN_BR')"
+												class="cl wt"
+												style="background: #694b41 url('http://newmedia.thehandsome.com/FL/2C/SS/FL2C1HLV034LRN_BR_C01.jpg/dims/resize/13x14');"
+												onclick="GA_Event('카테고리_리스트','컬러칩','BR')"></a>
+										</div>
+										<a href="javascript:addWishListClick('FL2C1HLV034LRN');"
+											class="add_wishlist " id="wish_FL2C1HLV034LRN"
+											onclick="GA_Category('wish', $(this));brazeLogCustomEvent('0');"
+											data-value="FL2C1HLV034LRN_BG">위시리스트 담기</a>
+									</div>
+								</li>
+							</c:when>
+						</c:choose>
+					</c:forEach>
 				</ul>
 			</div>
 			<!-- //items list -->
@@ -418,10 +494,13 @@
 		</div>
 		-->
 		<!-- 상품 정렬 태그쪽 end -->
+		
+		</div>
+	</div>
 
 
 
-		<div id="criteoVariable">
+	<div id="criteoVariable">
 			<script type="text/javascript">window.criteo_q = window.criteo_q || [];window.criteo_q.push({ event: "setAccount", account: 24596 },{ event: "setHashedEmail", email: getCookie("criteoEmail")},{ event: "setSiteType", type: "d" },{ event: "viewList", item: ["CS2C3HLV012LHY","FL2C1HLV034LRN","FL2C7HLV008LRN"]});</script>
 		</div>
 	</div>

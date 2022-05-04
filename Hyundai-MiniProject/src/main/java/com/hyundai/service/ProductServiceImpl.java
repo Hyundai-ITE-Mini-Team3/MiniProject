@@ -18,15 +18,15 @@ public class ProductServiceImpl implements ProductService {
 	private ProductMapper mapper;
 	
 	@Override
-	public ProductVO get(Long pno) {
-		log.info("ProductVO get 호출 "+pno);
-		return mapper.read(pno);
+	public ProductVO get(String pid) {
+		log.info("ProductVO get 호출 "+pid);
+		return mapper.read(pid);
 	}
 
 	@Override
-	public List<ProductVO> getList() {
+	public List<ProductVO> getList(String csmall) {
 		log.info("ProductVO get List 호출");
-		return mapper.getList();
+		return mapper.getList(csmall);
 	}
 
 }

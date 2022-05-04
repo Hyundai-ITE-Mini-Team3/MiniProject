@@ -19,7 +19,8 @@ public class ProductMapperTest {
 	
 	@Test
 	public void testGetList() {
-		for(ProductVO product:mapper.getList()) {
+		String csmall = "fabric";
+		for(ProductVO product:mapper.getList(csmall)) {
 			log.info(product);
 		}
 		

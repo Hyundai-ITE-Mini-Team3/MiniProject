@@ -8,11 +8,13 @@ public interface ProductService {
 
 	//public void register(ProductVO product);
 	
-	public ProductVO get(Long pno);
+	// pid를 통해 상품 상세정보 불러오기
+	public ProductVO get(String pid);
 	
 	//public boolean modify(ProductVO pno);
 	
 	//public boolean remove(Long pno);
 	
-	public List<ProductVO> getList();		
+	// 상품 대분류 불러오기
+	public List<ProductVO> getList(String csamll);		
 }

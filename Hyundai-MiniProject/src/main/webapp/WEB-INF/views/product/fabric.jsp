@@ -350,7 +350,7 @@
 							<c:when test="${loop.count % 4 !=0}">
 								<li>
 									<div class="item_box">
-										<a href="" class="item_info1"
+										<a href="/product/${product.csmall }/detail?pid=${product.pid}" class="item_info1"
 											onclick="setEcommerceData('0', 'CATEGORY');"> <span
 											class="item_img"> <img src="/resources/img/product/fabric/${product.pid }.jpg" id="T01_IMG_0"
 												alt="<c:out value="${product.pname }"/>" targetcode=""
@@ -411,7 +411,7 @@
 							<c:when test="${loop.count % 4 ==0}">
 								<li class="mr1m">
 									<div class="item_box">
-										<a href="" class="item_info1"
+										<a href="/product/${product.csmall }/detail?pid=${product.pid}" class="item_info1"
 											onclick="setEcommerceData('0', 'CATEGORY');"> <span
 											class="item_img"> <img src="/resources/img/product/fabric/${product.pid }.jpg" id="T01_IMG_0"
 												alt="<c:out value="${product.pname }"/>" targetcode=""

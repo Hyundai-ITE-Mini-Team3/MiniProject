@@ -4224,11 +4224,11 @@ if(typeof kakaoPixel !== 'undefined'){
 $(document).ready(function(){
 	
 	$("#mainBtn").click(function(){
-		location.href="/ko/";
+		location.href="/";
 	});
 	
 	$("#loginBtn").click(function(){
-		location.href="/ko/member/login";
+		location.href="/login/loginform";
 	});
 	
     
@@ -4247,9 +4247,10 @@ $(document).ready(function(){
 		<!--join step-->
 		<div class="email_step">
 			<ul class="clearfix">
-					<li class="step02">step01 회원약관동의</li>
-					<li class="step03">step02 회원정보 입력</li>
-					<li class="step04 on">step03 가입완료</li>
+					<li class="step01">step01 이메일 인증</li>
+					<li class="step02">step02 회원약관동의</li>
+					<li class="step03 on">step03 회원정보 입력</li>
+					<li class="step04">step04 가입완료</li>
 			</ul>
 		</div>
 		<!--//join step-->

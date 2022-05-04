@@ -1885,9 +1885,10 @@ $(document).ready(function(){
 		<!--join step-->
 		<div class="email_step">
 			<ul class="clearfix" style="text-align:center">
-				<li class="step02 on">step01 회원약관동의</li>
-				<li class="step03">step02 회원정보 입력</li>
-				<li class="step04">step03 가입완료</li>
+					<li class="step01">step01 이메일 인증</li>
+					<li class="step02 on">step02 회원약관동의</li>
+					<li class="step03">step03 회원정보 입력</li>
+					<li class="step04">step04 가입완료</li>
 			</ul>
 		</div>
 		<!--//join step-->

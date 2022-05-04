@@ -18,7 +18,7 @@ import com.hyundai.domain.MemberVO;
 import com.hyundai.service.MemberService;
 
 /**
- * Handles requests for the application home page.
+ * Handles requests for the application login page.
  */
 @Controller
 @RequestMapping("/login/*")
@@ -29,6 +29,7 @@ public class LoginController {
 	@Autowired
 	private MemberService service;
 
+	
 	@RequestMapping(value = "/loginform", method = RequestMethod.GET)
 	public String loginform() {
 		logger.info("Loginform Page");
@@ -39,13 +40,7 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public void login(@RequestParam("mid") String mid, @RequestParam("mpassword") String mpassword, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		logger.info("Login Page");
-		
-		HttpSession session = request.getSession();
-		
-		if(session.getAttribute("member") != null) {
-			session.removeAttribute("member");
-		}		
-		
+	
 		MemberVO vo = new MemberVO();
 		vo.setMid(mid);
 		vo.setMpassword(mpassword);
@@ -54,7 +49,8 @@ public class LoginController {
 		
 		if(member != null) {
 			// 세션 저장
-			session.setAttribute("member", member);
+			HttpSession session = request.getSession();
+			session.setAttribute("member_id", member.getMid());
 			response.getWriter().print(true);
 		} else {
 			response.getWriter().print(false);
@@ -65,8 +61,12 @@ public class LoginController {
 	public String logout(HttpServletRequest request) {
 		logger.info("Logout Page");
 		
+		// 세션 삭제
 		HttpSession session = request.getSession();
-		session.invalidate();
+		if(session != null) {
+			session.invalidate();
+		}
+
 		
 		return "redirect:/";
 	}

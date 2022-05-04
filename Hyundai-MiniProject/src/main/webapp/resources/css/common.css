@@ -1263,7 +1263,7 @@ table td .receive_choice > span label{padding-right:25px;display:inline-block;}
 .shopping_cart_tab1807 .tab4 li{width:25%;}
 .shopping_cart_tab1807 ul li a{font-size:16px;padding:20px 0;line-height:34px;color:#888;border-bottom:1px solid #414040;}
 .shopping_cart_tab1807 ul li a.active{font-weight:bold;color:#1b1b1b;border:1px solid #414040;border-bottom:0;}
-.shopping_cart_tab1807 ul li a span{display:inline-block;width:65px;height:33px;background:url('/_ui/desktop/common/images/common/shopping_cart_tab.png') no-repeat;}
+.shopping_cart_tab1807 ul li a span{display:inline-block;width:65px;height:33px;background:url('/resources/img/common/shopping_cart_tab.png') no-repeat;}
 .shopping_cart_tab1807 ul li a span.delt_ico{background-position:0 0;}
 .shopping_cart_tab1807 ul li a span.spt_ico{width:58px;background-position:0 -34px;}
 .shopping_cart_tab1807 ul li a span.atht_ico{width:58px;background-position:0 -66px;}

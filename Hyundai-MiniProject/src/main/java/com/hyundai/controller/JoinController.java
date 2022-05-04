@@ -19,7 +19,7 @@ import com.hyundai.domain.MemberVO;
 import com.hyundai.service.MemberService;
 
 /**
- * Handles requests for the application home page.
+ * Handles requests for the application join page.
  */
 @Controller
 @RequestMapping("/join/*")
@@ -30,7 +30,7 @@ public class JoinController {
 	@Autowired
 	private MemberService service;
 
-	@RequestMapping(value = "/joinprovision", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/joinprovision", method = RequestMethod.GET)
 	public String joinProvision() {
 		logger.info("Joinprovision Page");
 
@@ -63,17 +63,22 @@ public class JoinController {
 		String tel = map.get("tel1").toString() + map.get("tel2").toString() + map.get("tel3").toString();
 		member.setMtel(tel);
 
-		int year = Integer.parseInt(map.get("year").toString());
-		int month = Integer.parseInt(map.get("month").toString());
-		int day = Integer.parseInt(map.get("day").toString());
-
-		Calendar cal = Calendar.getInstance();
-		cal.set(year, month, day);
-		Date birth = new Date(cal.getTimeInMillis());
-		member.setMbirth(birth);
-
-		member.setMaddress1(map.get("maddress1").toString());
-		member.setMaddress2(map.get("maddress2").toString());
+		if(!map.get("year").equals("") && !map.get("month").equals("") && !map.get("day").equals("")) {
+			
+			int year = Integer.parseInt(map.get("year").toString());
+			int month = Integer.parseInt(map.get("month").toString());
+			int day = Integer.parseInt(map.get("day").toString());
+			
+			Calendar cal = Calendar.getInstance();
+			cal.set(year, month, day);
+			Date birth = new Date(cal.getTimeInMillis());
+			member.setMbirth(birth);
+		}
+	
+		if(!map.get("maddress1").equals("") && !map.get("maddress2").equals("")) {
+			member.setMaddress1(map.get("maddress1").toString());
+			member.setMaddress2(map.get("maddress2").toString());
+		}
 
 		logger.info("member: " + member);
 		service.register(member);

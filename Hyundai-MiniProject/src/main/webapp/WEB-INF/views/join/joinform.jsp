@@ -1706,11 +1706,9 @@ function searchAddress() {
 
 			<!-- validation check message global -->
 			<input type="hidden" id="validationCheckPwd"
-				value="비밀번호를 재입력 하셔야 합니다."> <input type="hidden"
-				id="validationCheck" value="필수데이터가 입력되지 않았습니다."> <input
+				value="비밀번호를 재입력 하셔야 합니다."> <input
 				type="hidden" id="validationCheckMsg" value="다음 사항을 확인해 주세요.">
-			<input type="hidden" id="validationCheckMsg1"
-				value="필수데이터가 입력되지 않았습니다."> <input type="hidden"
+			<input type="hidden"
 				id="validationCheckMsg2" value="동일문자를 3번 이상 사용할 수 없습니다."> <input
 				type="hidden" id="validationCheckMsg3"
 				value="연속된 문자열(123 또는 321, abc, cba 등) 3자리이상 올 수 없습니다."> <input
@@ -1989,68 +1987,39 @@ $(document).ready(function(){
 
       // 여기
       // 회원가입 버튼 눌렀을 때 실행
-      var joinCfBtnChk = 0;
+      /* var joinCfBtnChk = 0;
       $("#joinBtn").click(function(){
-
-          var vc = new ValidationCheck(); 
-          vc.checkIdList = ['mpassword', 'pwc', 'mname', 'selYear', 'selMonth', 'selDay'];
-
-          if(!vc.isValid()){
-              return;
-          }
           
-          var pwTypeChk = $("#pwTypeChk").val();
-          var pwConfirmChk = $("#pwConfirmChk").val();
-          var idDuplChk = $("#idDuplChk").val();
-
-          if ( pwTypeChk !== "Y") {
-              layerAlert("비밀번호는 8~15자리 이하로 영문/숫자/특수문자를 혼합해주세요 ");
-              return;
-          }
-          
-          if ( pwConfirmChk !== "Y") {
-              layerAlert("비밀번호가 일치하지 않습니다 ");
-              return;
-          }
-          
-          
-          if($("#email").val()!=""){
-              if ( idDuplChk !== "Y") {
-                  layerAlert("아이디 중복확인이 되지 않았습니다.");
-                  return;
-              }
-              
-              var email = $("#email").val()+"@"+$("#emailDomain").val();
-              if (!validateEmail(email)) {
-                  layerAlert("잘못된 E-mail 형식입니다.");
-                  return;
-              }
-              
-              if(email.length > 50) {
-                  layerAlert("E-mail은 최대 50자입니다.");
-                  return;
-              }
-          }else{
-              if($("#emailReceiveYn").is(':checked')){
-                  layerAlert("E-mail (정보수신용) 을 입력해 주세요.");
-                  return;
-              }
-          }
-          
-          $("#cancleBtn").attr("disabled", true);
-          $("#joinBtn").attr("disabled", true);
-          
-          $("#collectionAgreementYN").val("Y");
-          $("#emailAddress").val($("#email").val()+"@"+$("#emailDomain").val());
-          
-          if($("#email").val()==""){
-              $("#emailAddress").val("");
-          }
-          $("#sBirthday").val($("#selYear").val() + $("#selMonth").val() + $("#selDay").val());
-          $("#memberJoinForm").attr("action", "/join/joincomplete");
-          $("#memberJoinForm").submit();
+         var mid = $("#mid").val();
+         var mpw = $("#mpassword").val();
+      	 var mpwc = $("#pwc").val();
+      	 var mname = $("#mname").val();
+      	 var memail = $("#memail").val()+"@"+$("#memailDomain").val();
+      	 var idDuplChk = $("#idDuplChk").val();
+      	 
+      	 // 필수 값 모두 입력됐는지 확인
+         if(mid == "" || mpw == "" || mpwc == "" || mname == "" || memail == "") {
+			layerAlert("필수값들을 입력해주세요.");
+         }
+      	 
+      	 // 아이디 중복체크 됐는지 확인
+      	 if(idDuplChk != "Y") {
+      		layerAlert("아이디 중복확인이 되지 않았습니다.");
+      	 }
+      	 
+      	 // 비밀번호 확인
+      	 if(mpw != mpwc) {
+      		layerAlert("비밀번호가 일치하지 않습니다.");
+      	 }
+      	 
+      	 $("#cancleBtn").attr("disabled", true);
+         $("#joinBtn").attr("disabled", true);
+         
+         $("#memberJoinForm").attr("action", "/join/joincomplete");
+         $("#memberJoinForm").submit();
+        
       });
-      
+ */      
       
       $("#email,#emailDomain").keypress(function(event){
           if(event.which == 32){
@@ -2175,6 +2144,7 @@ function validateEmail(email) {
 }
 
 
+// 아이디 중복 체크 (박주영)
 function dupCheck() {
 	var vc = new ValidationCheck();
     vc.checkIdList = ['mid'];
@@ -2201,64 +2171,38 @@ function dupCheck() {
     }
 }
 
+// 회원가입 버튼 누를시 호출, 정보 확인 후 submit (박주영)
 function join() {
-	var vc = new ValidationCheck(); 
-    vc.checkIdList = ['mpassword', 'pwc', 'mname', 'selYear', 'selMonth', 'selDay'];
-
-    if(!vc.isValid()){
-        return;
-    }
-    
-    var pwTypeChk = $("#pwTypeChk").val();
-    var pwConfirmChk = $("#pwConfirmChk").val();
-    var idDuplChk = $("#idDuplChk").val();
-
-    if ( pwTypeChk !== "Y") {
-        layerAlert("비밀번호는 8~15자리 이하로 영문/숫자/특수문자를 혼합해주세요 ");
-        return;
-    }
-    
-    if ( pwConfirmChk !== "Y") {
-        layerAlert("비밀번호가 일치하지 않습니다 ");
-        return;
-    }
-    
-    
-    if($("#email").val()!=""){
-        if ( idDuplChk !== "Y") {
-            layerAlert("아이디 중복확인이 되지 않았습니다.");
-            return;
-        }
-        
-        var email = $("#email").val()+"@"+$("#emailDomain").val();
-        if (!validateEmail(email)) {
-            layerAlert("잘못된 E-mail 형식입니다.");
-            return;
-        }
-        
-        if(email.length > 50) {
-            layerAlert("E-mail은 최대 50자입니다.");
-            return;
-        }
-    }else{
-        if($("#emailReceiveYn").is(':checked')){
-            layerAlert("E-mail (정보수신용) 을 입력해 주세요.");
-            return;
-        }
-    }
-    
-    $("#cancleBtn").attr("disabled", true);
-    $("#joinBtn").attr("disabled", true);
-    
-    $("#collectionAgreementYN").val("Y");
-    $("#emailAddress").val($("#email").val()+"@"+$("#emailDomain").val());
-    
-    if($("#email").val()==""){
-        $("#emailAddress").val("");
-    }
-    $("#sBirthday").val($("#selYear").val() + $("#selMonth").val() + $("#selDay").val());
-    $("#memberJoinForm").attr("action", "/join/joincomplete");
-    $("#memberJoinForm").submit();
+	var mid = $("#mid").val();
+    var mpw = $("#mpassword").val();
+	var mpwc = $("#pwc").val();
+	var mname = $("#mname").val();
+	var memail = $("#memail").val()+"@"+$("#memailDomain").val();
+	var idDuplChk = $("#idDuplChk").val();
+	 
+	// 필수 값 모두 입력됐는지 확인
+	if(mid == "" || mpw == "" || mpwc == "" || mname == "" || memail == "") {
+		layerAlert("필수값들을 입력해주세요.");
+		return;
+	}
+	 
+	// 아이디 중복체크 됐는지 확인
+	if(idDuplChk != "Y") {
+		layerAlert("아이디 중복확인이 되지 않았습니다.");
+		return;
+	}
+	 
+	// 비밀번호 확인
+	if(mpw != mpwc) {
+		layerAlert("비밀번호가 일치하지 않습니다.");
+		return;
+	}
+	 
+	$("#cancleBtn").attr("disabled", true);
+	$("#joinBtn").attr("disabled", true);
+	  
+	$("#memberJoinForm").attr("action", "/join/joincomplete");
+	$("#memberJoinForm").submit();
 }
 
 //]]>
@@ -2285,9 +2229,10 @@ function join() {
 			<!--join step-->
 			<div class="email_step">
 				<ul class="clearfix">
-					<li class="step02">step01 회원약관동의</li>
-					<li class="step03">step02 회원정보 입력</li>
-					<li class="step04 on">step03 가입완료</li>
+					<li class="step01">step01 이메일 인증</li>
+					<li class="step02">step02 회원약관동의</li>
+					<li class="step03 on">step03 회원정보 입력</li>
+					<li class="step04">step04 가입완료</li>
 				</ul>
 			</div>
 			<!--//join step-->
@@ -2317,8 +2262,9 @@ function join() {
 										<th scope="row">아이디<strong class="reqd">*</strong></th>
 										<td><input type="text" id="mid" name="mid"
 											style="width: 150px" title="아이디"> <input
-											type="button" class="btn add_s" id="idDubChkBtn" value="중복확인" onclick="dupCheck()">
-											<span class="guide_comment" id="idMsg"></span></td>
+											type="button" class="btn add_s" id="idDubChkBtn" value="중복확인"
+											onclick="dupCheck()"> <span class="guide_comment"
+											id="idMsg"></span></td>
 									</tr>
 									<tr>
 										<th scope="row"><strong class="reqd">*</strong><label
@@ -2346,8 +2292,8 @@ function join() {
 										<th scope="row"><strong class="reqd">*</strong><label
 											for="email">E-mail (정보수신용)</label></th>
 										<td><input type="text" style="width: 120px" title="이메일"
-											name="memail" id="email"> <span class="andmail">@</span>
-											<select id="emailDomainSel" name="memaildomain"
+											name="memail" id="memail"> <span class="andmail">@</span>
+											<select id="memailDomainSel" name="memaildomain"
 											style="width: 120px" title="이메일">
 												<option value="">직접입력</option>
 												<option value="naver.com">naver.com</option>
@@ -2391,7 +2337,7 @@ function join() {
 											id="tel3" name="tel3"></td>
 									</tr>
 									<tr>
-										<th scope="row"><strong class="reqd">*</strong><label
+										<th scope="row"><label
 											for="birth">생년월일</label></th>
 										<td><select style="width: 80px" id="selYear" name="year"
 											title="년도">

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -810,10 +811,15 @@ function GA_search(){
             <div class="brand_menu brand_menu1903">
             <ul class="clearfix">
                 <!-- 선호 브랜드 없음 -->
-                        <li><span class="on"><a href="/ko/main" onclick="GA_Event('공통','탑_네비게이션','HOME')">HOME</a></span></li>
-                        <!-- 로그인 상태 -->
+                        <li><span class="on"><a href="/" onclick="GA_Event('공통','탑_네비게이션','HOME')">HOME</a></span></li>
+                        		<!-- 로그인 상태 -->
+                        		<c:if test="${empty sessionScope.member_id }">
+                        			<p class="brand_menu_guide_text">아래 '브랜드' 메뉴에서 좋아하는 브랜드를 <span style="margin-top:-1px; display:inline-block;">♥</span>해주세요</p>
+                        		</c:if>
 								<!-- 비로그인 상태 -->
-                        		<p class="brand_menu_guide_text">로그인 후 아래 '브랜드' 메뉴에서 좋아하는 브랜드를 <span style="margin-top:-1px; display:inline-block;">♥</span>해주세요</p>
+								<c:if test="${not empty sessionScope.member_id }">
+                        			<p class="brand_menu_guide_text">로그인 후 아래 '브랜드' 메뉴에서 좋아하는 브랜드를 <span style="margin-top:-1px; display:inline-block;">♥</span>해주세요</p>
+                        		</c:if>
 								</ul>
         </div>
     <div class="gnb_sh_wrap" style="display:none;">
@@ -968,7 +974,15 @@ function GA_search(){
                 <!--// 201705 search_box_wrap -->
                 <div class="util_menu" style="display:block;">
 					<ul class="clearfix">
-						<li><a href="/login/loginform" onclick="GA_Event('공통','헤더_메뉴','로그인')">로그인<!-- 로그인 --></a></li>
+						<!-- 로그인 여부에 따라 로그인/로그아웃 표시 (박주영) -->
+						<c:choose>
+			            	<c:when test="${empty sessionScope.member_id }">
+			            		<li><a href="/login/loginform">로그인</a></li>
+			            	</c:when>
+			            	<c:otherwise>
+			            		<li><a href="/login/logout">로그아웃 [${sessionScope.member_id}님]</a></li>
+			            	</c:otherwise>
+			            </c:choose>
 						<li class="header_dropmemu mypage">
 							
 						<a href="/mypage/mypage" class="btn" onclick="GA_Event('공통','헤더_메뉴','마이페이지')">마이페이지</a>
@@ -1127,10 +1141,13 @@ function GA_search(){
                                     </li>
                                     </ul>
                             </li>
-                        <!-- #1141 - 카테고리 개편 - 메인 즐겨찾기 브랜드 레이어 -->
                         </ul>
-                        <p class="gnbbr_txt">
-                        로그인 후 좋아하는 브랜드를 ♥해주세요. '적용하기' 버튼을 클릭하면 웹사이트 상단에 추가됩니다.</p>
+                        <!-- 로그인 시에만 표출되는 메시지 (박주영) -->
+                        <c:if test="${empty sessionScope.member_id }">
+                        	<p class="gnbbr_txt">
+                        			로그인 후 좋아하는 브랜드를 ♥해주세요. '적용하기' 버튼을 클릭하면 웹사이트 상단에 추가됩니다.
+                        	</p>
+                        </c:if>
                         <br>
                         <div class="br_button_wrap">
                             <button type="button" name="button" class="btn_br_apply" onclick="applyCategory();GA_Event('공통_브랜드','적용','적용하기');">적용하기</button>
@@ -1765,7 +1782,7 @@ function GA_search(){
         <ul class="clearfix">
             <li><a href="javascript:void(0);"><span class="ico_sh">search</span></a></li>
             <li><a href="/ko/mypage/myWish" onclick="GA_Event('공통','유틸_메뉴','위시리스트');"><span class="ico wishlist">wish list</span> <span class="count">(<span id="wishlistCount">0</span>)</span></a></li>
-            <li><a href="/ko/shoppingbag" onclick="GA_Event('공통','유틸_메뉴','쇼핑백');"><span class="ico cart">장바구니</span> <span class="count">(<span id="cartCount">0</span>)</span></a></li>
+            <li><a href="/cart/cart" onclick="GA_Event('공통','유틸_메뉴','쇼핑백');"><span class="ico cart">장바구니</span> <span class="count">(<span id="cartCount">0</span>)</span></a></li>
             </ul>
     </div>
   </div>  

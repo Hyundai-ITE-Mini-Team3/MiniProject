@@ -14,9 +14,9 @@
 		#{mname},
 		#{memail},
 		#{mtel},
-		#{mbirth},
-		#{maddress1},
-		#{maddress2}
+		#{mbirth, jdbcType=DATE},
+		#{maddress1, jdbcType=VARCHAR},
+		#{maddress2, jdbcType=VARCHAR}
 		)
 		}
 

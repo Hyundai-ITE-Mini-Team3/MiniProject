@@ -1085,7 +1085,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 							onclick="GA_Event('마이페이지','LNB','내 상품평');">내 상품평</a>
 					</dd>
 					<dd>
-						<a href="/ko/mypage/myqna"
+						<a href="/qna/list"
 							onclick="GA_Event('마이페이지','LNB','상품 Q&amp;A');">상품 Q&amp;A</a>
 					</dd>
 					<dd>

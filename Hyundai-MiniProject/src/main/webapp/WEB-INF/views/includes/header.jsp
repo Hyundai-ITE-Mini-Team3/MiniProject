@@ -5,30 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>header</title>
-<meta name="naver-site-verification"
-	content="2f9358e1e36605519854a595f243f0171519dd1d">
-<meta name="google-site-verification"
-	content="0bGV8gPhwO_PzritNvIsz2k74EH5yPsrXXluJ8ZUed8">
-<meta name="google-site-verification"
-	content="dO99-Ao-ywXeVDEz4jz5nJBXzQXVCgmX4WXzxl_Nf3c">
-<meta name="facebook-domain-verification"
-	content="jvxpdjfrqqan9oe1qdrjfyxj553an6">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="Cache-Control" content="No-Cache">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=1, target-densitydpi=medium-dpi">
-<meta property="og:type" content="article">
-<meta property="og:title" content="더한섬닷컴 | THE HANDSOME.COM">
-<meta property="og:description"
-	content="타임, 마인, 시스템, SJSJ 등 프리미엄 브랜드 및 트렌디한 해외·편집숍까지 가득한 스타일 플랫폼!">
-<meta property="og:image"
-	content="http://s3.ap-northeast-2.amazonaws.com/cdn.thehandsome.com-kr/pc/210510_logo/%E3%84%B9%EB%A1%9C%EA%B3%A0.png">
-<meta property="og:url" content="http://www.thehandsome.com/ko/">
-<meta name="keywords"
-	contents="한섬, 더한섬닷컴, 한섬몰, 한섬아울렛, 한섬닷컴, 더한섬, 한섬올라인몰, HANDSOME, thehandsome">
 <title>더한섬닷컴 | THE HANDSOME.COM</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/common.css?after">
 <link rel="stylesheet" type="text/css" href="/resources/css/layout.css?after">
@@ -50,8 +26,6 @@
 	src="https://connect.facebook.net/signals/config/1947530058811697?v=2.9.58&amp;r=stable"
 	async=""></script>
 <script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script>
-<script async="" charset="utf-8"
-	src="/resources/production.min.js"></script>
 <script type="text/javascript"
 	src="/resources/js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript"
@@ -120,15 +94,13 @@
 <script type="text/javascript"
 	src="/resources/js/instagramAPI.js"></script>
 <script type="text/javascript"
-	src="/resources/js/instagramAPI.js"></script>
-<script type="text/javascript"
-	src="/resources/js/handsome/jquery.bxslider.min.js"></script>
+	src="/resources/js/jquery.bxslider.min.js"></script>
 <script type="text/javascript"
 	src="/resources/js/makePCookie.js"></script>
 
-<script type="text/javascript" src="/_ui/shared/js/siteoverlay.js"></script>
+<script type="text/javascript" src="/resources/js/siteoverlay.js"></script>
 <script type="text/javascript"
-	src="/_ui/desktop/common/wisenut/js/jquery.min.js"></script>
+	src="/resources/js/jquery.min.js"></script>
 
 <script type="text/javascript"
 	src="/resources/js/swiper.min.js"></script>
@@ -3041,10 +3013,6 @@ body>.ab-feed .ab-no-cards-message {
 				<!-- <script type="text/javascript" src="/_ui/desktop/common/js/SsoAjax.js"></script> -->
 
 <script>
-var arkQuery = $.noConflict(true);
-</script>
-
-<script>
 /*
  * 챗봇 관련 스크립트
  */
@@ -3839,13 +3807,13 @@ function GA_search(){
             <ul class="clearfix">
                 <!-- 선호 브랜드 없음 -->
                         <li><span class="on"><a href="/" onclick="GA_Event('공통','탑_네비게이션','HOME')">HOME</a></span></li>
-                        		<!-- 로그인 상태 -->
+                        		<!-- 비로그인 상태 -->
                         		<c:if test="${empty sessionScope.member_id }">
-                        			<p class="brand_menu_guide_text">아래 '브랜드' 메뉴에서 좋아하는 브랜드를 <span style="margin-top:-1px; display:inline-block;">♥</span>해주세요</p>
-                        		</c:if>
-								<!-- 비로그인 상태 -->
-								<c:if test="${not empty sessionScope.member_id }">
                         			<p class="brand_menu_guide_text">로그인 후 아래 '브랜드' 메뉴에서 좋아하는 브랜드를 <span style="margin-top:-1px; display:inline-block;">♥</span>해주세요</p>
+                        		</c:if>
+								<!-- 로그인 상태 -->
+								<c:if test="${not empty sessionScope.member_id }">
+                        			<p class="brand_menu_guide_text">아래 '브랜드' 메뉴에서 좋아하는 브랜드를 <span style="margin-top:-1px; display:inline-block;">♥</span>해주세요</p>
                         		</c:if>
 								</ul>
         </div>
@@ -4022,13 +3990,13 @@ function GA_search(){
 						
 							<div class="list">
 								<ul>
-									<li><a href="/ko/mypage/order/myorders" onclick="GA_Event('공통','헤더_메뉴','마이페이지_주문조회')">주문조회<!-- 주문조회 --></a></li>
-									<li><a href="/ko/mypage/myGradeInfo" onclick="GA_Event('공통','헤더_메뉴','마이페이지_나의회원등급')">나의회원등급<!-- 온라인등급 --></a></li>
-										<li><a href="/ko/mypage/voucher" onclick="GA_Event('공통','헤더_메뉴','마이페이지_쿠폰조회')">쿠폰조회<!-- 쿠폰조회 --></a></li>
-									<li><a href="/ko/mypage/mypoint" onclick="GA_Event('공통','헤더_메뉴','마이페이지_마일리지조회')">마일리지조회<!-- 포인트조회 --></a></li>
-										   <li><a href="/ko/mypage/myEGiftCard" onclick="GA_Event('공통','헤더_메뉴','마이페이지_e-Gift Card')">e-Gift Card<!-- e-Gfit Card --></a></li>
-									   <li><a href="/ko/mypage/personInfomationChangePWCheck" onclick="GA_Event('공통','헤더_메뉴','마이페이지_회원정보변경')">회원정보변경<!-- 회원정보변경 --></a></li>
-									<li><a href="/ko/svcenter/mantomaninquiry" onclick="GA_Event('공통','헤더_메뉴','마이페이지_온라인상담')">온라인상담<!-- 온라인 상담 --></a></li>
+									<li><a href="/mypage/mypage" onclick="GA_Event('공통','헤더_메뉴','마이페이지_주문조회')">주문조회<!-- 주문조회 --></a></li>
+									<li><a href="/mypage/mypage" onclick="GA_Event('공통','헤더_메뉴','마이페이지_나의회원등급')">나의회원등급<!-- 온라인등급 --></a></li>
+										<li><a href="/mypage/mypage" onclick="GA_Event('공통','헤더_메뉴','마이페이지_쿠폰조회')">쿠폰조회<!-- 쿠폰조회 --></a></li>
+									<li><a href="/mypage/mypage" onclick="GA_Event('공통','헤더_메뉴','마이페이지_마일리지조회')">마일리지조회<!-- 포인트조회 --></a></li>
+										   <li><a href="/mypage/mypage" onclick="GA_Event('공통','헤더_메뉴','마이페이지_e-Gift Card')">e-Gift Card<!-- e-Gfit Card --></a></li>
+									   <li><a href="/mypage/mypage" onclick="GA_Event('공통','헤더_메뉴','마이페이지_회원정보변경')">회원정보변경<!-- 회원정보변경 --></a></li>
+									<li><a href="/mypage/mypage" onclick="GA_Event('공통','헤더_메뉴','마이페이지_온라인상담')">온라인상담<!-- 온라인 상담 --></a></li>
 									</ul>
 							</div>
 						</li>
@@ -4786,7 +4754,7 @@ function GA_search(){
         <ul class="clearfix">
             <li><a href="javascript:void(0);"><span class="ico_sh">search</span></a></li>
             <li><a href="/ko/mypage/myWish" onclick="GA_Event('공통','유틸_메뉴','위시리스트');"><span class="ico wishlist">wish list</span> <span class="count">(<span id="wishlistCount">0</span>)</span></a></li>
-            <li><a href="/cart/cart" onclick="GA_Event('공통','유틸_메뉴','쇼핑백');"><span class="ico cart">장바구니</span> <span class="count">(<span id="cartCount">0</span>)</span></a></li>
+            <li><a href="/cart/cartList" onclick="GA_Event('공통','유틸_메뉴','쇼핑백');"><span class="ico cart">장바구니</span> <span class="count">(<span id="cartCount">0</span>)</span></a></li>
             </ul>
     </div>
   </div>  

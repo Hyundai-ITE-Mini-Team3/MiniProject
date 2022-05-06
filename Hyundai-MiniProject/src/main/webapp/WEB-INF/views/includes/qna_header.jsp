@@ -485,17 +485,15 @@ pageEncoding="UTF-8"%>
                   $("#transparent_mask").show();
 
                   GA_Event("공통", "유틸_메뉴", "검색");
-                  $(".search_box_wrap")
-                    .stop()
-                    .animate(
-                      {
-                        width: "406px",
-                        height: '+= dataHeight +"px"',
-                        "max-height": "430px",
-                        opacity: 1,
-                      },
-                      "fast"
-                    );
+                  $(".search_box_wrap").stop().animate(
+                    {
+                      width: "406px",
+                      height: '+= dataHeight +"px"',
+                      "max-height": "430px",
+                      opacity: 1,
+                    },
+                    "fast"
+                  );
 
                   $(".search_box_wrap").addClass("on");
                   $(".btn_search_tab").stop().show();
@@ -599,13 +597,11 @@ pageEncoding="UTF-8"%>
 
                 //close button
                 $(".search_box a span.btn_close").on("click", function () {
-                  $(".search_box_wrap")
-                    .stop()
-                    .animate({
-                      width: "30px",
-                      height: '-= dataHeight +"px"',
-                      opacity: 0,
-                    });
+                  $(".search_box_wrap").stop().animate({
+                    width: "30px",
+                    height: '-= dataHeight +"px"',
+                    opacity: 0,
+                  });
 
                   $(".data_react").stop().hide();
                   $(".btn_search_tab").stop().hide();
@@ -622,13 +618,11 @@ pageEncoding="UTF-8"%>
               });
               $("#transparent_mask").click(function () {
                 if ($(".search_box_wrap").hasClass("on")) {
-                  $(".search_box_wrap")
-                    .stop()
-                    .animate({
-                      width: "30px",
-                      height: '-= dataHeight +"px"',
-                      opacity: 0,
-                    });
+                  $(".search_box_wrap").stop().animate({
+                    width: "30px",
+                    height: '-= dataHeight +"px"',
+                    opacity: 0,
+                  });
 
                   $(".data_react").stop().hide();
                   $(".btn_search_tab").stop().hide();
@@ -725,7 +719,7 @@ pageEncoding="UTF-8"%>
                 <li>
                   <span class="on"
                     ><a
-                      href="/ko/main"
+                      href="/"
                       onclick="GA_Event('공통','탑_네비게이션','HOME')"
                       >HOME</a
                     ></span

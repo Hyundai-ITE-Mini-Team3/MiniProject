@@ -4077,13 +4077,13 @@ console.log(qidValue);
 
 
 								<div class="btnwrap">
-									<a
-										href="/qna/list?&pageNum=${cri.pageNum}&amount=${cri.amount}"
-										class="btn wt">목록</a> <a
-										href="/qna/remove?qid=${qna.qid }&pageNum=${cri.pageNum}&amount=${cri.amount}"
-										class="btn gray mr0">삭제</a> <a
-										href="/qna/modify?qid=${qna.qid }&pageNum=${cri.pageNum}&amount=${cri.amount}"
-										class="btn gray mr0">수정</a>
+									<a href="/qna/list?&pageNum=${cri.pageNum}&amount=${cri.amount}" class="btn wt">목록</a> 
+									<c:if test="${mid eq qna.mid }">
+										<a href="/qna/remove?qid=${qna.qid }&pageNum=${cri.pageNum}&amount=${cri.amount}" class="btn gray mr0">삭제</a> 
+									</c:if>
+									<c:if test="${mid eq qna.mid }">
+										<a href="/qna/modify?qid=${qna.qid }&pageNum=${cri.pageNum}&amount=${cri.amount}" class="btn gray mr0">수정</a>
+									</c:if>
 								</div>
 							</div>
 						</div>

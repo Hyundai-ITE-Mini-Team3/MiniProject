@@ -16,5 +16,11 @@ public interface ProductService {
 	//public boolean remove(Long pno);
 	
 	// 상품 대분류 불러오기
-	public List<ProductVO> getList(String csamll);		
+	public List<ProductVO> clargeGetList(String clarge);
+	
+	// 상품 중분류 불러오기
+	public List<ProductVO> cmediumGetList(String cmedium);
+	
+	// 상품 소분류 불러오기
+	public List<ProductVO> getList(String csmall);		
 }

@@ -725,7 +725,7 @@ pageEncoding="UTF-8"%>
                 <li>
                   <span class="on"
                     ><a
-                      href="/"
+                      href="/ko/main"
                       onclick="GA_Event('공통','탑_네비게이션','HOME')"
                       >HOME</a
                     ></span

@@ -22,9 +22,36 @@ public class ProductController {
 
 	@Autowired
 	private ProductService service;
+	
+	// 대분류 상품목록 불러오기 메서드
+	@RequestMapping(value = "/{clarge}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String clargeGetList(@PathVariable("clarge") String clarge, Model model) {
 
-	@RequestMapping(value = "/{csmall}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String fabricGetList(@PathVariable("csmall") String csmall, Model model) {
+		List<ProductVO> productList = service.clargeGetList(clarge);
+		System.out.println(productList);
+
+		log.info("소분류 상품 페이지 접속하기");
+		model.addAttribute("result", productList);
+		// return "product/" + csmall;
+		return "product/list";
+	}// end
+	
+	// 중분류 상품목록 불러오기 메서드
+	@RequestMapping(value = "/{clarge}/{cmdedium}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String cmdediumGetList(@PathVariable("cmdedium") String cmdedium, Model model) {
+
+		List<ProductVO> productList = service.cmediumGetList(cmdedium);
+		System.out.println(productList);
+
+		log.info("소분류 상품 페이지 접속하기");
+		model.addAttribute("result", productList);
+		// return "product/" + csmall;
+		return "product/list";
+	}// end
+
+	// 소분류 상품목록 불러오기 메서드
+	@RequestMapping(value = "/{clarge}/{cmdedium}/{csmall}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String csmallGetList(@PathVariable("csmall") String csmall, Model model) {
 		
 		List<ProductVO> productList = service.getList(csmall);
 		System.out.println(productList);
@@ -32,7 +59,8 @@ public class ProductController {
 		
 		log.info("소분류 상품 페이지 접속하기");
 		model.addAttribute("result", productList);
-		return "product/" + csmall;
+		//return "product/" + csmall;
+		return "product/list";
 	}// end 
 	
 	@RequestMapping(value = "/{csmall}/detail", method = { RequestMethod.GET, RequestMethod.POST })

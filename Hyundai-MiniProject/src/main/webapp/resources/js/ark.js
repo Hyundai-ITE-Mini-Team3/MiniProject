@@ -104,7 +104,7 @@ var tooltip01LeftPos = -155;					// 자동완성 기능끄기 툴팁의 좌측 �
 var tooltip02TopPos = 0;						// 자동완성 기능켜기 툴팁의 상단 기준 위치 오차 조정값
 var tooltip02LeftPos = 0;						// 자동완성 기능켜기 툴팁의 좌측 기준 위치 오차 조정값
 
-var keyFix = new beta.fix('query');
+//var keyFix = new beta.fix('query');
 
 arkQuery(document).ready(function() {
 	// 자동완성 기능 사용 여부 확인 한다.

@@ -2,11 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 소분류 리스트 페이지</title>
+<title>상품 리스트 페이지</title>
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/product.css?after">
 </head>
@@ -397,7 +398,7 @@
 												alt="<c:out value="${product.pname }"/>" targetcode=""
 												class="respon_image"
 												onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img3.jpg'">
-												<img src="/resources/img/product/fabric/${product.pid }.jpg" id="T02_IMG_0"
+												<img src="/resources/img/product/${product.csmall }/${product.pid }-sub.jpg" id="T02_IMG_0"
 												alt="<c:out value="${product.pname }"/>" targetcode=""
 												class="respon_image on"
 												onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img3.jpg'"
@@ -416,18 +417,18 @@
 													<span>FR</span>
 												</div>
 										</span>
-										</a> <a href="/ko/p/FL2C1HLV034LRN_BG?categoryCode=ls011"
+										</a> <a href="/product/${product.csmall }/detail?pid=${product.pid}"
 											class="item_info2"
 											onclick="setEcommerceData('0', 'CATEGORY');"> <span
 											class="brand"></span> <span class="title"><c:out
 													value="${product.pname }" /></span> <span class="price"><span
-												id="price_FL2C1HLV034LRN_BG"><span>￦<c:out
-															value="${product.pprice }" /></span></span></span> <span class="flag">
-												<span class="product">BEST</span> <span
-												class="review1902 ch1904">183</span>
+												id="price_FL2C1HLV034LRN_BG"><span>₩<fmt:formatNumber value="${product.pprice}" pattern="#,###" /></span></span></span> <span class="flag">
+												<span class="product">new</span> 
+												<!-- <span class="review1902 ch1904">183</span> -->
 										</span>
 										</a>
-										<div class="color_more_wrap">
+										
+										<!-- <div class="color_more_wrap">
 											<a href="javascript:chgColorChip(0, 'FL2C1HLV034LRN_BG')"
 												class="cl wt"
 												style="background: #cca07c url('http://newmedia.thehandsome.com/FL/2C/SS/FL2C1HLV034LRN_BG_C01.jpg/dims/resize/13x14');"
@@ -440,7 +441,7 @@
 												class="cl wt"
 												style="background: #694b41 url('http://newmedia.thehandsome.com/FL/2C/SS/FL2C1HLV034LRN_BR_C01.jpg/dims/resize/13x14');"
 												onclick="GA_Event('카테고리_리스트','컬러칩','BR')"></a>
-										</div>
+										</div>-->
 										<a href="javascript:addWishListClick('FL2C1HLV034LRN');"
 											class="add_wishlist " id="wish_FL2C1HLV034LRN"
 											onclick="GA_Category('wish', $(this));brazeLogCustomEvent('0');"
@@ -458,7 +459,7 @@
 												alt="<c:out value="${product.pname }"/>" targetcode=""
 												class="respon_image"
 												onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img3.jpg'">
-												<img src="/resources/img/product/fabric/${product.pid }.jpg" id="T02_IMG_0"
+												<img src="/resources/img/product/${product.csmall }/${product.pid }-sub.jpg" id="T02_IMG_0"
 												alt="<c:out value="${product.pname }"/>" targetcode=""
 												class="respon_image on"
 												onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img3.jpg'"
@@ -477,18 +478,17 @@
 													<span>FR</span>
 												</div>
 										</span>
-										</a> <a href="/ko/p/FL2C1HLV034LRN_BG?categoryCode=ls011"
+										</a> <a href="/product/${product.csmall }/detail?pid=${product.pid}"
 											class="item_info2"
 											onclick="setEcommerceData('0', 'CATEGORY');"> <span
 											class="brand"></span> <span class="title"><c:out
 													value="${product.pname }" /></span> <span class="price"><span
-												id="price_FL2C1HLV034LRN_BG"><span>￦<c:out
-															value="${product.pprice }" /></span></span></span> <span class="flag">
-												<span class="product">BEST</span> <span
-												class="review1902 ch1904">183</span>
+												id="price_FL2C1HLV034LRN_BG"><span>₩<fmt:formatNumber value="${product.pprice}" pattern="#,###" /></span></span></span> <span class="flag">
+												<span class="product">new</span> 
+												<!-- <span class="review1902 ch1904">183</span> -->
 										</span>
 										</a>
-										<div class="color_more_wrap">
+										<!-- <div class="color_more_wrap">
 											<a href="javascript:chgColorChip(0, 'FL2C1HLV034LRN_BG')"
 												class="cl wt"
 												style="background: #cca07c url('http://newmedia.thehandsome.com/FL/2C/SS/FL2C1HLV034LRN_BG_C01.jpg/dims/resize/13x14');"
@@ -501,7 +501,9 @@
 												class="cl wt"
 												style="background: #694b41 url('http://newmedia.thehandsome.com/FL/2C/SS/FL2C1HLV034LRN_BR_C01.jpg/dims/resize/13x14');"
 												onclick="GA_Event('카테고리_리스트','컬러칩','BR')"></a>
-										</div>
+										</div> -->
+										
+										
 										<a href="javascript:addWishListClick('FL2C1HLV034LRN');"
 											class="add_wishlist " id="wish_FL2C1HLV034LRN"
 											onclick="GA_Category('wish', $(this));brazeLogCustomEvent('0');"

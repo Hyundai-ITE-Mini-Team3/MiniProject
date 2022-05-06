@@ -4076,7 +4076,7 @@ function GA_search(){
             <ul class="cate_m cate_banner gnbul1" id="cate_m_main">
             <li><a href="javascript:void(0);" class="gnb_brand" onclick="GA_Event('공통','GNB','브랜드');">브랜드<span class="arr">arrow</span></a>
                 <div class="sub_back">
-                    <div class="sub_menu clearfix" style="">
+                    <div class="sub_menu clearfix" style="background-color:white;">
                         <p class="gnbbr_txt">
                            브랜드 명을 클릭하시면 해당 브랜드로 이동합니다.</p>
                         <ul class="al_frt1 sm_dep1" style="margin-left: 165px;">                        
@@ -4194,7 +4194,7 @@ function GA_search(){
             
             <li><a href="/ko/item/we" onclick="GA_Event('공통','GNB','여성');GA_Event('공통_카테고리','1DEPTH','여성');">여성<span class="arr">arrow</span></a>            
                <div class="sub_back">
-                           <div class="sub_menu clearfix" style="">
+                           <div class="sub_menu clearfix" style="background-color:white;">
                                <ul class="al_frt1 sm_dep1" style="margin-left: 165px;">
                                    <li>
                                        <a href="/ko/c/we" onclick="GA_Event('공통_카테고리','2DEPTH','여성_전체보기');">전체보기<!-- 전체보기 --></a>                                           
@@ -4340,7 +4340,7 @@ function GA_search(){
             </li>
             <li><a href="/ko/item/me" onclick="GA_Event('공통','GNB','남성');GA_Event('공통_카테고리','1DEPTH','남성');">남성<span class="arr">arrow</span></a>            
                <div class="sub_back">
-                           <div class="sub_menu clearfix" style="">
+                           <div class="sub_menu clearfix" style="background-color:white;">
                                <ul class="al_frt1 sm_dep1" style="margin-left: 165px;">
                                    <li>
                                        <a href="/ko/c/me" onclick="GA_Event('공통_카테고리','2DEPTH','남성_전체보기');">전체보기<!-- 전체보기 --></a>                                           
@@ -4448,7 +4448,7 @@ function GA_search(){
             </li>
             <li><a href="/ko/c/as" onclick="GA_Event('공통','GNB','잡화');GA_Event('공통_카테고리','1DEPTH','잡화');">잡화<span class="arr">arrow</span></a>            
                <div class="sub_back">
-                           <div class="sub_menu clearfix" style="">
+                           <div class="sub_menu clearfix" style="background-color:white;">
                                <ul class="al_frt1 sm_dep1" style="margin-left: 165px;">
                                    <li>
                                        <a href="/ko/c/as" onclick="GA_Event('공통_카테고리','2DEPTH','잡화_전체보기');">전체보기<!-- 전체보기 --></a>                                           
@@ -4602,7 +4602,7 @@ function GA_search(){
             </li>
             <li><a href="/ko/c/be" onclick="GA_Event('공통','GNB','뷰티');GA_Event('공통_카테고리','1DEPTH','뷰티');" class="">뷰티<i class="ico-new">new</i><span class="arr">arrow</span></a>            
                <div class="sub_back" style="height: 0px; border-bottom: 0px;">
-                           <div class="sub_menu clearfix" style="display: none;">
+                           <div class="sub_menu clearfix" style="display: none;background-color:white;">
                                <ul class="al_frt1 sm_dep1" style="margin-left: 165px;">
                                    <li>
                                        <a href="/ko/c/be" onclick="GA_Event('공통_카테고리','2DEPTH','뷰티_전체보기');">전체보기<!-- 전체보기 --></a>                                           
@@ -4658,7 +4658,7 @@ function GA_search(){
             </li>
             <li><a href="/product/lifestyle" onclick="GA_Event('공통','GNB','라이프스타일');GA_Event('공통_카테고리','1DEPTH','라이프스타일');" class="">라이프스타일<span class="arr">arrow</span></a>            
                <div class="sub_back" style="height: 0px; border-bottom: 0px;">
-                           <div class="sub_menu clearfix" style="display: none;">
+                           <div class="sub_menu clearfix" style="display: none;background-color:white;">
                                <ul class="al_frt1 sm_dep1" style="margin-left: 165px;">
                                    <li>
                                        <a href="/product/lifestyle" onclick="GA_Event('공통_카테고리','2DEPTH','라이프스타일_전체보기');">전체보기<!-- 전체보기 --></a>                                           

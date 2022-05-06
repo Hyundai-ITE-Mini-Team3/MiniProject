@@ -70,9 +70,7 @@
 <script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script>
 <script async="" charset="utf-8"
 	src="//static.recopick.com/dist/production.min.js"></script>
-<script type="text/javascript"
-	src="/resources//js/jquery-1.11.2.min.js"></script>
-<script type="text/javascript" src="/resources/js/jquery.vticker.js"></script>
+
 <!-- 200318 ì¶ê° -->
 <script type="text/javascript">
 		//<![CDATA[
@@ -108,6 +106,11 @@
 	
 //]]>
 </script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js "></script>
+<script type="text/javascript" src="/resources/js/jquery.vticker.js"></script>
+<script type="text/javascript" src="/resources/js/jquery.flexslider.js"></script>
+<script type="text/javascript" src="/resources/js/jquery.form-3.51.js"></script>
 <script type="text/javascript">
     var handsomeContextPath = "/ko"; 
 </script>
@@ -115,25 +118,18 @@
 <script type="text/javascript" src="/resources/js/common.js"></script>
 <script type="text/javascript"
 	src="/resources/js/html5shiv-printshiv.js"></script>
-<script type="text/javascript" src="/resources/js/jquery.flexslider.js"></script>
-<script type="text/javascript" src="/resources/js/ui.js?20211105"></script>
-<script type="text/javascript" src="/resources/js/jquery.form-3.51.js"></script>
+
 <script type="text/javascript"
-	src="/resources/js/common_function.js?20220411"></script>
+	src="/resources/js/common_function.js"></script>
 <script type="text/javascript" src="/resources/js/videojs-ie8.min.js"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="/_ui/desktop/common/js/handsome/html5shiv.js"></script>
 <script type="text/javascript" src="/_ui/desktop/common/js/handsome/respond.js"></script>
 <![endif]-->
 
-<script type="text/javascript"
-	src="/resources/js/jquery-ui-1.11.2.min.js"></script>
 
 <script type="text/javascript" src="/resources/js/instagramAPI.js"></script>
 <script type="text/javascript" src="/resources/js/makePCookie.js"></script>
-
-<script type="text/javascript" src="/resources/js/jquery.min.js"></script>
-
 <script type="text/javascript" src="/resources/js/netfunnel.js"
 	charset="UTF-8"></script>
 <script type="text/javascript" src="/resources/js/netfunnel_skin.js"
@@ -142,6 +138,7 @@
 <script type="text/javascript" src="/resources/js/unorm.js"></script>
 
 <script type="text/javascript" src="/resources/js/appboy.min.js"></script>
+<script type="text/javascript" src="/resources/js/ui.js"></script>
 <script type="text/javascript">
 var setDimensionData = function(){
     //GA 설정 sessionStorage 페이지 이동시 초기화 
@@ -3130,7 +3127,9 @@ body>.ab-feed .ab-no-cards-message {
 
 <body>
 	<%@include file="../../views/includes/qna_header.jsp"%>
-
+<script>
+   var arkQuery = $.noConflict(true);
+</script>
 	<div id="bodyWrap">
 		<h3 class="cnts_title">
 			<span id="menuTitle">상품 QnA</span>
@@ -3228,7 +3227,6 @@ tr.hidden {
 				$(document)
 						.ready(
 								function() {
-									$("#menuTitle").text("1:1 문의");
 									$("#sterm, #eterm").datepicker({
 										showOn : "button",
 										dateFormat : "yy-mm-dd"
@@ -3631,46 +3629,35 @@ tr.hidden {
 				<form id="mantomaninquiryForm" action="/ko/svcenter/mantomaninquiry">
 					<input type="hidden" name="pkInquiry" id="pkInquiry">
 				</form>
-				<form id="mantomaninquiryListForm"
-					action="/ko/mypage/mymantomaninquirylist">
-
-					<!-- search1 -->
+				
+				<!-- 검색 처리 form -->
+				<div class='row'>
 					<div class="search_wrap">
-						<!-- cnd -->
-						<ul>
-							<li>
-								<p class="bul_sty01">
-									<label for="term">조회기간</label>
-								</p>
-								<div class="calendar_wrap mr5">
-									<!-- readonly -->
-									<input type="text" class="input_date hasDatepicker"
-										title="기간 입력" id="sterm" name="sterm" value="" readonly="">
-									<button type="button" class="ui-datepicker-trigger ico_cld">...</button>
-									<div class="form_hyphen pl5">-</div>
-									<input type="text" class="input_date hasDatepicker"
-										title="기간 입력" id="eterm" name="eterm" value="" readonly="">
-									<button type="button" class="ui-datepicker-trigger ico_cld">...</button>
-								</div>
-								<div class="tab_c">
-									<ul class="clearfix">
-										<li><a href="javascript:void(0);" id="setDateBtn1"
-											class="on"> 1주일</a></li>
-										<li><a href="javascript:void(0);" id="setDateBtn2">
-												1개월</a></li>
-										<li><a href="javascript:void(0);" id="setDateBtn3">
-												3개월</a></li>
-									</ul>
-								</div>
-							</li>
-						</ul>
-						<!-- //cnd -->
-						<input type="button" class="btn_search none" id="searchBtn"
-							value="조회하기">
+						<form id='searchForm' action="/qna/list" method='get'>
+							<select name='type'>
+								<option value="" <c:out value="${pageMaker.cri.type == null?'selected':''}"/> />--</option>
+								<option value="T"<c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/> />제목</option>
+								<option value="C" <c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/> />내용</option>
+								<option value="W" <c:out value="${pageMaker.cri.type eq 'W'?'selected':''}"/>/>작성자</option>
+								<option value="TC" <c:out value="${pageMaker.cri.type eq 'TC'?'selected':''}"/>/>제목	/내용</option>
+								<option value="TW" <c:out value="${pageMaker.cri.type eq 'TW'?'selected':''}"/>/> 제목/작성자</option>
+								<option value="TWC" <c:out value="${pageMaker.cri.type eq 'TWC'?'selected':''}"/>/> 제목/내용/작성자</option>
+
+							</select>
+							<!--end select  -->
+							<input type='text' name='keyword' value='<c:out value="${pageMaker.cri.keyword}"/>' > 
+							<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>' >
+							<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>' >
+							<button class='btn_search none'>검색</button>
+						</form>
+						<!--end from  -->
 					</div>
-				</form>
-				<!-- //search1 -->
-				<div class="title_wrap mt50">
+					<!-- end  class="col-lg-12"  -->
+				</div>
+				<!--end class row  -->
+				<!-- end  검색 처리 form-->
+
+								<div class="title_wrap mt50">
 					<h4 class="float_left">QnA 게시판</h4>
 					<p class="txt_line">상품에 대한 QnA를 자유롭게 남겨주세요.</p>
 					<div class="btn_wrap">
@@ -3730,35 +3717,37 @@ tr.hidden {
 
 							<c:if test="${pageMaker.prev}">
 								<!-- 이전 버튼 -->
-								<li class="paginate_button previous"><a
-									href="list?pageNum=${pageMaker.startPage - 1}&amount=${pageMaker.cri.amount}">Previous</a></li>
+								<li class="paginate_button previous"><a href="${pageMaker.startPage - 1}">Previous</a></li>
 							</c:if>
 
 							<!-- 1~10 버튼 -->
 							<c:forEach var="num" begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}">
+								
 								<c:if test="${pageMaker.cri.pageNum eq num }">
-									<li class="paginate_button"><a href="list?pageNum=${num}&amount=${pageMaker.cri.amount}" style="color:#be9e7c;">${num}</a></li>
+									<li class="paginate_button"><a href="${num}" style="color:#be9e7c;">${num}</a></li>
 								</c:if>
 								<c:if test="${pageMaker.cri.pageNum ne num }">
-									<li class="paginate_button"><a href="list?pageNum=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
+									<li class="paginate_button"><a href="${num}">${num}</a></li>
 								</c:if>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next}">
 								<!-- 다음 버튼 -->
-								<li class="paginate_button next"><a
-									href="list?pageNum=${pageMaker.endPage +1}&amount=${pageMaker.cri.amount}">Next</a></li>
+								<li class="paginate_button next"><a href="${pageMaker.endPage +1}">Next</a></li>
 							</c:if>
 
 						</ul>
 						<!--end ul  -->
 					
 					<!--  end Pagination -->
-					<%-- <form id='actionForm' action="/qna/list" method='get'>
+					<form id='actionForm' action="/qna/list" method='get'>
 						<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'> 
 						<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
-					</form> --%>
+						<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'>
+ 						<input	type='hidden' name='keyword'value='<c:out value="${ pageMaker.cri.keyword }"/>'>
+						
+					</form>
 
 					<!--페이지 번호 처리  끝-->
 
@@ -5060,6 +5049,42 @@ function setLogout(){
 </script>
 
 	<%@include file="../../views/includes/qna_footer.jsp"%>
+<script type="text/javascript">
+	$(document)
+	.ready(
+		function() {
+			
+			//페이징 버튼 처리
+			var actionForm = $("#actionForm"); //폼등록
+			$(".paginate_button a").on( "click",function(e) {
+				e.preventDefault(); //<a> 작동 중지
+				console.log('click');
+				actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+				actionForm.submit(); //form submit
+			});//end click
+
+			
+		//검색버튼 이벤트 처리
+		var searchForm = $('#searchForm');
+		 $("#searchForm button").on("click", function(e){			
+			 //검색 종류 선택 않했을경우
+		     if(!searchForm.find("option:selected").val()){
+		         alert("검색종류를 선택하세요");
+		         return false; //전송 막기
+		     }//end if			 
+		     //키워드 입력 않햇을경우
+		     if(!searchForm.find("input[name='keyword']").val()){
+		         alert("키워드를 입력하세요");
+		         return false; //전송 막기
+		      }//end if
+		      //페이지 1페이지로 이동 처리
+		     searchForm.find("input[name='pageNum']").val("1");	
+		     e.preventDefault(); //	새로 실행 금지		      
+		     searchForm.submit(); //form submit			      
+		  });//end click
+
+		});//  end ready
+</script>
 
 
 

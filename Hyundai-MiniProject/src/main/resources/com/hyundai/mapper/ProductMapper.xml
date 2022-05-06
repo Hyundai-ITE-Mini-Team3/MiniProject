@@ -4,6 +4,18 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.hyundai.mapper.ProductMapper">
  
+ <!-- 상품 대분류 리스트 불러오기 -->
+ <select id="clargeGetList" resultType="com.hyundai.domain.ProductVO">
+select * from product where clarge = #{clarge}
+order by pno asc 
+ </select> 
+ 
+ <!-- 상품 중분류 리스트 불러오기 -->
+ <select id="cmediumGetList" resultType="com.hyundai.domain.ProductVO">
+select * from product where cmdedium = #{cmdedium}
+ </select> 
+
+ 
  <!-- 상품 소분류 리스트 불러오기 -->
  <select id="getList" resultType="com.hyundai.domain.ProductVO">
 select * from product where csmall = #{csmall}

@@ -22,7 +22,20 @@ public class ProductServiceImpl implements ProductService {
 		log.info("ProductVO get 호출 "+pid);
 		return mapper.read(pid);
 	}
-
+	
+	@Override
+	public List<ProductVO> clargeGetList(String clarge) {
+		log.info("ProductVO clargeGetList 호출 "+clarge);
+		return mapper.clargeGetList(clarge);
+	}
+	
+	@Override
+	public List<ProductVO> cmediumGetList(String cmedium) {
+		log.info("ProductVO cmediumGetList 호출 "+cmedium);
+		return mapper.cmediumGetList(cmedium);
+	}
+	
+	
 	@Override
 	public List<ProductVO> getList(String csmall) {
 		log.info("ProductVO get List 호출");

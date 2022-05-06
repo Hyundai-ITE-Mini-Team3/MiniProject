@@ -7,6 +7,11 @@ import com.hyundai.domain.ProductVO;
 public interface ProductMapper {
 	//public List<ProductVO> getList();
 	
+	// 상품 카테고리 대분류 리스트 불러오기
+	public List<ProductVO> clargeGetList(String clarge);
+	
+	// 상품 카테고리 중분류 리스트 불러오기
+	public List<ProductVO> cmediumGetList(String cmdedium);
 	
 	// 상품 카테고리 소분류 리스트 불러오기
 	public List<ProductVO> getList(String csmall);

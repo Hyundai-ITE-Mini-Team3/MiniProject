@@ -23,13 +23,13 @@
 		<div class="item_visual" id="imageDiv" style="margin-top: 20px;">
 			<ul>
 							
-						<li><img src="/resources/img/product/fabric/${product.pid }-1.jpg" class="respon_image" alt="" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>
+						<li><img src="/resources/img/product/${product.csmall }/${product.pid }-1.jpg" class="respon_image" alt="" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>
 							
 							
-						<li><img src="/resources/img/product/fabric/${product.pid }-2.jpg" class="respon_image" alt="" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>
+						<li><img src="/resources/img/product/${product.csmall }/${product.pid }-2.jpg" class="respon_image" alt="" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>
 							
 							
-						<li><img src="/resources/img/product/fabric/${product.pid }-3.jpg" class="respon_image" alt="" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>
+						<li><img src="/resources/img/product/${product.csmall }/${product.pid }-3.jpg" class="respon_image" alt="" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>
 						
 						</ul>
 		</div>
@@ -880,7 +880,10 @@ function testerReviewReset() { //팝업초기화
 		                        <p>
 		                            ${product.pdetail }</p>
 		                    </div>
-		                    
+		                    <div class="fit-info">
+		                    <p class="size-text">
+		               		</p>
+		                    </div>
 		                    </div>
 		            </div>
 		
@@ -1787,7 +1790,7 @@ $(document).ready(function(){
 <!-- 	                </div> -->
 <!-- 	        	</div> -->
 <!-- 				</div> -->
-			<span id="sumPrice">₩45,000</span>
+			<span id="sumPrice">₩<fmt:formatNumber value="${product.pprice}" pattern="#,###" /></span>
 			</div>
 		</div>
 		<!-- st_receipt_wrap -->

@@ -5064,26 +5064,26 @@ function setLogout(){
 			});//end click
 
 			
-		//검색버튼 이벤트 처리
-		var searchForm = $('#searchForm');
-		 $("#searchForm button").on("click", function(e){			
-			 //검색 종류 선택 않했을경우
-		     if(!searchForm.find("option:selected").val()){
-		         alert("검색종류를 선택하세요");
-		         return false; //전송 막기
-		     }//end if			 
-		     //키워드 입력 않햇을경우
-		     if(!searchForm.find("input[name='keyword']").val()){
-		         alert("키워드를 입력하세요");
-		         return false; //전송 막기
-		      }//end if
-		      //페이지 1페이지로 이동 처리
-		     searchForm.find("input[name='pageNum']").val("1");	
-		     e.preventDefault(); //	새로 실행 금지		      
-		     searchForm.submit(); //form submit			      
-		  });//end click
-
-		});//  end ready
+			//검색버튼 이벤트 처리
+			var searchForm = $('#searchForm');
+			 $("#searchForm button").on("click", function(e){			
+				 //검색 종류 선택 않했을경우
+			     if(!searchForm.find("option:selected").val()){
+			         alert("검색종류를 선택하세요");
+			         return false; //전송 막기
+			     }//end if			 
+			     //키워드 입력 않햇을경우
+			     if(!searchForm.find("input[name='keyword']").val()){
+			         alert("키워드를 입력하세요");
+			         return false; //전송 막기
+			      }//end if
+			      //페이지 1페이지로 이동 처리
+			     searchForm.find("input[name='pageNum']").val("1");	
+			     e.preventDefault(); //	새로 실행 금지		      
+			     searchForm.submit(); //form submit			      
+			  });//end click
+	
+			});//  end ready
 </script>
 
 

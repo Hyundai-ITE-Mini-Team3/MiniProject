@@ -2,29 +2,103 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="com.hyundai.mapper.ProductMapper">
- 
- <!-- 상품 대분류 리스트 불러오기 -->
- <select id="clargeGetList" resultType="com.hyundai.domain.ProductVO">
-select * from product where clarge = #{clarge}
-order by pno asc 
- </select> 
- 
- <!-- 상품 중분류 리스트 불러오기 -->
- <select id="cmediumGetList" resultType="com.hyundai.domain.ProductVO">
-select * from product where cmdedium = #{cmdedium}
- </select> 
+<mapper namespace="com.hyundai.mapper.ProductMapper">
 
- 
- <!-- 상품 소분류 리스트 불러오기 -->
- <select id="getList" resultType="com.hyundai.domain.ProductVO">
-select * from product where csmall = #{csmall}
- </select> 
- 
- <!-- 상품상세정보 페이지에서 쓰이는 쿼리 -->
- <select id="read" resultType="com.hyundai.domain.ProductVO">
-   select * from product where pid = #{pid}
- </select>
-  
- </mapper> 
+	<!-- 테스트하기 -->
+
+	<!-- 상품 대분류 데이터 수 불러오기 -->
+	<select id="getClargeCount" resultType="int">
+		select count(*) from
+		product where clarge = #{clarge}
+	</select>
+
+	<!-- 상품 중분류 데이터 수 불러오기 -->
+	<select id="getCmdediumCount" resultType="int">
+		select count(*) from
+		product where cmdedium = #{cmdedium}
+	</select>
+
+	<!-- 상품 소분류 데이터 수 불러오기 -->
+	<select id="getCsmallCount" resultType="int">
+		select count(*) from
+		product where csmall = #{csmall}
+	</select>
+
+
+	<!-- 대분류 상품목록 불러오기 (페이징 적용) SQL -->
+	<select id="getListClargePaging" parameterType="hashmap"
+		resultType="com.hyundai.domain.ProductVO">
+   <![CDATA[
+       select *
+       from(
+	       select
+		       	/*+ INDEX_DESC(product prouduct_pk)*/
+		       	rownum rn, pid, clarge, cmdedium, csmall, pno, pname, pprice
+	       		from product
+	       		where rownum <=#{cri.pageNum} * #{cri.amount}
+	       		and clarge = #{clarge}    
+	        )
+	       where rn > ( #{cri.pageNum}-1 ) * #{cri.amount}  	
+   ]]>
+	</select>
+
+	<!-- 중분류 상품목록 불러오기 (페이징 적용) 쿼리 -->
+	<select id="getListCmdediumPaging" parameterType="hashmap"
+		resultType="com.hyundai.domain.ProductVO">
+   <![CDATA[
+       select *
+       from(
+	       select
+		       	/*+ INDEX_DESC(product prouduct_pk)*/
+		       	rownum rn, pid, clarge, cmdedium, csmall, pno, pname, pprice
+	       		from product
+	       		where rownum <=#{cri.pageNum} * #{cri.amount}
+	       		and cmdedium = #{cmdedium}
+	        )
+	       where rn > ( #{cri.pageNum}-1 ) * #{cri.amount}      	
+   ]]>
+	</select>
+	
+	<!-- 소분류 상품목록 불러오기 (페이징 적용) 쿼리 -->
+	<select id="getListCsmallPaging" parameterType="hashmap"
+		resultType="com.hyundai.domain.ProductVO">
+   <![CDATA[
+       select *
+       from(
+	       select
+		       	/*+ INDEX_DESC(product prouduct_pk)*/
+		       	rownum rn, pid, clarge, cmdedium, csmall, pno, pname, pprice
+	       		from product
+	       		where rownum <=#{cri.pageNum} * #{cri.amount}
+	       		and csmall = #{csmall}
+	        )
+	       where rn > ( #{cri.pageNum}-1 ) * #{cri.amount}      	
+   ]]>
+	</select>
+
+	<!-- 상품 대분류 리스트 불러오기 -->
+	<select id="clargeGetList"
+		resultType="com.hyundai.domain.ProductVO">
+		select * from product where clarge = #{clarge}
+		order by pno asc
+	</select>
+
+	<!-- 상품 중분류 리스트 불러오기 -->
+	<select id="cmediumGetList"
+		resultType="com.hyundai.domain.ProductVO">
+		select * from product where cmdedium = #{cmdedium}
+	</select>
+
+
+	<!-- 상품 소분류 리스트 불러오기 -->
+	<select id="getList" resultType="com.hyundai.domain.ProductVO">
+		select * from product where csmall = #{csmall}
+	</select>
+
+	<!-- 상품상세정보 페이지에서 쓰이는 쿼리 -->
+	<select id="read" resultType="com.hyundai.domain.ProductVO">
+		select * from product where pid = #{pid}
+	</select>
+
+</mapper> 
  

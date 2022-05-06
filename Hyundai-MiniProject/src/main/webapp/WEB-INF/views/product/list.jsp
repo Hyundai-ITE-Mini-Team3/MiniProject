@@ -19,7 +19,7 @@
 		<!-- 클롭 모나코 팝업 -->
 		<!--title-->
 		<!-- #1141 - 카테고리 개편(카테고리/브랜드 Navigation) -->
-		<!-- ${requestScope['javax.servlet.forward.servlet_path']}  -->
+		<!-- ${requestScope['javax.servlet.forward.servlet_path']} -->
 		<!-- ${result[0].cmdedium }  -->
 		<c:set var="url" value="${requestScope['javax.servlet.forward.servlet_path']}"/>
 		<c:set var="cmedium" value="${result[0].cmdedium }"/>
@@ -381,7 +381,7 @@
 							onclick="GA_Event('카테고리_리스트','정렬','적용');">적용</a></li>
 					</ul>
 					<div class="items_count float_right">
-						<span class="num">72</span> <span>전체</span>
+						<span class="num">${result.size() }</span> <span>전체</span>
 					</div>
 				</div>
 			</form>
@@ -518,17 +518,30 @@
 			<!-- //items list -->
 			<!-- paging -->
 			<div class="paging" style="display: block;">
-				<a class="prev2" href="javascript:void(0);">처음 페이지로 이동</a><a
-					href="javascript:void(0);" class="prev">이전 페이지로 이동</a><span
-					class="num"><a href="javascript:void(0);"
-					class="pageBtn  on  " pagenum="1">1</a><a
-					href="javascript:void(0);" class="pageBtn  " pagenum="2">2</a><a
-					href="javascript:void(0);" class="pageBtn  " pagenum="3">3</a><a
-					href="javascript:void(0);" class="pageBtn  " pagenum="4">4</a><a
-					href="javascript:void(0);" class="pageBtn  " pagenum="5">5</a><a
-					href="javascript:void(0);" class="pageBtn  " pagenum="6">6</a></span><a
-					href="javascript:void(0);" class="next">다음 페이지로 이동</a><a
-					href="javascript:void(0);" class="next2">마지막 페이지로 이동</a>
+				<ul class="pagination">
+					<c:if test="${pageMaker.prev}">
+						<!-- 이전 버튼 -->
+						<li class="paginate_button previous"><a
+							href="${url }?pageNum=${pageMaker.startPage - 1}&amount=${pageMaker.cri.amount}">Previous</a></li>
+					</c:if>
+					 <c:forEach var="num"
+							begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+							<c:if test="${pageMaker.cri.pageNum eq num}">
+								<li class="paginate_button"><a href="${url }?pageNum=${num}&amount=${pageMaker.cri.amount}"
+									class="pageBtn  on  " pagenum="${num }" style="color:#be9e7c;">${num }</a></li>
+							</c:if>
+							<c:if test="${pageMaker.cri.pageNum ne num}">
+								<li class="paginate_button"><a href="${url }?pageNum=${num}&amount=${pageMaker.cri.amount}"
+									class="pageBtn  on  " pagenum="${num }">${num }</a></li>
+							</c:if>
+						</c:forEach>
+					
+					<c:if test="${pageMaker.next}">
+						<!-- 다음 버튼 -->
+						<li class="paginate_button next"><a
+							href="${url }?pageNum=${pageMaker.endPage +1}&amount=${pageMaker.cri.amount}">Next</a></li>
+					</c:if>
+				</ul>
 			</div>
 			<!-- //paging -->
 
@@ -549,4 +562,13 @@
 	</div>
 	<%@include file="../../views/includes/footer.jsp"%>
 </body>
+<style>
+.paginate_button{
+	display: inline;
+
+}
+.paginate_button a{
+	padding: 10px;
+}
+</style>
 </html>

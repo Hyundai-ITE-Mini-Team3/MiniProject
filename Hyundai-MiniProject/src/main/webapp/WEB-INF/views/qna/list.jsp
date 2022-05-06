@@ -3725,7 +3725,7 @@ tr.hidden {
 				<!--paging-->
 				<div class="paging">
 					<!--페이지 번호 처리  -->
-					<div class='pull-right'>
+					
 						<ul class="pagination">
 
 							<c:if test="${pageMaker.prev}">
@@ -3753,7 +3753,7 @@ tr.hidden {
 
 						</ul>
 						<!--end ul  -->
-					</div>
+					
 					<!--  end Pagination -->
 					<%-- <form id='actionForm' action="/qna/list" method='get'>
 						<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'> 

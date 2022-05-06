@@ -3013,10 +3013,6 @@ body>.ab-feed .ab-no-cards-message {
 				<!-- <script type="text/javascript" src="/_ui/desktop/common/js/SsoAjax.js"></script> -->
 
 <script>
-var arkQuery = $.noConflict(true);
-</script>
-
-<script>
 /*
  * 챗봇 관련 스크립트
  */

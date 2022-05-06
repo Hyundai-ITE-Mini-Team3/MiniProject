@@ -19,7 +19,7 @@
 .lookbook_view .controls a{position:absolute;display:block;width:20px;height:33px;background: url("/_ui/desktop/common/images/main/items_list_controls.png") no-repeat;text-indent: -999em}
 .lookbook_view .controls .prev{top:47%;left:0;background-position: left top;z-index: 1}
 .lookbook_view .controls .next{top:47%;right:0;background-position: right top;z-index: 1}
-.lookbook_view .paging2{display:block;width:30px;background: url("/_ui/desktop/common/images/common/ico_utilmenu.png") -60px 13px no-repeat}
+.lookbook_view .paging2{display:block;width:30px;background: url("/resources/img/common/ico_utilmenu.png") -60px 13px no-repeat}
 
 .sel_paging{margin:10px 50px 0 0;float: right}
 .sel_paging >a,
@@ -27,7 +27,7 @@
 .sel_paging span{float:left;}
 .sel_paging .prev{display:inline-block;padding:0 10px;width:24px;height:20px;background: url("/_ui/desktop/common/images/common/ico_paging.png") -25px -1px no-repeat}
 .sel_paging .next{display:inline-block;padding:0 10px;width:24px;height:20px;background: url("/_ui/desktop/common/images/common/ico_paging.png") -32px -1px no-repeat}
-.sel_paging .sel dt a{display:block;padding-right:25px;display:block;background:url("/_ui/desktop/common/images/common/ico_utilmenu.png") right 9px no-repeat;color:#363636;}
+.sel_paging .sel dt a{display:block;padding-right:25px;display:block;background:url("/resources/img/common/ico_utilmenu.png") right 9px no-repeat;color:#363636;}
 .sel_paging .sel dd{position: relative;}
 .sel_paging .sel dd ul{position: absolute;top:0;left:0;padding:10px;min-width:17px;border:1px solid #ebebeb;background: #fff;z-index: 9}
 .sel_paging .sel dd ul li{text-align: right}

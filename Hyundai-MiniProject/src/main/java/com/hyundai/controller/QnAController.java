@@ -80,8 +80,13 @@ public class QnAController {
 	
 	@RequestMapping(value = {"/get"}, method = RequestMethod.GET)
 	public void get(@RequestParam("qid") Long qid, 
-			@ModelAttribute("cri") Criteria cri, Model model) {
+			@ModelAttribute("cri") Criteria cri, 
+			HttpServletRequest request, Model model) {
 		logger.info("============Get=============");
+		HttpSession session = request.getSession();
+		String mid = (String)session.getAttribute("member_id");
+		logger.info("Session(mid): " + mid);
+		model.addAttribute("mid", mid);
 		model.addAttribute("qna", service.get(qid));
 	}
 	@RequestMapping(value = {"/modify"}, method = RequestMethod.GET)

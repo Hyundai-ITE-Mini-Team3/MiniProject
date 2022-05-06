@@ -5,7 +5,7 @@ import java.util.List;
 import com.hyundai.domain.ReplyVO;
 
 public interface ReplyMapper {
-	public List<ReplyVO> getList();
+	public List<ReplyVO> getList(Long qid);
 	public int insert(ReplyVO vo);
 	public ReplyVO read(Long rid);
 	public int delete(Long rid);

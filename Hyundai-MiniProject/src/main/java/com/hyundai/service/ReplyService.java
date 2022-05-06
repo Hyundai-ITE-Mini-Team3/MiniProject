@@ -13,6 +13,6 @@ public interface ReplyService {
 	
 	public int remove(Long rid);
 	
-	public List<ReplyVO> getList();
+	public List<ReplyVO> getList(Long qid);
 
 }

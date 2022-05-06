@@ -3058,7 +3058,7 @@ function checkboxChecked(el){
 					</div>
 					<!-- btn -->
 					<div class="btnwrap">
-						<a href="/qna/list?&pageNum=${cri.pageNum}&amount=${cri.amount}" class="btn wt">취소</a>
+						<a href="/qna/get?qid=${qna.qid }&pageNum=${cri.pageNum}&amount=${cri.amount}" class="btn wt">취소</a>
 						<button type="submit" class="btn gray mr0">수정</button>
 						<!-- <input type="button" id="registerBtn" value="등록" class="btn gray mr0"> -->
 						</div>

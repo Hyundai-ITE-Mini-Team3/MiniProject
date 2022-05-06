@@ -71,7 +71,7 @@
 <script async="" charset="utf-8"
 	src="//static.recopick.com/dist/production.min.js"></script>
 <script type="text/javascript"
-	src="/_ui/desktop/common/js/jquery-1.11.2.min.js"></script>
+	src="/resources//js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="/resources/js/jquery.vticker.js"></script>
 <!-- 200318 ì¶ê° -->
 <script type="text/javascript">

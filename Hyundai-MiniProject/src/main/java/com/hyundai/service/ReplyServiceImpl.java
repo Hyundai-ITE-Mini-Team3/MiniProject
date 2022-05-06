@@ -46,9 +46,9 @@ public class ReplyServiceImpl implements ReplyService {
 
 
 	@Override
-	public List<ReplyVO> getList() {
+	public List<ReplyVO> getList(Long qid) {
 		log.info("[get list]");
-		return mapper.getList();
+		return mapper.getList(qid);
 	}
 
 }

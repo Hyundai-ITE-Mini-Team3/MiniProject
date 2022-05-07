@@ -251,10 +251,12 @@ function join() {
 	var mpwc = $("#pwc").val();
 	var mname = $("#mname").val();
 	var memail = $("#memail").val()+"@"+$("#memailDomain").val();
+	var maddress1 = $("#roadAddress").val();
+	var maddress2 = $("#detailAddress").val();
 	var idDuplChk = $("#idDuplChk").val();
 	 
 	// 필수 값 모두 입력됐는지 확인
-	if(mid == "" || mpw == "" || mpwc == "" || mname == "" || memail == "") {
+	if(mid == "" || mpw == "" || mpwc == "" || mname == "" || memail == "" || maddress1 == "" || maddress2 == "") {
 		layerAlert("필수값들을 입력해주세요.");
 		return;
 	}
@@ -469,6 +471,22 @@ function searchAddress() {
 											id="tel3" name="tel3"></td>
 									</tr>
 									<tr>
+										<th scope="row"><strong class="reqd">*</strong><label for="address">주소</label></th>
+										<td class="address"><input type="text" id="postcode"
+											placeholder="우편번호"> <input type="button"
+											class="btn add_s" onclick="searchAddress()" value="우편번호 찾기"><br>
+
+											<input type="text" id="roadAddress" name="maddress1"
+											placeholder="도로명주소" size="60"><br> <input
+											type="hidden" id="jibunAddress" placeholder="지번주소" size="60">
+											<span id="guide" style="color: #999; display: none"></span> <input
+											type="text" id="detailAddress" name="maddress2"
+											placeholder="상세주소" size="60"> <input type="hidden"
+											id="extraAddress" placeholder="참고항목" size="60"> <input
+											type="hidden" id="engAddress" placeholder="영문주소" size="60">
+										</td>
+									</tr>
+									<tr>
 										<th scope="row"><label
 											for="birth">생년월일</label></th>
 										<td><select style="width: 80px" id="selYear" name="year"
@@ -523,22 +541,6 @@ function searchAddress() {
 												<option value="30">30</option>
 												<option value="31">31</option>
 										</select></td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="address">주소</label></th>
-										<td class="address"><input type="text" id="postcode"
-											placeholder="우편번호"> <input type="button"
-											class="btn add_s" onclick="searchAddress()" value="우편번호 찾기"><br>
-
-											<input type="text" id="roadAddress" name="maddress1"
-											placeholder="도로명주소" size="60"><br> <input
-											type="hidden" id="jibunAddress" placeholder="지번주소" size="60">
-											<span id="guide" style="color: #999; display: none"></span> <input
-											type="text" id="detailAddress" name="maddress2"
-											placeholder="상세주소" size="60"> <input type="hidden"
-											id="extraAddress" placeholder="참고항목" size="60"> <input
-											type="hidden" id="engAddress" placeholder="영문주소" size="60">
-										</td>
 									</tr>
 								</tbody>
 							</table>

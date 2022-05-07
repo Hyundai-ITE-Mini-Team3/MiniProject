@@ -41,8 +41,8 @@ $(document).ready(function(){
 			<ul class="clearfix">
 					<li class="step01">step01 이메일 인증</li>
 					<li class="step02">step02 회원약관동의</li>
-					<li class="step03 on">step03 회원정보 입력</li>
-					<li class="step04">step04 가입완료</li>
+					<li class="step03">step03 회원정보 입력</li>
+					<li class="step04 on">step04 가입완료</li>
 			</ul>
 		</div>
 		<!--//join step-->

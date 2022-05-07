@@ -9,6 +9,13 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 import lombok.extern.log4j.Log4j;
 
+/*************************************************************
+파일명: CommonExceptionAdvice.java
+기능: Exception 처리
+작성자: 박주영
+
+[코멘트: X]
+*************************************************************/
 @ControllerAdvice
 @Log4j
 public class CommonExceptionAdvice {

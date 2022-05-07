@@ -16,18 +16,18 @@ import lombok.extern.log4j.Log4j;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
-public class ProductMapperTest {
+public class ProductMapperTest2 {
 	@Autowired
 	private ProductMapper mapper;
 	
 	@Test
 	public void testGetList() {
-		String csmall = "fabric";
+		String cmdedium = "home";
 		Criteria cri = new Criteria();
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("csmall", csmall);
+		map.put("cmdedium", cmdedium);
 		map.put("cri", cri);
-		for(ProductVO product:mapper.getListCsmallPaging(map)) {
+		for(ProductVO product:mapper.getListCmdediumPaging(map)) {
 			log.info(product);
 		}
 		

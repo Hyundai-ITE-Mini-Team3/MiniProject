@@ -11,6 +11,19 @@
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/product.css?after">
 </head>
+
+<script>
+	function test(link, ccolorcode) {
+		//console.log("ccolorcode: " + ccolorcode);
+		//console.log("link: " + link);
+		location.href = link + ccolorcode;
+	}
+	
+	function test2() {
+		console.log();
+	}
+</script>
+
 <body>
 	<%@include file="../../views/includes/header.jsp"%>
 	<div id="bodyWrap" class="products">
@@ -21,6 +34,8 @@
 		<!-- #1141 - 카테고리 개편(카테고리/브랜드 Navigation) -->
 		<!-- ${requestScope['javax.servlet.forward.servlet_path']} -->
 		<!-- ${result[0].cmdedium }  -->
+		<!-- ${colorList[0].ccolorimage } -->
+		
 		<c:set var="url" value="${requestScope['javax.servlet.forward.servlet_path']}"/>
 		<c:set var="cmedium" value="${result[0].cmdedium }"/>
 		<c:set var="csmall" value="${result[0].csmall }"/>
@@ -388,13 +403,25 @@
 			<div class="items_list cate_item4" id="listContent" style="display:block;">
 				<ul class="clearfix" id="listBody">
 					<c:forEach items="${result }" var="product" varStatus="loop">
+						<!-- c:forEach를 break사용하듯이 씀 -->
+						<c:set var="doneLoop" value="false"/>
+						<c:forEach items="${colorGroupByPID }" var="colorGroup">
+							<c:if test="${not doneLoop }">
+								<!-- 조건문을 통해 colorGroup의 pid가 product의 pid와 같으면 반복문 빠져나옴-->
+								<c:if test="${product.pid eq colorGroup.pid}">
+									<c:set var="colorCode" value="${colorGroup.ccolorcode }"/>
+									<c:set var="doneLoop" value="true"/>
+								</c:if>
+							</c:if>
+						</c:forEach>
+					
 						<c:choose>
 							<c:when test="${loop.count % 4 !=0}">
 								<li>
 									<div class="item_box">
-										<a href="/product/${product.csmall }/detail?pid=${product.pid}" class="item_info1"
+										<a href="/product/${product.csmall }/detail?pid=${product.pid}&ccolorcode=${colorCode}" class="item_info1"
 											onclick="setEcommerceData('0', 'CATEGORY');"> <span
-											class="item_img"> <img src="/resources/img/product/${product.csmall }/${product.pid }.jpg" id="T01_IMG_0"
+											class="item_img"> <img src="/resources/img/product/${product.csmall }/${product.pid }.jpg?ccolorcode=ff" id="T01_IMG_0"
 												alt="<c:out value="${product.pname }"/>" targetcode=""
 												class="respon_image"
 												onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img3.jpg'">
@@ -417,7 +444,7 @@
 													<span>FR</span>
 												</div>
 										</span>
-										</a> <a href="/product/${product.csmall }/detail?pid=${product.pid}"
+										</a> <a href="/product/${product.csmall }/detail?pid=${product.pid}&ccolorcode=${colorCode}"
 											class="item_info2"
 											onclick="setEcommerceData('0', 'CATEGORY');"> <span
 											class="brand"></span> <span class="title"><c:out
@@ -428,20 +455,18 @@
 										</span>
 										</a>
 										
-										<!-- <div class="color_more_wrap">
-											<a href="javascript:chgColorChip(0, 'FL2C1HLV034LRN_BG')"
-												class="cl wt"
-												style="background: #cca07c url('http://newmedia.thehandsome.com/FL/2C/SS/FL2C1HLV034LRN_BG_C01.jpg/dims/resize/13x14');"
-												onclick="GA_Event('카테고리_리스트','컬러칩','BG')"></a> <a
-												href="javascript:chgColorChip(0, 'FL2C1HLV034LRN_BC')"
-												class="cl wt"
-												style="background: #af4c46 url('http://newmedia.thehandsome.com/FL/2C/SS/FL2C1HLV034LRN_BC_C01.jpg/dims/resize/13x14');"
-												onclick="GA_Event('카테고리_리스트','컬러칩','BC')"></a> <a
-												href="javascript:chgColorChip(0, 'FL2C1HLV034LRN_BR')"
-												class="cl wt"
-												style="background: #694b41 url('http://newmedia.thehandsome.com/FL/2C/SS/FL2C1HLV034LRN_BR_C01.jpg/dims/resize/13x14');"
-												onclick="GA_Event('카테고리_리스트','컬러칩','BR')"></a>
-										</div>-->
+										 <div class="color_more_wrap">
+											<c:forEach items="${colorList }" var="color" varStatus="colorLoop">
+
+												<c:if test="${color.pid eq product.pid}">
+													<a href="javascript:chgColorChip(0, 'FL2C1HLV034LRN_BG')"
+														class="cl wt"
+														style="background: url('${color.ccolorimage}');"
+														onclick="test('/product/${product.csmall }/detail?pid=${product.pid}&ccolorcode=', '${color.ccolorcode}');"></a>
+												</c:if>
+
+											</c:forEach>
+										</div>
 										<a href="javascript:addWishListClick('FL2C1HLV034LRN');"
 											class="add_wishlist " id="wish_FL2C1HLV034LRN"
 											onclick="GA_Category('wish', $(this));brazeLogCustomEvent('0');"
@@ -453,7 +478,7 @@
 							<c:when test="${loop.count % 4 ==0}">
 								<li class="mr1m">
 									<div class="item_box">
-										<a href="/product/${product.csmall }/detail?pid=${product.pid}" class="item_info1"
+										<a href="/product/${product.csmall }/detail?pid=${product.pid}&ccolorcode=${colorCode}" class="item_info1"
 											onclick="setEcommerceData('0', 'CATEGORY');"> <span
 											class="item_img"> <img src="/resources/img/product/${product.csmall }/${product.pid }.jpg" id="T01_IMG_0"
 												alt="<c:out value="${product.pname }"/>" targetcode=""
@@ -478,7 +503,7 @@
 													<span>FR</span>
 												</div>
 										</span>
-										</a> <a href="/product/${product.csmall }/detail?pid=${product.pid}"
+										</a> <a href="/product/${product.csmall }/detail?pid=${product.pid}&ccolorcode=${colorCode}"
 											class="item_info2"
 											onclick="setEcommerceData('0', 'CATEGORY');"> <span
 											class="brand"></span> <span class="title"><c:out
@@ -488,20 +513,16 @@
 												<!-- <span class="review1902 ch1904">183</span> -->
 										</span>
 										</a>
-										<!-- <div class="color_more_wrap">
-											<a href="javascript:chgColorChip(0, 'FL2C1HLV034LRN_BG')"
-												class="cl wt"
-												style="background: #cca07c url('http://newmedia.thehandsome.com/FL/2C/SS/FL2C1HLV034LRN_BG_C01.jpg/dims/resize/13x14');"
-												onclick="GA_Event('카테고리_리스트','컬러칩','BG')"></a> <a
-												href="javascript:chgColorChip(0, 'FL2C1HLV034LRN_BC')"
-												class="cl wt"
-												style="background: #af4c46 url('http://newmedia.thehandsome.com/FL/2C/SS/FL2C1HLV034LRN_BC_C01.jpg/dims/resize/13x14');"
-												onclick="GA_Event('카테고리_리스트','컬러칩','BC')"></a> <a
-												href="javascript:chgColorChip(0, 'FL2C1HLV034LRN_BR')"
-												class="cl wt"
-												style="background: #694b41 url('http://newmedia.thehandsome.com/FL/2C/SS/FL2C1HLV034LRN_BR_C01.jpg/dims/resize/13x14');"
-												onclick="GA_Event('카테고리_리스트','컬러칩','BR')"></a>
-										</div> -->
+										<div class="color_more_wrap">
+											<c:forEach items="${colorList }" var="color" varStatus="colorLoop">
+												<c:if test="${color.pid eq product.pid}">
+													<a href="javascript:chgColorChip(0, 'FL2C1HLV034LRN_BG')"
+														class="cl wt"
+														style="background: url('${color.ccolorimage}');"
+														onclick="test('/product/${product.csmall }/detail?pid=${product.pid}&ccolorcode=', '${color.ccolorcode}');"></a>
+												</c:if>
+											</c:forEach>
+										</div>
 										
 										
 										<a href="javascript:addWishListClick('FL2C1HLV034LRN');"

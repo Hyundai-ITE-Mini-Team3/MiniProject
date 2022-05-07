@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hyundai.domain.ColorVO;
 import com.hyundai.domain.Criteria;
 import com.hyundai.domain.ProductVO;
 import com.hyundai.mapper.ProductMapper;
@@ -79,23 +80,29 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public List<ProductVO> clargeGetList(String clarge) {
-		log.info("ProductVO clargeGetList 호출 "+clarge);
-		return mapper.clargeGetList(clarge);
+	public List<ColorVO> getColorList() {
+		log.info("[상품  Color 데이터 불러오기]");
+		return mapper.getColorList();
 	}
 	
 	@Override
-	public List<ProductVO> cmediumGetList(String cmedium) {
-		log.info("ProductVO cmediumGetList 호출 "+cmedium);
-		return mapper.cmediumGetList(cmedium);
+	public List<ColorVO> getColorGroupByPID() {
+		log.info("[상품 리스트 페이지에서 이미지에 쓰이는 대표 PID 및 색상코드 불러오기]");
+		return mapper.getColorGroupByPID();
 	}
-	
 	
 	@Override
-	public List<ProductVO> getList(String csmall) {
-		log.info("ProductVO get List 호출");
-		return mapper.getList(csmall);
+	public List<ColorVO> getColorPid(String pid) {
+		log.info("[상품상세정보에 쓰이는  Color 데이터 불러오기]");
+		return mapper.getColorPid(pid);
 	}
+	
+	@Override
+	public List<ColorVO> getColorDetail(String pid, String ccolorcode) {
+		log.info("[상품상세정보에 쓰이는  Color 데이터 불러오기]");
+		return mapper.getColorDetail(pid, ccolorcode);
+	}
+	
 
 
 }

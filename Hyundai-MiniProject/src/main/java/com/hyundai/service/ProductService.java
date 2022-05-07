@@ -2,7 +2,10 @@ package com.hyundai.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.hyundai.domain.ProductVO;
+import com.hyundai.domain.ColorVO;
 import com.hyundai.domain.Criteria;
 
 public interface ProductService {
@@ -25,12 +28,11 @@ public interface ProductService {
 	// 상품 소분류 불러오기(페이징 적용)
 	public List<ProductVO> getListCsmallPaging(Criteria cri, String clarge);
 	
-	// 상품 대분류 불러오기
-	public List<ProductVO> clargeGetList(String clarge);
+	public List<ColorVO> getColorList();
 	
-	// 상품 중분류 불러오기
-	public List<ProductVO> cmediumGetList(String cmedium);
+	public List<ColorVO> getColorGroupByPID();
 	
-	// 상품 소분류 불러오기
-	public List<ProductVO> getList(String csmall);		
+	public List<ColorVO> getColorPid(String pid);
+	
+	public List<ColorVO> getColorDetail(@Param("pid") String pid, @Param("ccolorcode") String ccolorcode);
 }

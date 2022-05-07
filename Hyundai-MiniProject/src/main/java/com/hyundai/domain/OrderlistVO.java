@@ -6,7 +6,6 @@ import lombok.Data;
 public class OrderlistVO {
 	private String oid;
 	private String mid;
-	private long ozipcode;
 	private String oaddress1;
 	private String oaddress2;
 	private Date odate;

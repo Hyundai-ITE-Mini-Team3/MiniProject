@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hyundai.mapper.CartMapper">
+
+	<select id="getList" resultType="com.hyundai.domain.MycartVO">
+		SELECT *
+		FROM TABLE(cart_pkg.fn_get_cart(#{mid}))
+	</select>
+	
+	<insert id="insert" statementType="CALLABLE">
+   	{
+   		CALL cart_pkg.sp_insert_cart(
+   			#{mid},
+   			#{pid, jdbcType=VARCHAR},
+   			#{psize, jdbcType=VARCHAR},
+   			#{pcolor, jdbcType=VARCHAR},
+   			#{pamount, jdbcType=NUMERIC}
+   		)
+   	
+   	}	
+	</insert>
+	
+	<update id="update" statementType="CALLABLE">
+   	{
+   		CALL cart_pkg.sp_update_cart(
+   			#{mid},
+   			#{pid, jdbcType=VARCHAR},
+   			#{pamount, jdbcType=NUMERIC}
+   		)
+   	
+   	}	
+	</update>
+	
+	<delete id="delete" statementType="CALLABLE">
+   	{
+   		CALL cart_pkg.sp_delete_cart(
+   			#{mid},
+   			#{pid, jdbcType=VARCHAR}
+   		)
+   	
+   	}	
+	</delete>
+	
+</mapper>

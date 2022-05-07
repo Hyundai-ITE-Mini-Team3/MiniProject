@@ -8,4 +8,9 @@ public class MycartVO {
 	private String psize;
 	private String pcolor;
 	private long pamount;
+	
+	private String pname;
+	private long pprice;
+	private String csmall;
+	private String bname;
 }

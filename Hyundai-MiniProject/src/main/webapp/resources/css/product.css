@@ -174,7 +174,7 @@
 .item_detail_info .info .btnwrap .btn.cart{width:231px;height:50px;line-height: 50px;text-align: center;color:#fff;background: #4a4a4a;font-weight: bold;font-size: 14px;border:1px solid #4a4a4a;border:0;}
 .item_detail_info .info .btnwrap .btn.pickCart{width:231px;height:50px;line-height: 24px;text-align: center;color:#fff;background: #4a4a4a;font-weight: bold;font-size: 14px;border:1px solid #4a4a4a;border:0;}
 .item_detail_info .info .btnwrap .btn.reserveSaleCart{width:231px;height:50px;line-height: 24px;text-align: center;color:#fff;background: #4a4a4a;font-weight: bold;font-size: 14px;border:1px solid #4a4a4a;border:0;}
-.item_detail_info .info .btnwrap .btn.wishlist{padding-left:19px;border:1px solid #a3a3a3;width:231px;height:50px;line-height: 48px;background: #fff url("/_ui/desktop/common/images/common/ico_btn_wishlist.gif") 54px 17px no-repeat;color:#363636;font-weight: bold;font-size: 14px}
+.item_detail_info .info .btnwrap .btn.wishlist{padding-left:19px;border:1px solid #a3a3a3;width:231px;height:50px;line-height: 48px;background: #fff url("/resources/img/common/ico_btn_wishlist.gif") 54px 17px no-repeat;color:#363636;font-weight: bold;font-size: 14px}
 .item_detail_info .info .btnwrap .btn.restock_alarm{margin:10px 0 0 0;width:100%;height:50px;line-height: 50px;text-align: center;color:#fff;background: #4a4a4a;font-weight: bold;font-size: 14px;border:0;}
 
 /*20150825_add*/
@@ -544,13 +544,13 @@
 .evt_ex_wrap1803 .evt_tlt{position:relative;height:62px;border-top:1px solid #222;border-bottom:1px solid #222;margin-bottom:30px;}
 .evt_ex_wrap1803 .evt_tlt .tlt{position:absolute;top:-150px;left:50%;padding-top:150px;width:995px;margin-left:-497.5px;border-top:0;border-bottom:0;}
 /*상품상세 - 바로주문*/
-.item_detail_info .info .btnwrap .btn.wishlist1803{width:72px;border:1px solid #ccc;height:50px;margin-right:10px;line-height:48px;background:#fff url('/_ui/desktop/common/images/common/ico_btn_wishlist.png') center 17px no-repeat;}
+.item_detail_info .info .btnwrap .btn.wishlist1803{width:72px;border:1px solid #ccc;height:50px;margin-right:10px;line-height:48px;background:#fff url('/resources/img/common/ico_btn_wishlist.png') center 17px no-repeat;}
 .item_detail_info .info .btnwrap .btn.cart1803{width:190px;height:50px;line-height:50px;text-align:center;color:#575757;background:#fff;border:1px solid #ccc;font-size:14px;}
 .item_detail_info .info .btnwrap .btn.order{width:190px;height:50px;background:#4b4a4a;text-align:center;color:#fff;line-height:50px;font-size:14px;border:0;}
 .item_detail_info .info .btnwrap .wishlist1803.on{background-position:center -42px;}
 .toast_popup{position:relative;text-align:left;}
 .toast_popup p{color:#fff;line-height:30px;padding:0 20px;font-size:14px;height:31px;background:rgba(0,0,0,.5);border-radius:15px;text-align:center;display:inline-block;position:absolute;left:0;top:0;opacity:0;display:none;}
-.toast_popup p:before{content:"";background:url('/_ui/desktop/common/images/common/ico_btn_wishlist.png') -2px -128px no-repeat;width:13px;height:12px;display:inline-block;margin-right:5px;}
+.toast_popup p:before{content:"";background:url('/resources/img/common/ico_btn_wishlist.png') -2px -128px no-repeat;width:13px;height:12px;display:inline-block;margin-right:5px;}
 .toast_popup.on p:before{background-position:-2px -177px;}
 .item_detail_info .info .btnwrap .cart1803.font12{font-size:12px;}
 /*상품상세 - 셀링포인트*/

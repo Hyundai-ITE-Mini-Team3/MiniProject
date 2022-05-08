@@ -13,7 +13,7 @@ import com.hyundai.domain.MemberVO;
 import lombok.extern.log4j.Log4j;
 
 /*************************************************************
-파일명: CartMapperTest5.java
+파일명: MemberMapperTest.java
 작성자: 박주영
 *************************************************************/
 

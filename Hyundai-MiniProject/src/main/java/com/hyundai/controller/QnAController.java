@@ -111,7 +111,9 @@ public class QnAController {
 		logger.info("============Get=============");
 		// 세션에서 값 조회
 		HttpSession session = request.getSession();
-		String mid = (String)session.getAttribute("member_id"); //세션에 저장된 로그인 유저 아이디
+		
+		//세션에 저장된 로그인 유저 아이디
+		String mid = (String)session.getAttribute("member_id"); 
 		logger.info("Session(mid): " + mid);
 		
 		//로그인 유저 아이디 저장

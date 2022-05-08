@@ -3,13 +3,16 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<!-- 장바구니 조회, 추가, 수정, 삭제 수행 -->
 <mapper namespace="com.hyundai.mapper.CartMapper">
 
+	<!-- 장바구니 조회하는 테이블 함수 실행 -->
 	<select id="getList" resultType="com.hyundai.domain.MycartVO">
 		SELECT *
 		FROM TABLE(cart_pkg.fn_get_cart(#{mid}))
 	</select>
 	
+	<!-- 장바구니 추가하는 프로시저 호출 -->
 	<insert id="insert" statementType="CALLABLE">
    	{
    		CALL cart_pkg.sp_insert_cart(
@@ -23,6 +26,7 @@
    	}	
 	</insert>
 	
+	<!-- 장바구니 수정하는 프로시저 호출 -->
 	<update id="update" statementType="CALLABLE">
    	{
    		CALL cart_pkg.sp_update_cart(
@@ -34,6 +38,7 @@
    	}	
 	</update>
 	
+	<!-- 장바구니 삭제하는 프로시저 호출 -->
 	<delete id="delete" statementType="CALLABLE">
    	{
    		CALL cart_pkg.sp_delete_cart(

@@ -3,15 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<!-- 상품 주문, 주문 내역 조회를 수행 -->
 <mapper namespace="com.hyundai.mapper.OrderMapper">
 
-	<insert id="insertItem">
-
-		INSERT INTO orderitem(oid, pid, ccolorcode, ssize, oamount)
-		VALUES(#{oid}, #{pid}, #{ccolorcode}, #{ssize}, #{oamount})
-
-	</insert>
-
+	<!-- 주문 리스트에 추가  -->
 	<insert id="insertList">
 
 		INSERT INTO orderlist(oid, mid, oaddress1, oaddress2, odate, oreceiver,
@@ -20,13 +15,27 @@
 		0, 0)
 
 	</insert>
-
+	
+	<!-- 최상위 주문번호 반환 -->
 	<select id="getOid" resultType="String">
 
-		SELECT oid FROM orderlist WHERE ROWNUM = 1 ORDER BY oid DESC
+		SELECT oid
+		FROM orderlist
+		WHERE mid = #{mid} AND ROWNUM = 1 
+		ORDER BY oid DESC
 
 	</select>
+	
+	<!-- 주문 아이템에 추가 -->
+	<insert id="insertItem">
 
+		INSERT INTO orderitem(oid, pid, ccolorcode, ssize, oamount)
+		VALUES(#{oid}, #{pid}, #{ccolorcode}, #{ssize}, #{oamount})
+
+	</insert>
+
+	
+	<!-- 주문 내역 조회 -->
 	<select id="getOrder" resultType="com.hyundai.domain.OrderVO">
 		SELECT ol.oid, p.pname, oi.oamount, p.pprice, ol.ostatus, ol.odate
 		FROM product p, orderitem oi, orderlist ol

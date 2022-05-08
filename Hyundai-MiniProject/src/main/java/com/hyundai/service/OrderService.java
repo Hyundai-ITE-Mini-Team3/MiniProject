@@ -22,7 +22,7 @@ public interface OrderService {
 	public void insertList(OrderlistVO vo);
 	
 	// 주문 상품 추가를 위해 최상위 주문번호 반환
-	public String getOid();
+	public String getOid(String mid);
 	
 	// 주문 리스트 조회
 	public List<OrderVO> getOrder(String mid);

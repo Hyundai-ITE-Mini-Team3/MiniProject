@@ -43,8 +43,8 @@ public class OrderServiceImpl implements OrderService {
 	
 	// 주문 상품 추가를 위해 최상위 주문번호 반환
 	@Override
-	public String getOid() {
-		String oid = mapper.getOid();
+	public String getOid(String mid) {
+		String oid = mapper.getOid(mid);
 		return oid;
 	}
 	

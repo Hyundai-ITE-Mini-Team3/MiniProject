@@ -71,7 +71,7 @@ public class OrderController {
 			o_service.insertList(list);
 
 			// OrderService의 getOid() 호출을 통해  oid 반환받음
-			String oid = o_service.getOid();
+			String oid = o_service.getOid(mid);
 			
 			// 주문할 상품 갯수만큼 반복
 			int cnt = Integer.parseInt(pcount);
@@ -97,8 +97,8 @@ public class OrderController {
 
 			}
 			
-			// 주문 조회 페이지(mypage.jsp)로 이동
-			return "redirect:/mypage/mypage";
+			// 주문 완료 페이지로 이동
+			return "/order/ordercomplete";
 
 		} else { // 로그인 정보 없으면 로그인 페이지로 이동
 

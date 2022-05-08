@@ -22,7 +22,7 @@ public interface OrderMapper {
 	public void insertItem(OrderitemVO vo);
 	
 	// 주문 상품 추가를 위해 최상위 주문번호 반환 (SELECT문 이용)
-	public String getOid();
+	public String getOid(String mid);
 	
 	// 주문 리스트 조회 (SELECT문 이용)
 	public List<OrderVO> getOrder(String mid);

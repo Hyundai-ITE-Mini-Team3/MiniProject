@@ -84,7 +84,7 @@ public class QnAController {
 		model.addAttribute("user", user); 
 	}
 	
-	//게시글 작성폼으로 이동
+	//게시글 작성
 	//Post 방식
 	// Parameter: QnAVO (입력폼에서 받은 QnA 객체)
 	// /qna/list로 redirect
@@ -144,7 +144,7 @@ public class QnAController {
 	//게시물 수정
 	//Post 방식
 	// Parameter: QnAVO
-	// qna/list로 redirect
+	// /qna/list로 redirect
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modify(QnAVO qna, RedirectAttributes rttr,
 			@ModelAttribute("cri") Criteria cri) {
@@ -174,7 +174,7 @@ public class QnAController {
 		rttr.addAttribute("pageNum", cri.getPageNum()); 
 		rttr.addAttribute("amount",cri.getAmount()); 
 
-		return "redirect:/qna/list"; // qna/list로 redirect
+		return "redirect:/qna/list"; // /qna/list로 redirect
 	}
 	
 }

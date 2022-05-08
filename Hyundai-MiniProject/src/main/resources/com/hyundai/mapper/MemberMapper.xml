@@ -3,7 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<!-- 회원 추가, 조회, 로그인, 아이디 중복확인을 수행 -->
+<!--
+파일명: MemberMapper.xml
+기능: 회원 추가, 조회, 로그인, 아이디 중복확인을 수행하는 Mapper xml
+작성자: 박주영
+
+[코멘트: X] -->
 <mapper namespace="com.hyundai.mapper.MemberMapper">
 
 	<!-- 회원 추가하는 프로시저 호출 -->

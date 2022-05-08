@@ -2,9 +2,17 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
+<!-- 파일명: QnAMapper.xml 
+기능: QnA 글 조회,작성, 수정, 삭제하는 Mapper xml 
+작성자: 진영서 
+
+[코멘트: 페이징 처리, 검색 처리 적용] -->
+
+
 <mapper namespace="com.hyundai.mapper.QnAMapper">
 
+	<!-- 검색 처리를 위한 SQL구문을 정의 -->
 	<sql id="criteria">
 		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
 			<foreach item="type" collection="typeArr">
@@ -25,16 +33,26 @@
 		</trim> <!--end trim pre... -->
 	</sql>
 
-	 <select id="getTotalCount" resultType="int">
-	 	select count(*) from qna where <include refid="criteria"> </include> qid>0
-	 </select>
- 
 
+	<!-- QnA 게시글 데이터 수 불러오기 -->
+	<!-- 위에서 정의한 sql 구문 include 활용 -->
+	<select id="getTotalCount" resultType="int">
+		select count(*) from qna where
+		<include refid="criteria"></include>
+		qid>0
+	</select>
+
+
+	<!-- QnA 게시글 데이터 불러오기(페이징X, 검색처리 적용X) -->
 	<select id="getList" resultType="com.hyundai.domain.QnAVO">
-       select * from qna order by qid DESC
-   </select> 
-   
-   <select id="getListWithPaging" resultType="com.hyundai.domain.QnAVO">
+		select * from qna order by qid DESC
+	</select>
+	
+
+	<!-- QnA 게시글 데이터 불러오기(페이징O, 검색처리 적용O) -->
+		<!-- 위에서 정의한 sql 구문 include 활용 -->
+	<select id="getListWithPaging"
+		resultType="com.hyundai.domain.QnAVO">
    <![CDATA[
    select *
        from(
@@ -44,23 +62,7 @@
 	       		from qna
 	       		where 
    ]]>
-		 <trim prefix="(" suffix=") AND " prefixOverrides="OR">
-		 	<foreach item="type" collection="typeArr">
-		 		<trim prefix="OR">
-		 			<choose>
-		 				<when test="type== 'T'.toString()">
-		 					qtitle like '%' ||  #{keyword} ||  '%' 				
-		 				</when>
-		 				<when test="type== 'C'.toString()">
-		 					qcontent like '%' ||  #{keyword} ||  '%' 
-		 				</when>
-		 				<when test="type== 'W'.toString()">
-		 					mid like '%' ||  #{keyword} ||  '%' 
-		 				</when> 			
-		 			</choose> <!-- end choose --> 
-		 		</trim><!--end trim OR  -->
-		 	</foreach> <!--foreach  -->
-		 </trim> <!--end trim pre...  -->
+		<include refid="criteria"></include>
   
   <![CDATA[
   rownum <= #{pageNum} * #{amount}
@@ -68,40 +70,47 @@
 where rn > ( #{pageNum} - 1 ) *  #{amount}  
   
   ]]>
- </select>
-   
-  
-   <insert id="insert" statementType="CALLABLE">
-   	{
-   		CALL sp_qna_insert(
-   			#{mid},
-   			#{qtitle},
-   			#{qcontent}
-   		)
-   	
-   	}
-   
-   </insert>
-   <select id="read" resultType="com.hyundai.domain.QnAVO">
-   	select * from qna where qid=#{qid}
-   
-   </select>
-   
-   <delete id="delete" statementType="CALLABLE">
-   {
-   		CALL sp_qna_delete(#{qid})
-   }
-   </delete>
-   
-   <update id="update" statementType="CALLABLE">
-   {
-	   CALL sp_qna_update(
-	   			#{qid},
-	   			#{mid},
-	   			#{qtitle},
-	   			#{qcontent}
-	   		)
-   }
-   </update>
-   
+	</select>
+
+
+	<!-- QnA 게시글 추가하는 프로시저 호출 -->
+	<insert id="insert" statementType="CALLABLE">
+		{
+		CALL sp_qna_insert(
+		#{mid},
+		#{qtitle},
+		#{qcontent}
+		)
+
+		}
+
+	</insert>
+	
+	
+	<!-- QnA 게시글 조회 -->
+	<select id="read" resultType="com.hyundai.domain.QnAVO">
+		select * from qna where qid=#{qid}
+
+	</select>
+
+
+	<!-- QnA 게시글 삭제하는 프로시저 호출 -->
+	<delete id="delete" statementType="CALLABLE">
+		{
+		CALL sp_qna_delete(#{qid})
+		}
+	</delete>
+
+	<!-- QnA 게시글 수정하는 프로시저 호출 -->
+	<update id="update" statementType="CALLABLE">
+		{
+		CALL sp_qna_update(
+		#{qid},
+		#{mid},
+		#{qtitle},
+		#{qcontent}
+		)
+		}
+	</update>
+
 </mapper>

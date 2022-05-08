@@ -13,6 +13,11 @@ import com.hyundai.domain.QnAVO;
 
 import lombok.extern.log4j.Log4j;
 
+/*************************************************************
+파일명: QnAMapperTest7.java
+작성자: 진영서
+*************************************************************/
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j

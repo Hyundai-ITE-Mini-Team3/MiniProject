@@ -3,8 +3,15 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<!-- 파일명: ReplyMapper.xml 
+기능: 댓글 조회,작성, 수정, 삭제하는 Mapper xml 
+작성자: 진영서 
+
+[코멘트: X] -->
+
 <mapper namespace="com.hyundai.mapper.ReplyMapper">
 
+	<!-- 해당 qid의 게시물 댓글 목록 데이터 불러오기 -->
 	<select id="getList" resultType="com.hyundai.domain.ReplyVO">
 		select *
 		from reply
@@ -12,22 +19,28 @@
 		order by rid ASC
 	</select>
 
+
+	<!-- 댓글 추가 -->
 	<insert id="insert">
-	
 		insert into reply (rid, mid, qid, rcontent, rdate)
 		values (reply_seq.nextval, #{mid}, #{qid}, #{rcontent}	, sysdate)
-		
-
 	</insert>
+	
+	
+	<!-- 댓글 조회 -->
 	<select id="read" resultType="com.hyundai.domain.ReplyVO">
 		select * from reply where rid = #{rid}
 	</select>
 
+
+	<!-- 댓글 삭제 -->
 	<delete id="delete">
 		delete from reply where rid = #{rid}
 		
 	</delete>
-
+	
+	
+	<!-- 댓글 수정 -->
 	<update id="update">
 		update reply
 	    set rcontent=#{rcontent}, rdate=SYSDATE

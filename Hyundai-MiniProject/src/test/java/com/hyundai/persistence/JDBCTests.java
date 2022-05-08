@@ -10,6 +10,11 @@ import org.junit.Test;
 
 import lombok.extern.log4j.Log4j;
 
+/*************************************************************
+파일명: JDBCTests.java
+작성자: 박주영
+*************************************************************/
+
 @Log4j
 public class JDBCTests {	
 	static {

@@ -14,6 +14,11 @@ import org.springframework.web.context.WebApplicationContext;
 
 import lombok.extern.log4j.Log4j;
 
+/*************************************************************
+파일명: LoginControllerTest.java
+작성자: 박주영
+*************************************************************/
+
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml",

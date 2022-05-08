@@ -10,6 +10,11 @@ import com.hyundai.domain.OrderitemVO;
 
 import lombok.extern.log4j.Log4j;
 
+/*************************************************************
+파일명: OrderMapperTest.java
+작성자: 박주영
+*************************************************************/
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j

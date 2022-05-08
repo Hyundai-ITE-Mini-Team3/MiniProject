@@ -14,6 +14,11 @@ import com.hyundai.domain.QnAVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
+/*************************************************************
+파일명: QnAMapperTest8.java
+작성자: 진영서
+*************************************************************/
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
@@ -28,7 +33,7 @@ public class QnAMapperTest8 {
 		cri.setKeyword("게시글"); ;
 		cri.setType("") ;
 		List<QnAVO> list = mapper.getListWithPaging(cri);
-		list.forEach(board -> log.info(board.getQid()));		
+		list.forEach(qna -> log.info(qna.getQid()));		
 	}//end testP	
 	
 	@Test
@@ -37,7 +42,7 @@ public class QnAMapperTest8 {
 		cri.setKeyword("게시글"); ;
 		cri.setType("T") ;
 		List<QnAVO> list = mapper.getListWithPaging(cri);
-		list.forEach(board -> log.info(board.getQid()));		
+		list.forEach(qna -> log.info(qna.getQid()));		
 	}//end testP	
 	
 	@Test
@@ -46,7 +51,7 @@ public class QnAMapperTest8 {
 		cri.setKeyword("게시글"); ;
 		cri.setType("TC") ;
 		List<QnAVO> list = mapper.getListWithPaging(cri);
-		list.forEach(board -> log.info(board.getQid()));		
+		list.forEach(qna -> log.info(qna.getQid()));		
 	}//end testP	
 	
 	@Test
@@ -55,7 +60,7 @@ public class QnAMapperTest8 {
 		cri.setKeyword("게시글");
 		cri.setType("TCW") ;
 		List<QnAVO> list = mapper.getListWithPaging(cri);
-		list.forEach(board -> log.info(board.getQid()));		
+		list.forEach(qna -> log.info(qna.getQid()));		
 	}//end testP	
 	
 }//end class

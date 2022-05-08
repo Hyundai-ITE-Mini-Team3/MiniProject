@@ -17,9 +17,11 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class QnAServiceImpl implements QnAService {
 
+	// Mapper 객체 주입
 	@Autowired
 	private QnAMapper mapper;
 	
+	// QnA 게시판 글 작성
 	@Override
 	public void register(QnAVO qna) {
 		log.info("[register]"+qna);
@@ -27,36 +29,42 @@ public class QnAServiceImpl implements QnAService {
 
 	}
 
+	// QnA 게시판 글 조회
 	@Override
 	public QnAVO get(Long qid) {
 		log.info("[get]"+qid);
 		return mapper.read(qid);
 	}
 
+	// QnA 게시판 글 수정
 	@Override
 	public boolean modify(QnAVO qna) {
 		log.info("[modify]"+qna);
 		return mapper.update(qna)==1;
 	}
 
+	// QnA 게시판 글 삭제
 	@Override
 	public boolean remove(Long qid) {
 		log.info("[remove]"+qid);
 		return mapper.delete(qid)==1;
 	}
-
+	
+	// 페이징 적용하지 않은 QnA 게시판 글 목록 조회
 //	@Override
 //	public List<QnAVO> getList() {
 //		log.info("[get list]");
 //		return mapper.getList();
 //	}
 	
+	// 페이징 적용된 QnA 게시판 글 목록 조회
 	@Override
 	public List<QnAVO> getList(Criteria cri){
 		log.info("[get List with criteria] "+cri);
 		return mapper.getListWithPaging(cri);
 	}
 	
+	// QnA 게시판 글 총 개수 불러오기
 	@Override
 	public int getTotal(Criteria cri) {
 		log.info("[get total count]");

@@ -4,26 +4,35 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundai.mapper.ProductMapper">
 
-	<!-- 상품 대분류 데이터 수 불러오기 -->
+<!-- 
+파일명: ProductMapper.xml
+기능: 상품 리스트 조회(페이징 적용 및 컬러코드까지 가져옴), 상품 상세정보 조회(컬러코드 가져옴) 
+작성자: 신동근
+
+[코멘트: 상품 리스트 조회시 카테고리별로 조회할 수 있도록 구현, 
+		상품 상세정보 조회시 url의 쿼리스트링(parameter: pid, ccolorcode)를 통해서 상품 상세정보 가져올 수 있도록 구현]
+ -->
+
+	<!-- 상품 대분류 데이터 수 불러오기 쿼리-->
 	<select id="getClargeCount" resultType="int">
 		select count(*) from
 		product where clarge = #{clarge}
 	</select>
 
-	<!-- 상품 중분류 데이터 수 불러오기 -->
+	<!-- 상품 중분류 데이터 수 불러오기 쿼리-->
 	<select id="getCmdediumCount" resultType="int">
 		select count(*) from
 		product where cmdedium = #{cmdedium}
 	</select>
 
-	<!-- 상품 소분류 데이터 수 불러오기 -->
+	<!-- 상품 소분류 데이터 수 불러오기 쿼리-->
 	<select id="getCsmallCount" resultType="int">
 		select count(*) from
 		product where csmall = #{csmall}
 	</select>
 
 
-	<!-- 대분류 상품목록 불러오기 (페이징 적용) SQL -->
+	<!-- 대분류 상품목록 불러오기 (페이징 적용) 쿼리-->
 	<select id="getListClargePaging" parameterType="hashmap"
 		resultType="com.hyundai.domain.ProductVO">
    <![CDATA[
@@ -81,6 +90,7 @@
 	</select>
 	
 	<!-- 상품 리스트 페이지에서 이미지에 쓰이는 대표 PID 및 색상코드 불러오기 쿼리 -->
+	<!-- Color테이블에서 PID 검색하면 PID가 같은것들이 그룹되어 나오는데 거기서 최상단 데이터만 뽑아오도록 -->
 	<select id="getColorGroupByPID" resultType="com.hyundai.domain.ColorVO">
 		<![CDATA[
           select * from (
@@ -92,13 +102,14 @@
    		]]>
 	</select>
 	
-	<!-- 상품상세정보에 쓰이는 Pid를 통한 컬러 코드 불러오기(색상정보) 쿼리 -->
+	<!-- 상품 상세정보에서 PID와 컬러코드를 통해서 데이터를 받아와 상세정보페이지에 이미지 3개 쓸수있도록 사용하려는 쿼리 -->
 	<select id="getColorDetail" resultType="com.hyundai.domain.ColorVO">
 		select * from Color where pid = #{pid} 
 		and ccolorcode = #{ccolorcode}
 	</select>
 	
-	<!-- 상품상세정보에 쓰이는 Pid를 통한 컬러 코드 불러오기(색상정보) 쿼리 -->
+	<!-- 상품 상세정보에서 PID를 통해서 데이터를 받아오는데 cmatchpid로 정렬하여 받아온 데이터를 
+	          상세정보페이지에 컬러코드이미지 쓸수있도록 사용하려는 쿼리 -->
 	<select id="getColorPid" resultType="com.hyundai.domain.ColorVO">
 		select * from Color where pid = #{pid} 
 		order by TO_NUMBER(cmatchpid)

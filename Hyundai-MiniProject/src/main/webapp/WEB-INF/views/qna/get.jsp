@@ -2295,7 +2295,7 @@ console.log(qidValue);
 
 <script>
    var arkQuery = $.noConflict(true);
-   </script>
+ </script>
 	<div id="bodyWrap">
 		<h3 class="cnts_title">
 			<span id="menuTitle">상품 QnA</span>
@@ -2571,7 +2571,7 @@ $(function(){
 			 
 		 })
 
-		 // 댓글 작성 버튼 클릭시
+		 // 댓글 작성 완료후 버튼 클릭시
 		 modalRegisterBtn.on("click", function() {
 			 
 			 var reply={  //input 태그 내용 가져오기
@@ -2589,7 +2589,7 @@ $(function(){
 			});
 		 });
 
-		// 댓글 작성 완료 버튼 클릭시
+		// 댓글 작성 버튼 클릭시
 		 $("#addReplyBtn").on("click", function(e){
 			 modal.find("input").val(""); //input 값 지우기
 		    // modalInputReplyDate.closest("div").hide(); //버튼 숨기기

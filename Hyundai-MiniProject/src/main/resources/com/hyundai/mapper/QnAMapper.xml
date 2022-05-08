@@ -5,25 +5,25 @@
   
 <mapper namespace="com.hyundai.mapper.QnAMapper">
 
-<sql id="criteria">
- <trim prefix="(" suffix=") AND " prefixOverrides="OR">
- 	<foreach item="type" collection="typeArr">
- 		<trim prefix="OR">
- 			<choose>
- 				<when test="type== 'T'.toString()">
- 					qtitle like '%' ||  #{keyword} ||  '%' 				
- 				</when>
- 				<when test="type== 'C'.toString()">
- 					qcontent like '%' ||  #{keyword} ||  '%' 
- 				</when>
- 				<when test="type== 'W'.toString()">
- 					mid like '%' ||  #{keyword} ||  '%' 
- 				</when> 			
- 			</choose> <!-- end choose --> 
- 		</trim><!--end trim OR  -->
- 	</foreach> <!--foreach  -->
- </trim> <!--end trim pre...  -->
-  </sql>
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type== 'T'.toString()">
+							qtitle like '%' || #{keyword} || '%'
+						</when>
+						<when test="type== 'C'.toString()">
+							qcontent like '%' || #{keyword} || '%'
+						</when>
+						<when test="type== 'W'.toString()">
+							mid like '%' || #{keyword} || '%'
+						</when>
+					</choose> <!-- end choose -->
+				</trim><!--end trim OR -->
+			</foreach> <!--foreach -->
+		</trim> <!--end trim pre... -->
+	</sql>
 
 	 <select id="getTotalCount" resultType="int">
 	 	select count(*) from qna where <include refid="criteria"> </include> qid>0
@@ -44,23 +44,23 @@
 	       		from qna
 	       		where 
    ]]>
- <trim prefix="(" suffix=") AND " prefixOverrides="OR">
- 	<foreach item="type" collection="typeArr">
- 		<trim prefix="OR">
- 			<choose>
- 				<when test="type== 'T'.toString()">
- 					qtitle like '%' ||  #{keyword} ||  '%' 				
- 				</when>
- 				<when test="type== 'C'.toString()">
- 					qcontent like '%' ||  #{keyword} ||  '%' 
- 				</when>
- 				<when test="type== 'W'.toString()">
- 					mid like '%' ||  #{keyword} ||  '%' 
- 				</when> 			
- 			</choose> <!-- end choose --> 
- 		</trim><!--end trim OR  -->
- 	</foreach> <!--foreach  -->
- </trim> <!--end trim pre...  -->
+		 <trim prefix="(" suffix=") AND " prefixOverrides="OR">
+		 	<foreach item="type" collection="typeArr">
+		 		<trim prefix="OR">
+		 			<choose>
+		 				<when test="type== 'T'.toString()">
+		 					qtitle like '%' ||  #{keyword} ||  '%' 				
+		 				</when>
+		 				<when test="type== 'C'.toString()">
+		 					qcontent like '%' ||  #{keyword} ||  '%' 
+		 				</when>
+		 				<when test="type== 'W'.toString()">
+		 					mid like '%' ||  #{keyword} ||  '%' 
+		 				</when> 			
+		 			</choose> <!-- end choose --> 
+		 		</trim><!--end trim OR  -->
+		 	</foreach> <!--foreach  -->
+		 </trim> <!--end trim pre...  -->
   
   <![CDATA[
   rownum <= #{pageNum} * #{amount}

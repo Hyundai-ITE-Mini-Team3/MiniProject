@@ -14,11 +14,11 @@ import lombok.ToString;
 @ToString
 public class Criteria {	
 	
-	private int pageNum;	
-	private int amount;
+	private int pageNum; //페이지 번호	
+	private int amount; //한 페이지당 글 개수
 	
-	private String type;
-	private String keyword;
+	private String type; //검색기능 중 검색 필터
+	private String keyword; //검색기능 중 검색 단어
 	
 	public String[] getTypeArr() {		
 		//삼항식[Condition Operator]      ?   TURE   : FALSE 
@@ -26,6 +26,7 @@ public class Criteria {
 	}//end getType..
 
 	public Criteria() {
+		//Default 값: 첫페이지(1), 한페이지당 글 개수(8)
 		this(1,8);
 	}//end cri...	
 	

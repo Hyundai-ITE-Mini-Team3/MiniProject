@@ -14,7 +14,7 @@
 	<!-- 회원 추가하는 프로시저 호출 -->
 	<insert id="insert" statementType="CALLABLE">
 		{
-		CALL member_pkg.sq_member_insert
+		CALL member_pkg.sp_member_insert
 		(
 		#{mid},
 		#{mpassword},

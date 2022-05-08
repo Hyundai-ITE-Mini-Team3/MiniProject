@@ -55,6 +55,7 @@ public class QnAController {
 	//페이징 적용O
 	//게시물 목록 불러오기
 	//Get 방식
+	//list.jsp 페이지로 이동
 	// Parameter: Criteria(페이징 처리 활용)
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void qna_getlist(Criteria cri, Model model) {
@@ -69,6 +70,7 @@ public class QnAController {
 	
 	//게시글 작성
 	//Get 방식
+	//register.jsp 페이지로 이동
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void qna_register(HttpServletRequest request, Model model) {
 		// 세션에서 값 조회
@@ -104,6 +106,7 @@ public class QnAController {
 	
 	//게시글 조회
 	//Get 방식
+	// get.jsp 페이지로 이동
 	@RequestMapping(value = {"/get"}, method = RequestMethod.GET)
 	public void get(@RequestParam("qid") Long qid, 
 			@ModelAttribute("cri") Criteria cri, 

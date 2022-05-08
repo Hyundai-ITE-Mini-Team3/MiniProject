@@ -21,7 +21,7 @@ public class OrderMapperTest3 {
 	@Test
 	public void testGetOid() {		
 		
-		log.info(mapper.getOid());
+		log.info(mapper.getOid("jyp"));
 	}
 	
 }

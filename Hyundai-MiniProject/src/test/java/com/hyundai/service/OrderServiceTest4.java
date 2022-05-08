@@ -18,6 +18,6 @@ public class OrderServiceTest4 {
 	@Test
 	public void testGetOid() {		
 		
-		log.info(service.getOid());
+		log.info(service.getOid("jyp"));
 	}
 }

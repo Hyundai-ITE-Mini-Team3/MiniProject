@@ -34,10 +34,10 @@ public interface ProductService {
 	public List<ProductVO> getListClargePaging(Criteria cri, String clarge);
 	
 	// 상품 중분류 불러오기(페이징 적용)
-	public List<ProductVO> getListCmdediumPaging(Criteria cri, String clarge);
+	public List<ProductVO> getListCmdediumPaging(Criteria cri, String cmdedium);
 
 	// 상품 소분류 불러오기(페이징 적용)
-	public List<ProductVO> getListCsmallPaging(Criteria cri, String clarge);
+	public List<ProductVO> getListCsmallPaging(Criteria cri, String csmall);
 	
 	// 상품 리스트 출력에 사용되는 컬러 코드 불러오기(색상정보)
 	public List<ColorVO> getColorList();

@@ -1,3 +1,5 @@
+<!-- 상품 리스트 페이지 (작성자: 신동근) -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
@@ -19,9 +21,6 @@
 		location.href = link + ccolorcode;
 	}
 	
-	function test2() {
-		console.log();
-	}
 </script>
 
 <body>
@@ -36,6 +35,7 @@
 		<!-- ${result[0].cmdedium }  -->
 		<!-- ${colorList[0].ccolorimage } -->
 		
+		<!-- url 받아오기 -->
 		<c:set var="url" value="${requestScope['javax.servlet.forward.servlet_path']}"/>
 		<c:set var="cmedium" value="${result[0].cmdedium }"/>
 		<c:set var="csmall" value="${result[0].csmall }"/>

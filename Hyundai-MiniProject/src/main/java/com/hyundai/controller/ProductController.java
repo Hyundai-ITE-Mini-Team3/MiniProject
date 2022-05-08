@@ -90,7 +90,7 @@ public class ProductController {
 		return "product/list";	// list.jsp로 이동
 	}// end 
 	
-	// 상품 상셍보 불러오기 컨트롤러 메서드 
+	// 상품 상세정보 불러오기 컨트롤러 메서드 
 	// RequestMapping을 통해  url 서버도메인/product/{csmall}/detail로 시작
 	// querystring으로 url에 parameter 사용 (pid, ccolorcode)
 	// ex. localhost:8090/product/fabric/detail?pid={pid값}&ccolorcode={ccolorcode값}

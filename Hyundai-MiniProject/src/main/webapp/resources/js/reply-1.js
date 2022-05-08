@@ -1,3 +1,9 @@
+/*************************************************************
+파일명: reply-1.js
+기능: jquery 응답안할시 script 포함된지 확인
+작성자: 진영서
+*************************************************************/
+
 console.log("reply-1");
 if (typeof jQuery == 'undefined') {
     var script = document.createElement('script');
@@ -7,30 +13,3 @@ if (typeof jQuery == 'undefined') {
 } else {
     console.log("jQuery Ready");
 }
-
-
-( function($) {
-    // 여기서 "$"를 jQuery로 참조
-    $(function() { console.log("test"); });
-} ) ( jQuery );
-
-//jQuery(document).ready(function() {
-//	//댓글 처리 시
-//	console.log('댓글테스트1');
-//	var qidValue ='<c:out value="${qna.qid}"/>';
-//	var replyUL = $(".chat");	
-//	showList();	
-//	
-//});
-////
-//$(function(){
-//	//댓글 처리 시
-//	console.log('댓글테스트1');
-//	var qidValue ='<c:out value="${qna.qid}"/>';
-//	var replyUL = $(".chat");	
-//	showList();	
-//	
-//	
-//
-//	
-//});//end ready

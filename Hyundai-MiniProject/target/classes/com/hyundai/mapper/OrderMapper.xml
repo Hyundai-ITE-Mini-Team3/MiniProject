@@ -3,7 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 상품 주문, 주문 내역 조회를 수행 -->
+<!-- 
+파일명: OrderMapper.xml
+기능: 상품 주문  추가, 주문번호 조회, 주문리스트 조회를 수행하는 Mapper xml
+작성자: 박주영
+
+[코멘트: X]
+-->
 <mapper namespace="com.hyundai.mapper.OrderMapper">
 
 	<!-- 주문 리스트에 추가  -->

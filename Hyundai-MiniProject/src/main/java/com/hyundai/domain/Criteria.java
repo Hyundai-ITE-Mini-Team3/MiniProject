@@ -4,6 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/*************************************************************
+파일명: Criteria.java
+기능: 페이징 관련 객체
+작성자: 진영서
+*************************************************************/
 @Getter
 @Setter
 @ToString

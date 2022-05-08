@@ -3,6 +3,11 @@ package com.hyundai.domain;
 import lombok.Getter;
 import lombok.ToString;
 
+/*************************************************************
+파일명: PageDTD.java
+기능: 
+작성자: 진영서
+*************************************************************/
 @Getter
 @ToString
 public class PageDTD {

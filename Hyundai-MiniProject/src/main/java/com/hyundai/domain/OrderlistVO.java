@@ -2,6 +2,12 @@ package com.hyundai.domain;
 import java.util.Date;
 
 import lombok.Data;
+
+/*************************************************************
+파일명: OrderlistVO.java
+기능: Orderlist 테이블 VO
+작성자: 진영서
+*************************************************************/
 @Data
 public class OrderlistVO {
 	private String oid;

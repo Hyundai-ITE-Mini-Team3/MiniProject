@@ -2986,7 +2986,7 @@ function checkboxChecked(el){
 				<h4 class="float_left">상품 QnA 문의 등록</h4>
 				<p class="reqd_txt"><strong class="reqd">*</strong> 표시는 필수항목입니다.</p>
 			</div>
-			<form role="form" id="manToManInquiryForm" name="manToManInquiryForm" action="/qna/register" method="post" enctype="multipart/form-data">
+			<form role="form" id="manToManInquiryForm" name="manToManInquiryForm" action="/qna/register" method="post">
 			
 			<input type="hidden" id="mid" name="mid" value="${user.mid }">
 		<!-- 	<input type="hidden" id="orderPk" name="orderPk">

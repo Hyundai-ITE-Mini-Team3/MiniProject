@@ -4249,7 +4249,7 @@ function reviewWriteHtml(categoryCode, returnType) {
 	var reviewhtml="";
 	reviewhtml = '<div class="layerArea">';
 	reviewhtml +='<div class="layerBg"></div> ';
-	reviewhtml +='<form id="reviewForm" style="width:780px;" method="post" commandName="reviewForm" name="reviewForm" enctype="multipart/form-data">';
+	reviewhtml +='<form id="reviewForm" style="width:780px;" method="post" commandName="reviewForm" name="reviewForm">';
 	reviewhtml += "<div class='popwrap w_type_4' id='customerReviewWriteDiv'>";
 	reviewhtml += "    <div class='pop_tltwrap2 customerreviewwritediv1807'>";
 	reviewhtml += "        <h3>상품평 작성하기</h3>";

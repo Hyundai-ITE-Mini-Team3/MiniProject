@@ -1,3 +1,5 @@
+<!-- QnA 게시판 글 조회 페이지 (작성자: 진영서) -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -29,7 +31,7 @@
 <meta property="og:url" content="http://www.thehandsome.com/ko/">
 <meta name="keywords"
 	contents="한섬, 더한섬닷컴, 한섬몰, 한섬아울렛, 한섬닷컴, 더한섬, 한섬올라인몰, HANDSOME, thehandsome">
-<title>더한섬닷컴</title>
+<title>더한섬닷컴-QnA 게시판</title>
 <link rel="shortcut icon"
 	href="http://cdn.thehandsome.com/_ui/desktop/common/images/common/thehandsome_ic_16x16.ico">
 <link rel="stylesheet" type="text/css"
@@ -91,365 +93,20 @@
 <script type="text/javascript" src="/resources/js/appboy.min.js"></script>
 
 
-
-<!-- 댓글처리 끝-->
-
-<script type="text/javascript">
-
-
-function GA_Event(Category,Action,Label) {
-    
-    Label = unescape(Label).replace(/\&#039;/gi,"'");
-    
-    var v_Label = Label;
-    var v_Category = Category;
-    var v_Action = Action;
-    //공백처리을  _ 처리
-    if(Category != null){
-        v_Category = Category.replace(/\s{2,}/gi,' ').trim().replace(/\s/gi,'_');
-    }
-    if(Action != null){
-        v_Action = Action.replace(/\s{2,}/gi,' ').trim().replace(/\s/gi,'_');
-    }
-    if(Label != null){
-        v_Label = Label.replace(/\s{2,}/gi,' ').trim().replace(/\s/gi,'_');
-    }
-    ga('gp.send','event',v_Category,v_Action,v_Label);
-}
-</script>
-<style media="screen">
-.blsmflw1 {
-	animation: target_image 1.5s;
-	animation-iteration-count: 2;
-	transform-origin: 50% 50%;
-}
-
-@
-keyframes target_image { 0% {
-	transform: rotate(-1deg);
-}
-50%
-{
-transform
-
-
-
-
-:
-
-
- 
-
-
-rotate
-
-
-
-
-(9
-deg
-
-
-)
-}
-100%
-{
-transform
-
-
-
-
-:
-
-
- 
-
-
-rotate
-
-
-
-
-(-1
-deg
-
-
-);
-}
-}
-</style>
-
 <script>
 
 
 var playItem = ""; 
-function setPlayEarlySummer(item){
-     
-     //로그인 안했을경우, 로그인페이지로
-     
-     //로그인 했을경우, 이벤트 페이지로 
-     
-         if(item == "icecream"){
-             location.href='/ko/magazine/events/8799238805376';
-         }else{
-             if(playItem == "" || playItem != item) {
-                 $.ajax({
-                     url: '/ko/magazine/setPlayEarlySummer',
-                     type: "get",
-                     dataType:"json",
-                     data: { pk : '8799238805376', tdate : '' , type : item},
-                     success:function(data){
-                          if( data == "nextTime"){ //오늘의 썸머 캐리어가 꽉 찼습니다. 내일 다시 썸머아이템을 찾아주세요. 
-                              var obj = $(".popwrap_renewal1910.login_more2");
-                              var tp=($(window).height()-obj.outerHeight())/2+$(window).scrollTop();
-                              if(tp < 0) tp=0;
-                              obj.css("top", tp);
-                              obj.show();
-                              $('#ealrySummerLayer').show();
-                              
-                              var todayDate = new Date(); 
-                              setCookie("earlysummerPopup",todayDate.getDate(),1);
-                          }else if(data == "success"){ //success  고객님의 썸머캐리어에 담았습니다.
-                              var type = item;
-                              if(item == "swimsuit"){ type = "스윔수트"; }
-                              else if(item == "hat"){ type = "모자"; }
-                              else if(item == "bag"){ type = "썸머백"; }
-                              else if(item == "pants"){ type = "숏팬츠"; }
-                              else if(item == "cardigan"){ type = "스윔가디건"; }
-                              else if(item == "flipflops"){ type = "플립플랍"; }
-                              else if(item == "sunglasses"){ type = "선글라스"; }
-                              else if(item == "towel"){ type = "비치타올"; }
-                              else if(item =="tshirt"){ type = "썸머티셔츠"; }
-                              else if(item == "passport"){ type = "여권"; }
-                              else if(item == "icecream"){ type = "기프티콘"; }
-                              
-                              $(".popwrap_renewal1910.login_below1").find('span').html(type+" 아이템을");
-                              
-                              var obj = $(".popwrap_renewal1910.login_below1");
-                              var tp=($(window).height()-obj.outerHeight())/2+$(window).scrollTop();
-                              if(tp < 0) tp=0;
-                              obj.css("top", tp);
-                              obj.show();
-                              $('#ealrySummerLayer').show();
-                          }else if(data == "duplication"){
-                              $(".evt_pop_earlysummer").hide();
-                          }
-                          
-                          playItem = item;
-                     },
-                     error:function(e){
-                         //
-                     }
-                 }); 
-             }
-             
-         }
-     
- }
  
 
-function evtPopClose(type) {
-    if(type == "close") {
-        $('.evt_pop_earlysummer').hide();
-    }else {
-        var todayDate = new Date(); 
-        setCookie("earlysummerPopup",todayDate.getDate(),1);
-        $('.evt_pop_earlysummer').hide();
-        $('.popwrap_renewal1910').hide();
-        $('#ealrySummerLayer').hide();
-    }
-};
-
-function goLogin(){
-    location.href='/ko/member/login';
-}
-
-function goEalryEvent(){
-    location.href='/ko/magazine/events/8799238805376';
-}
-
 var playMapleItem = ""; 
-function setPlayMaple(item){
-  //로그인 안했을경우, 로그인페이지로
-    
-    //로그인 했을경우, 이벤트 페이지로 
-    
-	    if(playMapleItem == "" || playMapleItem != item) {
-	        $.ajax({
-	            url: '/ko/magazine/setPlayMapleEvent',
-	            type: "get",
-	            dataType:"json",
-	            data: { pk : '8799664789376', tdate : '' , type : item},
-	            success:function(data){
-	                 if( data == "nextTime"){ //내일 다시 
-	                     var obj = $(".popwrap_maple_evt1909.nextTime");
-	                     var tp=($(window).height()-obj.outerHeight())/2+$(window).scrollTop();
-	                     if(tp < 0) tp=0;
-	                     obj.css("top", tp);
-	                     obj.show();
-	                     $(".evt_minipop_maple").hide();
-	                     $('#mapleLayer').show();
-	                     
-	                     var todayDate = new Date(); 
-	                     setCookie("mapleEventPopup",todayDate.getDate(),1);
-	                 }else if(data == "success"){ //success
-	                     var obj = "";
-	                     if (item == "red1" || item == "red2" || item == "red3"){
-	                         obj = $(".popwrap_maple_evt1909.otherMaple_red");
-	                     } else if (item == "brown1" || item == "brown2" || item == "brown3" || item == "brown4"){
-	                         obj = $(".popwrap_maple_evt1909.otherMaple_brown");
-	                     } else if (item == "green1" || item == "green2" || item == "green3"){
-	                         obj = $(".popwrap_maple_evt1909.otherMaple_green"); 
-	                     } else if(item == "gold") {
-	                         console.log("in gold");
-	                         obj = $(".popwrap_maple_evt1909.goldMaple");
-	                     }
-	                     
-	                     var tp=($(window).height()-obj.outerHeight())/2+$(window).scrollTop();
-	                     if(tp < 0) tp=0;
-	                     obj.css("top", tp);
-	                     obj.show();
-	                     
-	                     $(".evt_minipop_maple").hide();
-	                     $('#mapleLayer').show();
-	                 }else if(data == "duplication"){ //기획득한 아이템
-	                     $(".evt_minipop_maple").hide();
-	                 }
-	                 
-	                 playMapleItem = item;
-	            },
-	            error:function(e){
-	                //
-	            }
-	        }); 
-	    }
-    
-}
-
-
-
-function goMapleEvent(){
-    location.href='/ko/magazine/events/8799664789376';
-}
-
-function blossomsEvent(type) {
-    
-    $.ajax({
-        url: '/ko/magazine/events/setBlossomsSession'+"?type="+type,
-        dataType:"json",
-        type: "get",
-        cache : false,
-        dataType : "json",
-        async : false,
-        contentType : "application/json",
-        success:function(data){
-            //로그인 안했을경우, 로그인페이지로
-            
-            
-           //로그인 했을경우, 이벤트 페이지로 
-            
-                location.href = '/ko/magazine/events/8797698742144';
-            
-        },
-        error:function(e){
-            //
-        }
-    });
-    
-}
-
-
-/**
- * 2020.03.31 hmk
- *
- * 입력하려는 productId가 배열에 있는지 확인해서
- * 있을 경우에는 해당 배열 항목 삭제하고 입력하려는 
- * productId가 key인 js object 생성하여 삽입. (한마디로 replace)
- * value : 신규 항목일 때
- * oldValue : 기존 항목이 있어서 교체할 때
- */
-function mapSet( array, key, value, oldValue ) {
-	var isKeyExist = false ;
-	for( var i ; i < array.length ; i++ ) {
-		if( array[i].key === key ) {
-      		array.splice( i, 1 ) ;
-      		array.push( {
-      			key : key
-  	        	, value : oldValue
-  	        } ) ;
-      		isKeyExist = true ;
-  		}
-    }
-	// 키 존재 여부가 false인 경우는 상기 로직이 수행되지 않았다는 의미 == 새로운 항목
-    // 이므로 배열에 그냥 입력
-	if( ! isKeyExist ) {
-		array.push( {
-  			key : key
-	        , value : value
-	    } ) ;
-    }
-}
 
 <!--  recoPick  START ---->
 
 
-
-function setCategoryNameInKO(targetCateCode, defaultCateName){
-    var cates = "AS|잡화^AS01|여성슈즈^AS011|부츠^AS012|로퍼/블로퍼^AS013|스니커즈^AS014|플랫^AS015|힐/슬링백^AS016|샌들/슬라이드^AS017|기타 슈즈^AS02|남성슈즈^AS021|부츠^AS022|포멀슈즈^AS023|스니커즈^AS024|샌들/슬라이드^AS025|기타 슈즈^AS031|토트백^AS032|숄더/크로스바디백^AS033|클러치 백^AS034|기타 백^AS041|토트백^AS042|숄더/크로스바디백^AS043|클러치 백^AS044|기타 백^AS051|머플러^AS052|스카프^AS061|이어링/커프^AS062|목걸이^AS063|팔찌^AS064|반지^AS065|기타 주얼리^AS07|기타 ACC^AS071|모자^AS072|양말^AS073|장갑^AS074|벨트^AS075|지갑^AS076|헤어ACC^AS077|테크ACC^AS078|기타소품^BE011|토너/에멀전/크림^BE012|세럼/앰플/오일/밤^BE013|클렌징/스크럽/마스크^BE031|핸드·바디로션/크림/오일^BE032|핸드·바디워시/스크럽^BE033|샴푸/컨디셔너^BE034|트리트먼트/오일/스프레이^BE035|기타 바디/헤어케어^BE041|향수^EG02|감사^LS|라이프스타일^LS011|패브릭^LS012|프래그런스^LS013|데코레이션^LS014|기타소품^LS021|스킨케어^LS022|욕실용품^LS031|그릇^LS032|보드/트레이^LS033|커트러리^LS034|커피/티^LS035|패브릭/냅킨^LS036|기타소품^LS041|문구^LS042|책^LS043|기타소품^LS051|패션^LS052|기타소품^LS061|의류^LS062|잡화^ME011|티셔츠^ME012|셔츠^ME013|니트^ME014|스웨터^ME015|가디건/베스트^ME021|루즈/테이퍼드^ME022|데님^ME023|쇼츠^ME025|슬림/스트레이트^ME028|조거/트랙^ME031|재킷^ME032|점퍼^ME033|트렌치코트^ME034|코트^ME035|다운/패딩^ME041|드레스셔츠^ME042|수트재킷^ME044|수트팬츠^ME095|TIME HOMME : ONLINE EXCLUSIVE^WE011|티셔츠^WE012|블라우스^WE013|셔츠^WE014|니트^WE015|가디건/베스트^WE021|캐주얼^WE022|포멀^WE023|데님^WE024|쇼츠^WE031|미니 스커트^WE032|펜슬 스커트^WE033|플레어 스커트^WE034|롱/맥시 스커트^WE041|미니 드레스^WE042|미디 드레스^WE043|롱/맥시 드레스^WE051|재킷^WE052|점퍼^WE053|트렌치 코트^WE054|코트^WE055|다운/패딩^WE091|OBZEE : ICONIC OBZEE^WE092|TIME : SIGNATURE SUIT^WE093|SYSTEM : JEANS^WE095|FOURM THE STORE : PALETTE^WE096|FOURM STUDIO : RE:STUDIO^WE098|SYSTEM : PARIS PRESENTATION^WE09B|O'2nd : 25th Anniv. Marie Assenat ^WE09Q|LATT : with 신민아"; //WE011|티셔츠^WE012|블라우스^...
-    var cateArr = null;
-    var returnCateName = "";
-    if(targetCateCode != ""){
-        if(cates != ""){
-            cateArr = cates.split("^");
-            if(cateArr.length > 0){
-                $(cateArr).each(function(idx){
-                    if(cateArr[idx] != ""){ // WE011|티셔츠
-                        var compareCate = cateArr[idx].split("|");
-                        if(compareCate.length == 2){ // code | name
-                            var compareCateCode = compareCate[0]; //WE011
-                            if(compareCateCode.toUpperCase() == targetCateCode.toUpperCase()){
-                                returnCateName = compareCate[1]; //티셔츠
-                            }
-                        }
-                    }
-                });
-            }
-        }
-        
-        // 한글 카테고리명이 없을경우 defaultCateName로 재설정
-        if(returnCateName == ""){
-            returnCateName = defaultCateName;
-        }
-    }
-    return returnCateName;
-}
 </script>
 
-<!-- Facebook Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1947530058811697'); // Insert your pixel ID here.
-fbq('track', 'PageView');
-</script>
-<noscript>
-	<img height="1" width="1" style="display: none"
-		src="https://www.facebook.com/tr?id=1947530058811697&ev=PageView&noscript=1" />
-</noscript>
-<!-- End Facebook Pixel Code -->
 
-<!-- #2894 - 카카오광고 집행 위한 픽셀&SDK 삽입 -->
-<script type="text/javascript" charset="UTF-8"
-	src="//t1.daumcdn.net/adfit/static/kp.js"></script>
-<script type="text/javascript">
-if(typeof kakaoPixel !== 'undefined'){
-      var kakaoTrackId = '3482319208237780781'; //개발
-      if(location.href.indexOf("www.thehandsome.com") > -1) kakaoTrackId = '7855119525940511046'; //운영
-      kakaoPixel(kakaoTrackId).pageView();
-}
-</script>
-<!-- #2894 - 카카오광고 집행 위한 픽셀&SDK 삽입 END -->
 
 <script
 	src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/943253288/?random=1651564389324&amp;cv=9&amp;fst=1651564389324&amp;num=1&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;u_h=756&amp;u_w=1116&amp;u_ah=731&amp;u_aw=1116&amp;u_cd=24&amp;u_his=27&amp;u_tz=540&amp;u_java=false&amp;u_nplug=5&amp;u_nmime=2&amp;sendb=1&amp;ig=1&amp;frm=0&amp;url=https%3A%2F%2Fwww.thehandsome.com%2Fko%2Fmypage%2Fmymantomaninquiry&amp;ref=https%3A%2F%2Fwww.thehandsome.com%2Fko%2Fmypage&amp;tiba=%EB%8D%94%ED%95%9C%EC%84%AC%EB%8B%B7%EC%BB%B4&amp;hn=www.googleadservices.com&amp;rfmt=3&amp;fmt=4"></script>
@@ -855,88 +512,8 @@ if(typeof kakaoPixel !== 'undefined'){
 	.ab-iam-root.v3 .ab-in-app-message.ab-slideup.simulate-phone .ab-close-button
 	{
 	display: none
-}
-
-.ab-centering-div
-
- 
-
-.ab-in-app-message
-
-
-.ab-slideup
-
-
-.simulate-phone
-
- 
-
-.ab-close-button
-
- 
-
-svg
-
-
-:not
-
-
-	
-
-(
-.ab-chevron
-
- 
-
-),
-.ab-iam-root
-
-
-.v3
-
- 
-
-.ab-in-app-message
-
-
-.ab-slideup
-
-
-.simulate-phone
-
- 
-
-.ab-close-button
-
- 
-
-svg
-
-
-:not
-
-
-	
-
-(
-.ab-chevron
-
- 
-
-){
-display
-
-
-:
-
- 
-
-none
-
-
-
-
-}
+} .ab-centering-div .ab-in-app-message .ab-slideup .simulate-phone .ab-close-button svg :not
+ ( .ab-chevron ) , .ab-iam-root .v3 .ab-in-app-message .ab-slideup .simulate-phone .ab-close-button svg :not(.ab-chevron){display:none}
 .ab-centering-div .ab-in-app-message.ab-slideup.simulate-phone.ab-clickable .ab-close-button,
 	.ab-iam-root.v3 .ab-in-app-message.ab-slideup.simulate-phone.ab-clickable .ab-close-button
 	{
@@ -1428,93 +1005,12 @@ none
 	max-height: calc(50% - 93px - 20px)
 }
 
-.ab-centering-div
-
- 
-
-.ab-in-app-message
-
-
-.ab-fullscreen
-
-
-.simulate-phone
-
-
-:not
-
- 
-
-(
-.graphic
-
-
-	
-
-),
-.ab-iam-root
-
-
-.v3
-
- 
-
-.ab-in-app-message
-
-
-.ab-fullscreen
-
-
-.simulate-phone
-
-
-:not
-
-
-	
-
-(
-.graphic
-
- 
-
-){
-padding-bottom
-
-
-:
-
- 
-
-0;
-padding-bottom
-
-
-:
-
- 
-
-constant
-
-
-(
-safe-area-inset-bottom
-,
-0);
-padding-bottom
-
-
-:
-
- 
-
-env
-
-
-(
-safe-area-inset-bottom
-,
-0)
+.ab-centering-div .ab-in-app-message .ab-fullscreen .simulate-phone:not
+( .graphic), .ab-iam-root .v3 .ab-in-app-message .ab-fullscreen .simulate-phone:not
+(.graphic){
+	padding-bottom:	0;
+	padding-bottom: constant(safe-area-inset-bottom,0);
+	padding-bottom:	env(safe-area-inset-bottom,0)
 }
 .ab-centering-div .ab-in-app-message.ab-fullscreen.simulate-phone:not (.graphic
 	 ) .ab-message-buttons, .ab-iam-root.v3 .ab-in-app-message.ab-fullscreen.simulate-phone:not
@@ -1807,51 +1303,10 @@ safe-area-inset-bottom
 	.ab-iam-root.v3 .ab-in-app-message.ab-slideup .ab-close-button {
 		display: none
 	}
-	.ab-iam-root
-	
-	
-	.v3
-	
-	 
-	
-	.ab-in-app-message
-	
-	
-	.ab-slideup
-	
-	 
-	
-	.ab-close-button
-	
-	 
-	
-	svg
-	
-	
-	:not
-	
-	 
-	
-	(
-	.ab-chevron
-	
-	
-		
-	
-	){
-	display
-	
-	
-	:
-	
-	 
-	
-	none
-	
-	
-	
-
-}
+	.ab-iam-root .v3 .ab-in-app-message .ab-slideup .ab-close-button svg:not
+	(.ab-chevron){
+		display:none
+	}
 
 .ab-iam-root.v3 .ab-in-app-message.ab-slideup.ab-clickable .ab-close-button
 	{
@@ -1965,113 +1420,18 @@ safe-area-inset-bottom
 	max-height: calc(50% - 93px - 20px)
 }
 
-.ab-iam-root
-
-
-.v3
-
- 
-
-.ab-in-app-message
-
-
-:not
-
- 
-
-(
-.force-desktop
-
- 
-
-)
-.ab-fullscreen
-
-
-.landscape
-
-
-:not
-
-
-		
-
-(
-.graphic
-
- 
-
-),
-.ab-iam-root
-
-
-.v3
-
- 
-
-.ab-in-app-message
-
-
-:not
-
- 
-
-(
-.force-desktop
-
- 
-
-)
-.ab-fullscreen
-
-
-:not
-
-
-		
-
-(
-.graphic
-
- 
-
-){
-padding-bottom
-
-
-:
-
- 
-
-0;
-padding-bottom
-
-
-:
-
- 
-
-constant
-
-
-(
-safe-area-inset-bottom
-,
-0);
-padding-bottom
-
-
-:
-
- 
-
-env
-
-
-(
-safe-area-inset-bottom
-,
-0)
+.ab-iam-root .v3 .ab-in-app-message:not
+(.force-desktop)
+.ab-fullscreen .landscape:not(
+.graphic), .ab-iam-root .v3 .ab-in-app-message:not
+(.force-desktop)
+.ab-fullscreen:not
+(.graphic){
+	padding-bottom:0;
+	padding-bottom:constant
+(safe-area-inset-bottom, 0);
+	padding-bottom:env
+(safe-area-inset-bottom,0)
 }
 .ab-iam-root.v3 .ab-in-app-message:not (.force-desktop ).ab-fullscreen.landscape:not
 		 (.graphic ) .ab-message-buttons, .ab-iam-root.v3 .ab-in-app-message:not
@@ -2102,74 +1462,12 @@ safe-area-inset-bottom
 
 }
 @media ( max-width :480px) {
-	.ab-email-capture
-	
-	 
-	
-	.ab-in-app-message
-	
-	
-	.ab-modal
-	
-	
-	:not
-	
-	 
-	
-	(
-	.force-desktop
-	
-	 
-	
-	),
-	.ab-iam-root
-	
-	
-	.v3
-	
-	 
-	
-	.ab-in-app-message
-	
-	
-	.ab-modal
-	
-	
-	:not
-	
-	 
-	
-	(
-	.force-desktop
-	
-	 
-	
-	){
-	max-width
-	
-	
-	:
-	
-	 
-	
-	91%;
-	max-width
-	
-	
-	:
-	
-	 
-	
-	calc
-	
-	
-	(100%
-	-
-	30
-	px
-	
-	
-	)
+	.ab-email-capture .ab-in-app-message .ab-modal :not
+	( .force-desktop ),
+	.ab-iam-root .v3 .ab-in-app-message .ab-modal :not
+	(.force-desktop )
+	max-width : 91%;
+	max-width : calc (100% - 30 px )
 }
 
 .ab-email-capture .ab-in-app-message.ab-modal:not (.force-desktop ).graphic .ab-image-area img,
@@ -2181,74 +1479,10 @@ safe-area-inset-bottom
 
 }
 @media ( max-height :750px) {
-	.ab-email-capture
-	
-	 
-	
-	.ab-in-app-message
-	
-	
-	.ab-modal
-	
-	
-	:not
-	
-	 
-	
-	(
-	.force-desktop
-	
-	 
-	
-	),
-	.ab-iam-root
-	
-	
-	.v3
-	
-	 
-	
-	.ab-in-app-message
-	
-	
-	.ab-modal
-	
-	
-	:not
-	
-	 
-	
-	(
-	.force-desktop
-	
-	 
-	
-	){
-	max-height
-	
-	
-	:
-	
-	 
-	
-	91%;
-	max-height
-	
-	
-	:
-	
-	 
-	
-	calc
-	
-	
-	(100%
-	-
-	30
-	px
-	
-	
-	)
+	.ab-email-capture .ab-in-app-message .ab-modal:not (.force-desktop),
+	.ab-iam-root .v3 .ab-in-app-message .ab-modal :not(.force-desktop ){
+	max-height :91%;
+	max-height : calc (100% - 30px )
 }
 
 .ab-email-capture .ab-in-app-message.ab-modal:not (.force-desktop ).graphic .ab-image-area img,
@@ -2309,257 +1543,29 @@ safe-area-inset-bottom
 }
 
 @media ( max-height :750px) and (min-width:601px) {
-	.ab-iam-root
-	
-	
-	.v3
-	
-	 
-	
-	.ab-in-app-message
-	
-	
-	.ab-fullscreen
-	
-	
-	:not
-	
-	 
-	
-	(
-	.landscape
-	
-	 
-	
-	)
-	:not
-	
-	 
-	
-	(
-	.force-desktop
-	
-	
-		
-	
-	){
-	-webkit-transition
-	
-	
-	:
-	
-	 
-	
-	top
-	
-	 
-	
-	none
-	
-	
-	;
-	-moz-transition
-	
-	
-	:
-	
-	 
-	
-	top
-	
-	 
-	
-	none
-	
-	
-	;
-	-o-transition
-	
-	
-	:
-	
-	 
-	
-	top
-	
-	 
-	
-	none
-	
-	
-	;
-	transition
-	
-	
-	:
-	
-	 
-	
-	top
-	
-	 
-	
-	none
-	
-	
-	;
-	top
-	
-	
-	:
-	
-	 
-	
-	0;
-	right
-	
-	
-	:
-	
-	 
-	
-	0;
-	bottom
-	
-	
-	:
-	
-	 
-	
-	0;
-	left
-	
-	
-	:
-	
-	 
-	
-	0;
-	height
-	
-	
-	:
-	
-	 
-	
-	100%;
-	width
-	
-	
-	:
-	
-	 
-	
-	100%;
-	max-height
-	
-	
-	:
-	
-	 
-	
-	none
-	
-	
-	;
-	-webkit-border-radius
-	
-	
-	:
-	
-	 
-	
-	0;
-	-moz-border-radius
-	
-	
-	:
-	
-	 
-	
-	0;
-	border-radius
-	
-	
-	:
-	
-	 
-	
-	0;
-	-webkit-transform
-	
-	
-	:
-	
-	 
-	
-	none
-	
-	
-	;
-	-moz-transform
-	
-	
-	:
-	
-	 
-	
-	none
-	
-	
-	;
-	-ms-transform
-	
-	
-	:
-	
-	 
-	
-	none
-	
-	
-	;
-	transform
-	
-	
-	:
-	
-	 
-	
-	none
-	
-	
-	;
-	height
-	
-	
-	:
-	
-	 
-	
-	auto
-	
-	 
-	
-	!
-	important
-	
-	
-	;
-	width
-	
-	
-	:
-	
-	 
-	
-	450
-	px
-	
-	
-	
-
-}
+	.ab-iam-root .v3 .ab-in-app-message .ab-fullscreen :not(.landscape) :not (.force-desktop)
+	{
+		-webkit-transition:top none;
+		-moz-transition:top none;
+		-o-transition:top none;
+		transition:top none;
+		top:0;
+		right:0;
+		bottom:0;
+		left:0;
+		height:100%;
+		width:100%;
+		max-height:none;
+		-webkit-border-radius:0;
+		-moz-border-radius:0;
+		border-radius:0;
+		-webkit-transform:none;
+		-moz-transform:none;
+		-ms-transform:none;
+		transform:none;
+		height:auto !important;
+		width:450px
+	}
 
 .ab-iam-root.v3 .ab-in-app-message.ab-fullscreen:not (.landscape ):not 
 	 (.force-desktop
@@ -2599,86 +1605,10 @@ safe-area-inset-bottom
 	max-height: calc(50% - 93px - 20px)
 }
 
-.ab-iam-root
-
-
-.v3
-
- 
-
-.ab-in-app-message
-
-
-.ab-fullscreen
-
-
-:not
-
- 
-
-(
-.landscape
-
- 
-
-)
-:not
-
- 
-
-(
-.force-desktop
-
-
-		
-
-)
-:not
-
- 
-
-(
-.graphic
-
- 
-
-){
-padding-bottom
-
-
-:
-
- 
-
-0;
-padding-bottom
-
-
-:
-
- 
-
-constant
-
-
-(
-safe-area-inset-bottom
-,
-0);
-padding-bottom
-
-
-:
-
- 
-
-env
-
-
-(
-safe-area-inset-bottom
-,
-0)
+.ab-iam-root .v3 .ab-in-app-message .ab-fullscreen :not (.landscape):not (.force-desktop):not (.graphic){
+padding-bottom:0;
+padding-bottom:constant (safe-area-inset-bottom,0);
+padding-bottom:env (safe-area-inset-bottom,0)
 }
 .ab-iam-root.v3 .ab-in-app-message.ab-fullscreen:not (.landscape ):not 
 	 (.force-desktop
@@ -2709,237 +1639,26 @@ safe-area-inset-bottom
 
 }
 @media ( max-height :480px) {
-	.ab-iam-root
-	
-	
-	.v3
-	
-	 
-	
-	.ab-in-app-message
-	
-	
-	.ab-fullscreen
-	
-	
-	.landscape
-	
-	
-	:not
-	
-	 
-	
-	(
-	.force-desktop
-	
-	
-		
-	
-	){
-	-webkit-transition
-	
-	
-	:
-	
-	 
-	
-	top
-	
-	 
-	
-	none
-	
-	
-	;
-	-moz-transition
-	
-	
-	:
-	
-	 
-	
-	top
-	
-	 
-	
-	none
-	
-	
-	;
-	-o-transition
-	
-	
-	:
-	
-	 
-	
-	top
-	
-	 
-	
-	none
-	
-	
-	;
-	transition
-	
-	
-	:
-	
-	 
-	
-	top
-	
-	 
-	
-	none
-	
-	
-	;
-	top
-	
-	
-	:
-	
-	 
-	
-	0;
-	right
-	
-	
-	:
-	
-	 
-	
-	0;
-	bottom
-	
-	
-	:
-	
-	 
-	
-	0;
-	left
-	
-	
-	:
-	
-	 
-	
-	0;
-	height
-	
-	
-	:
-	
-	 
-	
-	100%;
-	width
-	
-	
-	:
-	
-	 
-	
-	100%;
-	max-height
-	
-	
-	:
-	
-	 
-	
-	none
-	
-	
-	;
-	-webkit-border-radius
-	
-	
-	:
-	
-	 
-	
-	0;
-	-moz-border-radius
-	
-	
-	:
-	
-	 
-	
-	0;
-	border-radius
-	
-	
-	:
-	
-	 
-	
-	0;
-	-webkit-transform
-	
-	
-	:
-	
-	 
-	
-	none
-	
-	
-	;
-	-moz-transform
-	
-	
-	:
-	
-	 
-	
-	none
-	
-	
-	;
-	-ms-transform
-	
-	
-	:
-	
-	 
-	
-	none
-	
-	
-	;
-	transform
-	
-	
-	:
-	
-	 
-	
-	none
-	
-	
-	;
-	height
-	
-	
-	:
-	
-	 
-	
-	auto
-	
-	 
-	
-	!
-	important
-	
-	
-	
-
+	.ab-iam-root .v3 .ab-in-app-message .ab-fullscreen .landscape :not(.force-desktop){
+	-webkit-transition:top none;
+	-moz-transition:top none;
+	-o-transition:top none;
+	transition:top none;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	height:100%;
+	width:100%;
+	max-height:none;
+	-webkit-border-radius:0;
+	-moz-border-radius:0;
+	border-radius:0;
+	-webkit-transform:none;
+	-moz-transform:none;
+	-ms-transform:none;
+	transform:none;
+	height:auto!important
 }
 
 .ab-iam-root.v3 .ab-in-app-message.ab-fullscreen.landscape:not (.force-desktop
@@ -2975,80 +1694,10 @@ safe-area-inset-bottom
 	max-height: calc(50% - 93px - 20px)
 }
 
-.ab-iam-root
-
-
-.v3
-
- 
-
-.ab-in-app-message
-
-
-.ab-fullscreen
-
-
-.landscape
-
-
-:not
-
- 
-
-(
-.force-desktop
-
-
-		
-
-)
-:not
-
- 
-
-(
-.graphic
-
- 
-
-){
-padding-bottom
-
-
-:
-
- 
-
-0;
-padding-bottom
-
-
-:
-
- 
-
-constant
-
-
-(
-safe-area-inset-bottom
-,
-0);
-padding-bottom
-
-
-:
-
- 
-
-env
-
-
-(
-safe-area-inset-bottom
-,
-0)
-}
+.ab-iam-root .v3 .ab-in-app-message .ab-fullscreen .landscape:not(.force-desktop):not
+(.graphic){padding-bottom:0;
+padding-bottom:constant(safe-area-inset-bottom,0);
+padding-bottom:env(safe-area-inset-bottom,0)}
 .ab-iam-root.v3 .ab-in-app-message.ab-fullscreen.landscape:not (.force-desktop
 		 ):not (.graphic ) .ab-message-buttons {
 	padding-top: 0;
@@ -3074,237 +1723,27 @@ safe-area-inset-bottom
 
 }
 @media ( max-width :750px) {
-	.ab-iam-root
-	
-	
-	.v3
-	
-	 
-	
-	.ab-in-app-message
-	
-	
-	.ab-fullscreen
-	
-	
-	.landscape
-	
-	
-	:not
-	
-	 
-	
-	(
-	.force-desktop
-	
-	
-		
-	
-	){
-	-webkit-transition
-	
-	
-	:
-	
-	 
-	
-	top
-	
-	 
-	
-	none
-	
-	
-	;
-	-moz-transition
-	
-	
-	:
-	
-	 
-	
-	top
-	
-	 
-	
-	none
-	
-	
-	;
-	-o-transition
-	
-	
-	:
-	
-	 
-	
-	top
-	
-	 
-	
-	none
-	
-	
-	;
-	transition
-	
-	
-	:
-	
-	 
-	
-	top
-	
-	 
-	
-	none
-	
-	
-	;
-	top
-	
-	
-	:
-	
-	 
-	
-	0;
-	right
-	
-	
-	:
-	
-	 
-	
-	0;
-	bottom
-	
-	
-	:
-	
-	 
-	
-	0;
-	left
-	
-	
-	:
-	
-	 
-	
-	0;
-	height
-	
-	
-	:
-	
-	 
-	
-	100%;
-	width
-	
-	
-	:
-	
-	 
-	
-	100%;
-	max-height
-	
-	
-	:
-	
-	 
-	
-	none
-	
-	
-	;
-	-webkit-border-radius
-	
-	
-	:
-	
-	 
-	
-	0;
-	-moz-border-radius
-	
-	
-	:
-	
-	 
-	
-	0;
-	border-radius
-	
-	
-	:
-	
-	 
-	
-	0;
-	-webkit-transform
-	
-	
-	:
-	
-	 
-	
-	none
-	
-	
-	;
-	-moz-transform
-	
-	
-	:
-	
-	 
-	
-	none
-	
-	
-	;
-	-ms-transform
-	
-	
-	:
-	
-	 
-	
-	none
-	
-	
-	;
-	transform
-	
-	
-	:
-	
-	 
-	
-	none
-	
-	
-	;
-	height
-	
-	
-	:
-	
-	 
-	
-	auto
-	
-	 
-	
-	!
-	important
-	
-	
-	
-
+	.ab-iam-root .v3 .ab-in-app-message .ab-fullscreen .landscape :not
+	( .force-desktop ){ -webkit-transition : top none ;
+	-moz-transition : top none;
+	-o-transition:top none;
+	transition:top none;
+	top : 0;
+	right : 0;
+	bottom : 0;
+	left : 0;
+	height : 100%;
+	width :100%;
+	max-height: none ;
+	-webkit-border-radius : 0;
+	-moz-border-radius : 0;
+	border-radius : 0;
+	-webkit-transform : none ;
+	-moz-transform : none ;
+	-ms-transform : none;
+	transform:none;
+	height:auto
+!important
 }
 
 .ab-iam-root.v3 .ab-in-app-message.ab-fullscreen.landscape:not (.force-desktop
@@ -3340,79 +1779,10 @@ safe-area-inset-bottom
 	max-height: calc(50% - 93px - 20px)
 }
 
-.ab-iam-root
-
-
-.v3
-
- 
-
-.ab-in-app-message
-
-
-.ab-fullscreen
-
-
-.landscape
-
-
-:not
-
- 
-
-(
-.force-desktop
-
-
-		
-
-)
-:not
-
- 
-
-(
-.graphic
-
- 
-
-){
-padding-bottom
-
-
-:
-
- 
-
-0;
-padding-bottom
-
-
-:
-
- 
-
-constant
-
-
-(
-safe-area-inset-bottom
-,
-0);
-padding-bottom
-
-
-:
-
- 
-
-env
-
-
-(
-safe-area-inset-bottom
-,
-0)
+.ab-iam-root .v3 .ab-in-app-message .ab-fullscreen .landscape:not(.force-desktop):not(.graphic){padding-bottom:0;
+padding-bottom:constant(safe-area-inset-bottom,0);
+padding-bottom:env
+(safe-area-inset-bottom,0)
 }
 .ab-iam-root.v3 .ab-in-app-message.ab-fullscreen.landscape:not (.force-desktop
 		 ):not (.graphic ) .ab-message-buttons {
@@ -3591,49 +1961,8 @@ body>.ab-feed .ab-no-cards-message {
 	transform: translateX(450px)
 }
 
-.ab-feed
-
- 
-
-.ab-card
-
-
-.ab-effect-card
-
-
-.ab-hide
-
-
-:not
-
- 
-
-(
-.ab-swiped-left
-
- 
-
-)
-:not
-
- 
-
-(
-.ab-swiped-right
-
-
-	
-
-){
-opacity
-
-
-:
-
- 
-
-0
-}
+.ab-feed .ab-card .ab-effect-card .ab-hide :not(
+.ab-swiped-left):not(.ab-swiped-right){opacity:0}
 .ab-feed .ab-card .ab-close-button {
 	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;
@@ -3981,41 +2310,34 @@ console.log(qidValue);
 					<dl>
 						<dt>주문조회</dt>
 						<dd>
-							<a href="/ko/mypage/order/myorders"
-								onclick="GA_Event('마이페이지','LNB','주문/배송/반품/취소');">주문/배송/반품/취소</a>
+							<a href="/ko/mypage/order/myorders">주문/배송/반품/취소</a>
 						</dd>
 					</dl>
 					<dl>
 						<dt>혜택관리</dt>
 						<dd>
-							<a href="/ko/mypage/voucher"
-								onclick="GA_Event('마이페이지','LNB','나의 쿠폰');">나의 쿠폰<!-- 쿠폰함 --></a>
+							<a href="/ko/mypage/voucher">나의 쿠폰<!-- 쿠폰함 --></a>
 						</dd>
 					</dl>
 					<dl>
 						<dt>나의 상품관리</dt>
 						<dd>
-							<a href="/ko/mypage/myWish"
-								onclick="GA_Event('마이페이지','LNB','위시리스트');">위시리스트<!-- 위시리스트 --></a>
+							<a href="/ko/mypage/myWish">위시리스트<!-- 위시리스트 --></a>
 						</dd>
 						<dd>
-							<a href="/ko/mypage/rsalarm"
-								onclick="GA_Event('마이페이지','LNB','재입고 알림');">재입고 알림<!-- 재입고알림 --></a>
+							<a href="/ko/mypage/rsalarm">재입고 알림<!-- 재입고알림 --></a>
 						</dd>
 					</dl>
 					<dl>
 						<dt>나의 정보관리</dt>
 						<dd>
-							<a href="/ko/mypage/personInfomationChangePWCheck"
-								onclick="GA_Event('마이페이지','LNB','개인정보 변경/탈퇴');">개인정보 변경/탈퇴</a>
+							<a href="/ko/mypage/personInfomationChangePWCheck">개인정보 변경/탈퇴</a>
 						</dd>
 						<dd>
-							<a href="/ko/mypage/shoppingAddressPWCheck"
-								onclick="GA_Event('마이페이지','LNB','배송지 관리');">배송지 관리</a>
+							<a href="/ko/mypage/shoppingAddressPWCheck">배송지 관리</a>
 						</dd>
 						<dd>
-							<a href="/ko/mypage/oneClick"
-								onclick="GA_Event('마이페이지','LNB','원클릭 결제 관리');">원클릭 결제 관리</a>
+							<a href="/ko/mypage/oneClick">원클릭 결제 관리</a>
 						</dd>
 					</dl>
 					<dl>
@@ -4059,23 +2381,26 @@ console.log(qidValue);
 					</div>
 				</div>
 
-
+				<!-- QnA 글 조회 START-->
 				<div class='row'>
 					<div class="col-lg-12">
 						<div class="panel panel-default">
 							<h4 class="panel-heading">${qna.qtitle }</h4>
 							<div class="panel-body">
+								<!-- QnA 작성자 -->
 								<p>작성자 : ${qna.mid }</p>
 
 								<p>
+								<!-- QnA 작성일 포맷 설정 -->
 									<fmt:formatDate pattern="yyyy-MM-dd HH:mm:SS"
 										value="${qna.qdate }" />
 								</p>
 
 								<br>
+								<!-- QnA 글 내용 -->
 								<p>${qna.qcontent }</p>
 
-
+								<!-- 목록/수정/삭제 버튼(amount, pageNum 전달 -->
 								<div class="btnwrap">
 									<a href="/qna/list?&pageNum=${cri.pageNum}&amount=${cri.amount}" class="btn wt">목록</a> 
 									<c:if test="${mid eq qna.mid }">
@@ -4089,1235 +2414,78 @@ console.log(qidValue);
 						</div>
 					</div>
 				</div>
+				<!-- QnA 글 조회 END-->
+
 				<!--댓글 목록 시작 -->
 				<div class='row'>
-				<div class="col-lg-12">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<i class="fa fa-comments fa-fw"></i> 댓글
-							<button id='addReplyBtn' class='btn add_ss mr0 pull-right'>
-							댓글작성
-							</button>
+					<div class="col-lg-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<i class="fa fa-comments fa-fw"></i> 댓글
+								<button id='addReplyBtn' class='btn add_ss mr0 pull-right'>
+									댓글작성</button>
+							</div>
+							<!--댓글 목록 리스트 -->
+							<div class="panel-body">
+								<ul class="chat">
+									<li>
+										<div>
+											<strong>user00</strong> <small>2018-01-01 13:13</small>
+										</div>
+										<p>good</p>
+									</li>
+								</ul>
+							</div>
 						</div>
-						<!--end  panel-heading -->
-						<div class="panel-body">
-							<ul class="chat">
-								<li>
-									<div>
-										<strong>user00</strong> <small>2018-01-01 13:13</small>
-									</div>
-									<p>good</p>
-								</li>
-							</ul>
-							<!-- ./ end ul -->
-						</div>
-						<!-- /.panel-body -->
 					</div>
-					<!--end panel panel-default  -->
 				</div>
-				<!--end col-lg-12 -->
-			</div>
-			<!--  end row →
-<!--댓글 목록 끝 -->
-			
-			
+				<!--댓글 목록 끝 -->
 			</div>
 			<!-- //cnts -->
-
-			
 		</div>
 	</div>
 	<!-- body wrap -->
 	
 
+<!-- 푸터 include -->
+<%@include file="../../views/includes/qna_footer.jsp"%>
 
-
-	<script type="text/javascript">
-var fileIdx = 1;
-var reviewRate_en = "";
-var reviewSymbol_en = "";
-var reviewRate_zh = "";
-var reviewSymbol_zh = "";
-var isCosmetic = false;
-var isPerfume = false;
-
-
-function hideProductLayer() {
-	$('.layerArea').remove();
-}
-
-function viewPopup(v){
-	var obj=$("#"+v.split("#")[1]);
-	var lp=($(window).width()-740)/2;
-	var tp=$(window).scrollTop();
-	
-	if(lp < 0) lp=0;
-	if(tp < 0) tp=0;
-	
-	obj.css("top", tp).css("left", lp).css("position", "absolute").css("z-index", 101);
-	obj.show();
-	
-	return false;
-}
-
-function showProductLayer() {
-	$("#productLayer").show();
-}
-
-function starCnt() {//상품평 별점 선택
-	$('.btn_star_score li a').on('click',function() {
-		var idx=$(this).parent('li').index()+1;
-		for(var i=1;i<6;i++){
-			$('.write_star_score1807 .cmt_star .cmt_per').removeClass('star'+i);
-		}
-		$('.write_star_score1807 .cmt_star .cmt_per').addClass('star'+idx);
-	});
-}
-
-function checkCategoryType(code) {
-    
-    if(isCosmetic) {
-        return "cosmetic";
-    }else if(isPerfume) {
-        return "perfume";
-    }
-    
-	var rtnValue = "";
-	var topType = "SZ01,SZ02,SZ03,SZ04,SZ05,SZ06,SZ07,SZ08".split(",");
-	var bottomsType = "SZ09,SZ10,SZ11".split(",");
-	var loop = true;
-	
-	for(var i=0; i < topType.length; i++) {
-		if(code == topType[i]) {
-			rtnValue = "top";
-			loop = false;
-			break;
-		}
-	}
-	
-	if(loop) {
-		for(var i=0; i < bottomsType.length; i++) {
-			if(code == bottomsType[i]) {
-				rtnValue = "bottoms";
-				loop = false;
-				break;
-			}
-		}
-	}
-	
-	return rtnValue;
-}
-
-function reviewReset(){
-	//색상 초기화
-	$("#customerReviewWriteDiv .color_chip li > a").each(function(){
-	     $(this).removeClass("on");
-	});
-	$("#customerReviewWriteDiv #colorNameContent").html("");
-	
-	//사이즈 초기화
-	$("#customerReviewWriteDiv .size_chip li > a").each(function(){
-	     $(this).removeClass("on");
-	});
-	
-	//연령
-	$("#customerReviewWriteDiv input[name=age]").prop("checked",false);
-	
-	//체형
-	$("#customerReviewWriteDiv input[name=bodyType]").prop("checked",false);
-	
-	//키
-	$("#customerReviewWriteDiv #height").val("");
-	
-	//평소 사이즈
-	$("#customerReviewWriteDiv #enjoySize").val("");
-	
-	//실착용
-	$("#customerReviewWriteDiv input[name=realWearSize]").prop("checked",false);
-	
-	//실 제품 색상
-	$("#customerReviewWriteDiv input[name=realProductColor]").prop("checked",false);
-	
-	//상품평
-	$("#customerReviewWriteDiv #reviewHeadline").val("");
-	
-	//사진등록
-	$("#customerReviewWriteDiv #textReviewFile").val("");
-	
-	//평점
-	$("#customerReviewWriteDiv .btn_star_score li:eq(4) > a").click();
-	
-	//파일리스트 초기화
-	var labelLeng = $('#customerReviewWriteDiv .upload_btn label').length-1;
-    $('#customerReviewWriteDiv .upload_btn label').each(function(i){
-    	if(i != labelLeng){
-    		$('#customerReviewWriteDiv .upload_btn label').eq(0).remove();
-    		$('#customerReviewWriteDiv .upload_btn input[type=file]').eq(0).remove();
-    	}
-    });
-    
-	//올린파일
-	$("#customerReviewWriteDiv #uploadedFiles").hide();
-	$("#customerReviewWriteDiv .file_image_wrap2003 li").remove();
-	
-	//상품 매장 구매여부
-	$("#packopt").prop("checked",false);
-	
-	$(".slct_opt").remove();
-	
-	$("#realWearSizeTR").empty();
-	
-	$("#realColorTR").empty();
-	
-	$("#thFile").css("color", "black");
-	$("#thFile").css("font-weight","normal");
-}
-
-function uploadFilesubmit(writeType, returnType) {
-	var url = "";
-	if(writeType == "write") {
-		url = "/ko/mypage/reviewWrite";
-	} else {
-		url = "/ko/mypage/modifyCustomerReview";
-	}
-	
-	if ($('#packopt').is(':checked')) {
-		$("#purchaseProdYN").val("Y");
-	}else {
-		$("#purchaseProdYN").val("N");
-	};
-	
-	$("#reviewHeadline").val(encodeText($("#reviewHeadline").val()));
-	
-	
-	$('input[name="realWearSize"]').each(function(index){
-		if ($(this).is(':checked')) {
-			$("#realWearSize").val($(this).val());
-		}
-	});
-	$('input[name="realProductColor"]').each(function(index){
-		if ($(this).is(':checked')) {
-			$("#realProductColor").val($(this).val());
-		}
-	});
-		
-	
-	var liSize = $('form[name=reviewForm] .file_image_wrap2003 li').size();
-    var fileSize = $('form[name=reviewForm] .upload_btn input[type=file]').size();
-    //사진 전체 삭제여부 체크
-    if(liSize == 0){
-		$("#fileDeleteYN").val("Y");
-	}
-	
-	if ( fileSize <= 1 ) {
-		var param = $('form[name=reviewForm]').serialize();
-		
-		$.ajax({
-			url	 : url + '?CSRFToken=32fb7c45-9b5c-42f3-a0cf-5925ed2feae5',
-			type	: 'POST',
-			dataType: 'json',
-			data	: param,
-			success : function(data) {
-				if(data.rsltCd == "F") {
-					var la = new layerAlert(data.rsltMsg);
-					return;
-				} else {
-					var la;
-					if(data == "F_PHOTO") {
-						la = new layerAlert("최초 포토상품평 작성으로 마일리지 지급이<br/>완료 된 상품평 입니다.<br /><br/>사진을 첨부해서 상품평을 수정해 주세요.");
-						la.confirmAction = function() {
-							$("#thFile").css("color", "#ff0000");
-							$("#thFile").css("font-weight","normal");
-							$("#textReviewFile").focus();
-						};
-						return;
-					} else if(data == "No Match") {
-						la = new layerAlert("잘못된 접근입니다.");
-						return;
-					} else if(data == "FAIL") {
-						la = new layerAlert("예상치 못한 오류가 발생하였습니다.</br>다시 시도해 주시기 바랍니다.");
-						return;
-					} else {
-						if(writeType == "write") {
-							la = new layerAlert("상품평이 등록되었습니다.");
-						} else if(writeType == "modify") {
-							la = new layerAlert("상품평이 수정되었습니다.");
-						}
-						la.confirmAction = function() {
-							hideProductLayer();
-							$(".popwrap").remove();
-							if(returnType == "review") {
-								location.href = '/ko/mypage/myreview?returnType=write';
-							} else if(returnType == "order") {
-								location.href = '/ko/mypage/order/myorders';
-							} else if(returnType == "myMain") {
-								location.href = '/ko/mypage';
-							} else {
-								location.href = '/ko/mypage/myreview?returnType=write';
-							}
-						};
-					}
-				}
-			},
-			error   : function(xhr, Status, error) {
-				alert(error);
-			}
-		});
-	} else {
-		
-		var labelLeng = $('form[name=reviewForm] .upload_btn label').length - 1;
-    	$('form[name=reviewForm] .upload_btn label').each(function(i){
-    		if(i != labelLeng){
-    	    	$('form[name=reviewForm] .upload_btn input[type=file]').eq(i).attr("name", "reviewFile"+(i==0?"":i));
-    		} else {
-    			$('form[name=reviewForm] .upload_btn input[type=file]').eq(i).attr("disabled",true);
-    		}
-        });
-    	
-		
-		
-		$('form[name=reviewForm]').ajaxSubmit({
-			url	 : url + '?CSRFToken=32fb7c45-9b5c-42f3-a0cf-5925ed2feae5',
-			type	: 'POST',
-			async   : false,
-			success : function(data) {
-				if(data.rsltCd == "F") {
-					var la = new layerAlert(data.rsltMsg);
-					return;
-				} else {
-					var la;
-					if(writeType == "write") {
-						la = new layerAlert("상품평이 등록되었습니다.");
-					} else if(writeType == "modify") {
-						la = new layerAlert("상품평이 수정되었습니다.");
-					}
-					la.confirmAction = function() {
-						hideProductLayer();
-						$(".popwrap").remove();
-						if(returnType == "review") {
-							location.href = '/ko/mypage/myreview?returnType=write';
-						} else if(returnType == "order") {
-							location.href = '/ko/mypage/order/myorders';
-						} else if(returnType == "myMain") {
-							location.href = '/ko/mypage';
-						} else {
-							location.href = '/ko/mypage/myreview?returnType=write';
-						}
-					};
-				}
-			},
-			error   : function(xhr, Status, error) {
-				alert(error);
-			}
-		}); 
-	}
-}
-
-function openPopupReview(code, orderNumber, color, pPrice, imageUrl, bName, pName, categoryCode, returnType) {
-	// 상품평 초기화
-	reviewReset();
-	
-	$.ajax({
-		url     : '/ko/mypage/reviewWriteBeforeVerify',
-		type    : 'GET',
-		datatype: 'json',
-		data : {
-				"productCode" : code,
-				"orderNumber" : orderNumber
-		},
-		success : function(data) {
-		    isCosmetic = data.isCosmetic;
-		    isPerfume = data.isPerfume;
-			reviewWriteHtml(categoryCode, returnType);
-			
-			$("#height").val(data.height);
-			$("#enjoySize").val(data.enjoySize);
-			if(data.bodyType != null && data.bodyType != ""){
-				$('input[name="bodyType"]').each(function(index){
-					if(data.bodyType == $(this).val()){
-						$(this).attr('checked', true);
-					}else {
-						$(this).attr('checked', false);
-					}
-				});
-			}
-			
-			var codeArray = code.split('_');
-			var style = codeArray[1];
-			var size = codeArray[2];
-			
-			$('#photoAccumulationRightYn').val(data.photoAccumulationRightYn);
-			if ( data.orderProductReviewList.length > 0 ) {
-				$('.select_options_wrap').hide(); // 색상, 사이즈 박스
-				var productOptions = '' ;
-				$.each(data.orderProductReviewList, function(idx, productOption) {
-					if(orderNumber == productOption[1] && style == productOption[3] && size == productOption[5]) {
-						productOptions += '<span class="slct_opt">더한섬닷컴  /  COLOR : ' + productOption[4] + '  /  SIZE : ' + productOption[5] + '</span>';
-						$('#orderNumber').val(productOption[1]);
-						$('#purchaseColor').val(productOption[3]);
-						$('#purchaseColorName').val(productOption[4]);
-						$('#purchaseSize').val(productOption[5]);
-					}
-				});
-				$('.slct_opt').remove();
-				$("#productOption").after(productOptions);
-				$("#purchased_color_size").show();
-			} else {
-				$('#purchaseProdYN').val('Y');
-				$('#packopt').prop('checked', true);
-				$('#packopt').prop('readonly', true);
-				$('#packopt').on('click', function(e) {
-					e.preventDefault();
-					return;
-				});
-			}
-			
-			$("#reviewFile").val("");
-			$("#textReviewFile").val("");
-			$("#reviewHeadline").val("");
-			
-			var prodCode = code;
-			var prodSize = "";
-			if(prodCode.indexOf('_') > -1){
-				var tmpPnt = prodCode.lastIndexOf('_');
-				prodSize = prodCode.substring(tmpPnt+1,prodCode.length);
-				prodCode = prodCode.substring(0,tmpPnt);
-				if(prodCode.indexOf('_') > -1){
-					$("#review_color_name").text(color);
-					$("#review_size").text(prodSize);
-					if('' == 'review'){ // 주문조회에서 왔을 경우 미표시
-						$(".options_change").css("display", "none");    
-					}
-				} else {
-					$(".review_header_wrapper").css("margin-top","16px");
-				}
-			}
-			
-			var review_color_name = $("#colorName").val();
-			$("#review_color_name").text(review_color_name);
-			
-			var price = getReviewExchangePrice(pPrice);
-			
-			$("#productCode").val(code);
-			$("#categoryCode").val(categoryCode);
-			//$("#orderNumber").val(orderNumber);
-			$("#reviewWriteProductImg").attr('src',imageUrl);
-			$("#reviewWriteProductPrice").text(price);
-			$("#reviewWriteProductBrandName").text(unescape(bName));
-			$("#reviewWriteProductName").text(pName);
-			$('#closeWriteChk').val('Y');
-			
-			
-		},
-		error   : function() {
-			var la = new layerAlert("[Error] " + error);
-			return;
-		}
-	});
-}
-function deleteReviewFile(li,idx){
-   
-	li.parent().remove();
-	
-    idx -= 1
-    
-    if(idx == 0) { idx = "";}
-    $('.upload_btn label[for=reviewFile'+idx+']').remove();
-	$('.upload_btn #reviewFile'+idx).remove();
-	if ( $('#productId').val() != '' && $('#productId').val() != null ) {
-		if(li.attr("id") != "" && li.attr("id") != null){	
-			$("#reviewFileCd"+(li.attr("id")=="0"?"":li.attr("id"))).val('');
-		}
-	}
-}
-
-function reviewWriteHtml(categoryCode, returnType) {
-	var reqd = "";
-	if(checkCategoryType(categoryCode) == "top" || checkCategoryType(categoryCode) == "bottoms" || checkCategoryType(categoryCode) == "cosmetic" || checkCategoryType(categoryCode) == "perfume") {
-		reqd = "<strong class='reqd'>*</strong>";
-	}
-	var reviewhtml="";
-	reviewhtml = '<div class="layerArea">';
-	reviewhtml +='<div class="layerBg"></div> ';
-	reviewhtml +='<form id="reviewForm" style="width:780px;" method="post" commandName="reviewForm" name="reviewForm">';
-	reviewhtml += "<div class='popwrap w_type_4' id='customerReviewWriteDiv'>";
-	reviewhtml += "    <div class='pop_tltwrap2 customerreviewwritediv1807'>";
-	reviewhtml += "        <h3>상품평 작성하기</h3>";
-	reviewhtml += "        <p class='reqd_txt float_right'><strong class='reqd'>*</strong> 표시는 필수항목입니다.</p>";
-	reviewhtml += "    </div>";
-	reviewhtml += "    <div class='pop_cnt evaluation_write1905 options1811'>";
-	reviewhtml += '        <input type="hidden" id="productId" name="productId">';
-	reviewhtml += "        <input type='hidden' id='productCode' name='productCode'>";
-	reviewhtml += "        <input type='hidden' id='productCodeType' name='productCodeType' value=''>";
-	reviewhtml += "        <input type='hidden' id='orderNumber' name='orderNumber' value=''>";
-	reviewhtml += "        <input type='hidden' id='purchaseColor' name='purchaseColor' value=''>";
-	reviewhtml += "        <input type='hidden' id='purchaseColorName' name='purchaseColorName' value=''>";
-	reviewhtml += "        <input type='hidden' id='purchaseSize' name='purchaseSize' value=''>";
-	reviewhtml += "        <input type='hidden' id='purchaseProdYN' name='purchaseProdYN' value='N'>";
-	reviewhtml += "        <input type='hidden' id='orderWriteChk' name='orderWriteChk' value='N'>";
-	reviewhtml += "        <input type='hidden' id='selectSizeCode' name='selectSizeCode' value=''>";
-	reviewhtml += "        <input type='hidden' id='categoryCode' name='categoryCode' value=''>";
-	reviewhtml += "        <input type='hidden' id='shoulderWidth' name='shoulderWidth' value=''>";
-	reviewhtml += "        <input type='hidden' id='chestSize' name='chestSize' value=''>";
-	reviewhtml += "        <input type='hidden' id='waistSize' name='waistSize' value=''>";
-	reviewhtml += "        <input type='hidden' id='buttSize' name='buttSize' value=''>";
-	reviewhtml += "        <input type='hidden' id='totalSize' name='totalSize' value=''>";
-	reviewhtml += "        <input type='hidden' id='realProductColor' name='realProductColor' value=''>";
-	reviewhtml += "        <input type='hidden' id='photoAccumulationRightYn' name='photoAccumulationRightYn' value=''>";
-	reviewhtml += "        <input type='hidden' id='offlineOrdDt' name='offlineOrdDt' value=''>";
-	reviewhtml += "        <input type='hidden' id='offlineShpCd' name='offlineShpCd' value=''>";
-	reviewhtml += "        <input type='hidden' id='offlineShpNm' name='offlineShpNm' value=''>";
-	reviewhtml += "            <fieldset>";
-	reviewhtml += "                <legend>상품평쓰기</legend>";
-	reviewhtml += "                <div class='tblwrap'>";
-	reviewhtml += "                    <table class='tbl_wtype1'>";
-	reviewhtml += "                        <caption>상품평쓰기 입력항목</caption>";
-	reviewhtml += "                        <colgroup>";
-	reviewhtml += "                            <col style='width:130px'>";
-	if(checkCategoryType(categoryCode) == "cosmetic" || checkCategoryType(categoryCode) == "perfume") {
-	reviewhtml += "                            <col style='width:30px''>";  
-	}else {
-	reviewhtml += "                            <col>";
-	}
-	reviewhtml += "                            <col style='width:130px'>";
-	reviewhtml += "                            <col>";
-	reviewhtml += "                        </colgroup>";
-	reviewhtml += "                        <tbody>";
-	reviewhtml += "                            <tr>";
-	reviewhtml += "                                <th scope='row' class='th_space'>상품명</th>";
-	reviewhtml += "                                <td colspan='3' style='padding:15px;'>";
-	reviewhtml += "                                    <div class='item_box' id='reviewProductDiv'>";
-	reviewhtml += "                                        <div class='pt_list_all'>";
-	reviewhtml += "                                            <a href='#;'><img src='' id='reviewWriteProductImg' alt='product Image'></a>";
-	reviewhtml += "                                            <div class='tlt_wrap review_header_wrapper'>";
-	reviewhtml += "                                                <a href='#;' class='basket_tlt'>";
-	reviewhtml += "                                                    <span class='tlt' id='reviewWriteProductBrandName'></span>";
-	reviewhtml += "                                                    <span class='sb_tlt' id='reviewWriteProductName'></span> / <span id='reviewWriteProductPrice'></span>";
-	reviewhtml += "                                                </a>";
-	reviewhtml += "                                            </div>";
-	reviewhtml += "                                            <div class='select_group' id='productOption' style='display:none;'>";
-	reviewhtml += "                                            </div>";
-	reviewhtml += "                                            <div class='check_stl shoppurchase_check_wrap' onclick=\"$('#packopt').click();\" style='display:none;'>";
-	reviewhtml += "                                                <input type='checkbox' id='packopt' name='packopt' value=''>";
-	reviewhtml += "                                                <label for='shoppurchase_check' class='shoppurchase_check'>매장에서 구매한 상품입니다.</label>";
-	reviewhtml += "                                            </div>";
-	reviewhtml += "                                        </div>";
-	reviewhtml += "                                    </div>";
-	reviewhtml += "                                </td>";
-	reviewhtml += "                            </tr>";
-	reviewhtml += "                            <tr class='tbl_blank1807'>";
-	reviewhtml += "                                <td colspan='4'>&nbsp;</td>";
-	reviewhtml += "                            </tr>";
-	reviewhtml += "                            <tr class='radio_btn_1905 bk'>";
-	reviewhtml += "                                <th scope='row' class='th_space'>연 령</th>";
-	reviewhtml += "                                <td colspan='3'>";
-	reviewhtml += "                                 <input id='ageG1' type='radio' name='age' value='18세 이하'>";
-	reviewhtml += "                                 <label for='ageG1'>18세 이하</label>";
-	reviewhtml += "                                 <input id='ageG2' type='radio' name='age' value='20대'>";
-	reviewhtml += "                                 <label for='ageG2'>20대</label>";
-	reviewhtml += "                                 <input id='ageG3' type='radio' name='age' value='30대'>";
-	reviewhtml += "                                 <label for='ageG3'>30대</label>";
-	reviewhtml += "                                 <input id='ageG4' type='radio' name='age' value='40대'>";
-	reviewhtml += "                                 <label for='ageG4'>40대</label>";
-	reviewhtml += "                                 <input id='ageG5' type='radio' name='age' value='50대'>";
-	reviewhtml += "                                 <label for='ageG5'>50대</label>";
-	reviewhtml += "                                 <input id='ageG6' type='radio' name='age' value='60대 이상'>";
-	reviewhtml += "                                 <label for='ageG6'>60대 이상</label>";
-	reviewhtml += "                                </td>";
-	reviewhtml += "                         </tr>";
-	if(checkCategoryType(categoryCode) == "top" || checkCategoryType(categoryCode) == "bottoms") {
-	reviewhtml += "                         <tr class='input_txt_1905'>";
-	reviewhtml += "                             <th scope='row' class='th_space' id='thHeight'>"+reqd+"키</th>";
-	reviewhtml += "                             <td><input type='text' name='height' id='height' style='width:75%amrgin-right:10px'>cm</td>";
-	reviewhtml += "                             <th scope='row' class='th_space' id='thEnjoySize'>"+reqd+"평소 사이즈</th>";
-	reviewhtml += "                             <td><input type='text' name='enjoySize' id='enjoySize'></td>";
-	reviewhtml += "                         </tr>";
-	reviewhtml += "                         <tr class='radio_btn_1905'>";
-	reviewhtml += "                             <th scope='row' class='th_space' id='thBodyType'>"+reqd+"체 형</th>";
-	reviewhtml += "                             <td colspan='3'>";
-	reviewhtml += "                                 <input id='dark1' type='radio' name='bodyType' value='마른 체형'>";
-	reviewhtml += "                                 <label for='dark1'>마른 체형</label>";
-	reviewhtml += "                                 <input id='dark2' type='radio' name='bodyType' value='보통'>";
-	reviewhtml += "                                 <label for='dark2'>보통</label>";
-	reviewhtml += "                                 <input id='dark3' type='radio' name='bodyType' value='통통한 체형'>";
-	reviewhtml += "                                 <label for='dark3'>통통한 체형</label>";
-	reviewhtml += "                             </td>";
-	reviewhtml += "                         </tr>";
-	}
-	if(checkCategoryType(categoryCode) == "cosmetic" || checkCategoryType(categoryCode) == "perfume") {
-	reviewhtml += "                         <tr class='radio_btn_1905'>";
-	reviewhtml += "                             <th scope='row' class='th_space' id='thSkinType'>"+reqd+"피부 타입</th>";
-	reviewhtml += "                             <td colspan='3'>";
-	reviewhtml += "                                 <input id='skin1' type='radio' name='skinType' value='건성'>";
-	reviewhtml += "                                 <label for='skin1'>건성</label>";
-	reviewhtml += "                                 <input id='skin2' type='radio' name='skinType' value='지성'>";
-	reviewhtml += "                                 <label for='skin2'>지성</label>";
-	reviewhtml += "                                 <input id='skin3' type='radio' name='skinType' value='복합성'>";
-	reviewhtml += "                                 <label for='skin3'>복합성</label>";
-	reviewhtml += "                                 <input id='skin4' type='radio' name='skinType' value='민감성'>";
-	reviewhtml += "                                 <label for='skin4'>민감성</label>";
-	reviewhtml += "                             </td>";
-	reviewhtml += "                         </tr>";
-	}
-	reviewhtml += "                         <tr class='tbl_blank1807'>";
-	reviewhtml += "                             <td colspan='4'>&nbsp;</td>";
-	reviewhtml += "                         </tr>";
-	reviewhtml += "                         <tr class='write_star_wrap'>";
-	reviewhtml += "                             <th colspan='4'>";
-	reviewhtml += "                                 <div class='write_star_score1807'>";
-	reviewhtml += "                                     <span class='cmt_star'>";
-	reviewhtml += "                                         <span class='cmt_per star5'>별점</span>";
-	reviewhtml += "                                     </span>";
-	reviewhtml += "                                     <ul class='btn_star_score'>";
-	reviewhtml += "                                         <li><a href='#;' value='1'>1점</a></li>";
-	reviewhtml += "                                         <li><a href='#;' value='2'>2점</a></li>";
-	reviewhtml += "                                         <li><a href='#;' value='3'>3점</a></li>";
-	reviewhtml += "                                         <li><a href='#;' value='4'>4점</a></li>";
-	reviewhtml += "                                         <li><a href='#;' value='5'>5점</a></li>";
-	reviewhtml += "                                         <input type='hidden' id='rating' name='rating' value='5'>";
-	reviewhtml += "                                     </ul>";
-	reviewhtml += "                                     <p>평점을 선택해 주세요.</p>";
-	reviewhtml += "                                 </div>";
-	reviewhtml += "                             </th>";
-	reviewhtml += "                         </tr>";
-	if(checkCategoryType(categoryCode) == "top" || checkCategoryType(categoryCode) == "bottoms") {
-	reviewhtml += "                         <tr>";
-	reviewhtml += "                             <th scope='row' class='th_space'><strong class='reqd'>*</strong>실 착용 사이즈</th>";
-	reviewhtml += "                             <td colspan='3'>";
-		if(checkCategoryType(categoryCode) == "top") {
-	reviewhtml += "                                 <!--20190529_상품평활성화-->";
-	reviewhtml += "                                 <div class='cont_detail'>";
-	reviewhtml += "                                     <p class='left_txt'>어깨너비 : </p>";
-	reviewhtml += "                                     <ul class='rd_box_radio_list'>";
-	reviewhtml += "                                         <li>";
-	reviewhtml += "                                             <input id='shoulderWidth_1' type='radio' name='shoulderWidth' value='1'>";
-	reviewhtml += "                                             <label for='shoulderWidth_1'>타이트함</label>";
-	reviewhtml += "                                         </li>";
-	reviewhtml += "                                         <li>";
-	reviewhtml += "                                             <input id='shoulderWidth_2' type='radio' name='shoulderWidth' value='2'>";
-	reviewhtml += "                                             <label for='shoulderWidth_2'>적당함</label>";
-	reviewhtml += "                                         </li>";
-	reviewhtml += "                                         <li>";
-	reviewhtml += "                                             <input id='shoulderWidth_3' type='radio' name='shoulderWidth' value='3'>";
-	reviewhtml += "                                             <label for='shoulderWidth_3'>여유있음</label>";
-	reviewhtml += "                                         </li>";
-	reviewhtml += "                                     </ul>";
-	reviewhtml += "                                 </div>";
-	reviewhtml += "                                 <div class='cont_detail'>";
-	reviewhtml += "                                     <p class='left_txt'>가슴둘레 : </p>";
-	reviewhtml += "                                     <ul class='rd_box_radio_list'>";
-	reviewhtml += "                                         <li>";
-	reviewhtml += "                                             <input id='chestSize_1' type='radio' name='chestSize' value='1'>";
-	reviewhtml += "                                             <label for='chestSize_1'>타이트함</label>";
-	reviewhtml += "                                         </li>";
-	reviewhtml += "                                         <li>";
-	reviewhtml += "                                            <input id='chestSize_2' type='radio' name='chestSize' value='2'>";
-	reviewhtml += "                                            <label for='chestSize_2'>적당함</label>";
-	reviewhtml += "                                         </li>";
-	reviewhtml += "                                         <li>";
-	reviewhtml += "                                             <input id='chestSize_3' type='radio' name='chestSize' value='3'>";
-	reviewhtml += "                                             <label for='chestSize_3'>여유있음</label>";
-	reviewhtml += "                                         </li>";
-	reviewhtml += "                                     </ul>";
-	reviewhtml += "                                 </div>";
-		} else if(checkCategoryType(categoryCode) == "bottoms") {
-	reviewhtml += "                                 <div class='cont_detail'>";
-	reviewhtml += "                                     <p class='left_txt'>허리둘레 : </p>";
-	reviewhtml += "                                     <ul class='rd_box_radio_list'>";
-	reviewhtml += "                                         <li>";
-	reviewhtml += "                                             <input id='waistSize_1' type='radio' name='waistSize' value='1'>";
-	reviewhtml += "                                             <label for='waistSize_1'>타이트함</label>";
-	reviewhtml += "                                         </li>";
-	reviewhtml += "                                         <li>";
-	reviewhtml += "                                             <input id='waistSize_2' type='radio' name='waistSize' value='2'>";
-	reviewhtml += "                                             <label for='waistSize_2'>적당함</label>";
-	reviewhtml += "                                         </li>";
-	reviewhtml += "                                         <li>";
-	reviewhtml += "                                             <input id='waistSize_3' type='radio' name='waistSize' value='3'>";
-	reviewhtml += "                                             <label for='waistSize_3'>여유있음</label>";
-	reviewhtml += "                                         </li>";
-	reviewhtml += "                                     </ul>";
-	reviewhtml += "                                 </div>";
-	reviewhtml += "                                 <div class='cont_detail'>";
-	reviewhtml += "                                     <p class='left_txt'>엉덩이둘레 : </p>";
-	reviewhtml += "                                     <ul class='rd_box_radio_list'>";
-	reviewhtml += "                                         <li>";
-	reviewhtml += "                                             <input id='buttSize_1' type='radio' name='buttSize' value='1'>";
-	reviewhtml += "                                             <label for='buttSize_1'>타이트함</label>";
-	reviewhtml += "                                         </li>";
-	reviewhtml += "                                         <li>";
-	reviewhtml += "                                            <input id='buttSize_2' type='radio' name='buttSize' value='2'>";
-	reviewhtml += "                                            <label for='buttSize_2'>적당함</label>";
-	reviewhtml += "                                         </li>";
-	reviewhtml += "                                         <li>";
-	reviewhtml += "                                             <input id='buttSize_3' type='radio' name='buttSize' value='3'>";
-	reviewhtml += "                                             <label for='buttSize_3'>여유있음</label>";
-	reviewhtml += "                                         </li>";
-	reviewhtml += "                                     </ul>";
-	reviewhtml += "                                 </div>";
-		}
-	reviewhtml += "                                 <div class='cont_detail'>";
-	reviewhtml += "                                     <p class='left_txt'>총길이 : </p>";
-	reviewhtml += "                                     <ul class='rd_box_radio_list'>";
-	reviewhtml += "                                         <li>";
-	reviewhtml += "                                             <input id='totalSize_1' type='radio' name='totalSize' value='1'>";
-	reviewhtml += "                                             <label for='totalSize_1'>타이트함</label>";
-	reviewhtml += "                                        </li>";
-	reviewhtml += "                                        <li> ";
-	reviewhtml += "                                             <input id='totalSize_2' type='radio' name='totalSize' value='2'>";
-	reviewhtml += "                                             <label for='totalSize_2'>적당함</label>";
-	reviewhtml += "                                         </li>";
-	reviewhtml += "                                         <li>";
-	reviewhtml += "                                            <input id='totalSize_3' type='radio' name='totalSize' value='3'> ";
-	reviewhtml += "                                            <label for='totalSize_3'>긴 편</label>";
-	reviewhtml += "                                         </li>";
-	reviewhtml += "                                     </ul>";
-	reviewhtml += "                                 </div>";
-	reviewhtml += "                                 <!--//20190529_상품평활성화-->";
-	reviewhtml += "                             </td>";
-	reviewhtml += "                         </tr>";
-	reviewhtml += "                         <tr>";
-	reviewhtml += "                             <th scope='row' class='th_space'><strong class='reqd'>*</strong>실 제품 색상</th>";
-	reviewhtml += "                             <td colspan='3'>";
-	reviewhtml += "                                 <input id='dark' type='radio' name='realProductColor' value='1'>";
-	reviewhtml += "                                 <label for='dark'>어두워요</label>";
-	reviewhtml += "                                 <input id='same' type='radio' name='realProductColor' class='ml20' value='2'>";
-	reviewhtml += "                                 <label for='same'>화면과 같아요</label>";
-	reviewhtml += "                                 <input id='light' type='radio' name='realProductColor' class='ml20' value='3'>";
-	reviewhtml += "                                 <label for='light'>밝아요</label>";
-	reviewhtml += "                             </td>";
-	reviewhtml += "                         </tr>";
-	} else if (checkCategoryType(categoryCode) == "cosmetic") {
-    reviewhtml += "                         <tr>";
-	reviewhtml += "                             <th colspan='2' scope='row' class='th_space'><strong class='reqd'>*</strong>보습력은 어떤가요?</th>";
-	reviewhtml += "                             <td colspan='2'>";
-	reviewhtml += "                                 <input id='moisturize1' type='radio' name='moisturize' value='1'>";
-	reviewhtml += "                                 <label for='moisturize1'>조금 건조해요</label>";
-	reviewhtml += "                                 <input id='moisturize2' type='radio' name='moisturize' class='ml20' value='2'>";
-	reviewhtml += "                                 <label for='moisturize2'>보통이에요</label>";
-	reviewhtml += "                                 <input id='moisturize3' type='radio' name='moisturize' class='ml20' value='3'>";
-	reviewhtml += "                                 <label for='moisturize3'>촉촉해요</label>";
-	reviewhtml += "                             </td>";
-	reviewhtml += "                         </tr>";
-	reviewhtml += "                         <tr>";
-	reviewhtml += "                             <th colspan='2' scope='row' class='th_space'><strong class='reqd'>*</strong>발림성은 어떤가요?</th>";
-	reviewhtml += "                             <td colspan='2'>";
-	reviewhtml += "                                 <input id='spreadability1' type='radio' name='spreadability' value='1'>";
-	reviewhtml += "                                 <label for='spreadability1'>조금 뻑뻑해요</label>";
-	reviewhtml += "                                 <input id='spreadability2' type='radio' name='spreadability' class='ml20' value='2'>";
-	reviewhtml += "                                 <label for='spreadability2'>보통이에요</label>";
-	reviewhtml += "                                 <input id='spreadability3' type='radio' name='spreadability' class='ml20' value='3'>";
-	reviewhtml += "                                 <label for='spreadability3'>부드러워요</label>";
-	reviewhtml += "                             </td>";
-	reviewhtml += "                         </tr>";
-	reviewhtml += "                         <tr>";
-	reviewhtml += "                             <th colspan='2' scope='row' class='th_space'><strong class='reqd'>*</strong>향은 어떤가요?</th>";
-	reviewhtml += "                             <td colspan='2'>";
-	reviewhtml += "                                 <input id='scent1' type='radio' name='scent' value='1'>";
-	reviewhtml += "                                 <label for='scent1'>조금 아쉬워요</label>";
-	reviewhtml += "                                 <input id='scent2' type='radio' name='scent' class='ml20' value='2'>";
-	reviewhtml += "                                 <label for='scent2'>보통이에요</label>";
-	reviewhtml += "                                 <input id='scent3' type='radio' name='scent' class='ml20' value='3'>";
-	reviewhtml += "                                 <label for='scent3'>좋아요</label>";
-	reviewhtml += "                             </td>";
-	reviewhtml += "                         </tr>";
-	}else if (checkCategoryType(categoryCode) == "perfume") {
-    reviewhtml += "                         <tr>";
-    reviewhtml += "                             <th colspan='2' scope='row' class='th_space'><strong class='reqd'>*</strong>향은 어떤가요?</th>";
-    reviewhtml += "                             <td colspan='2'>";
-    reviewhtml += "                                 <input id='scent1' type='radio' name='scent' value='1'>";
-    reviewhtml += "                                 <label for='scent1'>조금 아쉬워요</label>";
-    reviewhtml += "                                 <input id='scent2' type='radio' name='scent' class='ml20' value='2'>";
-    reviewhtml += "                                 <label for='scent2'>보통이에요</label>";
-    reviewhtml += "                                 <input id='scent3' type='radio' name='scent' class='ml20' value='3'>";
-    reviewhtml += "                                 <label for='scent3'>좋아요</label>";
-    reviewhtml += "                             </td>";
-    reviewhtml += "                         </tr>";
-    reviewhtml += "                         <tr>";
-    reviewhtml += "                             <th colspan='2' scope='row' class='th_space'><strong class='reqd'>*</strong>지속성은 어떤가요?</th>";
-    reviewhtml += "                             <td colspan='2'>";
-    reviewhtml += "                                 <input id='persistence1' type='radio' name='persistence' value='1'>";
-    reviewhtml += "                                 <label for='persistence1'>조금 짧아요</label>";
-    reviewhtml += "                                 <input id='persistence2' type='radio' name='persistence' class='ml20' value='2'>";
-    reviewhtml += "                                 <label for='persistence2'>보통이에요</label>";
-    reviewhtml += "                                 <input id='persistence3' type='radio' name='persistence' class='ml20' value='3'>";
-    reviewhtml += "                                 <label for='persistence3'>오래 유지돼요</label>";
-    reviewhtml += "                             </td>";
-    reviewhtml += "                         </tr>";
-    }
-	
-	if("ko" == "ko") {
-	reviewhtml += "                         <tr>";
-	reviewhtml += "                             <th scope='row'>";
-	reviewhtml += "                                 <strong class='reqd' style='margin-top:6px;'>*</strong>";
-	reviewhtml += "                                 <label for='lb1' style='margin-top:11px;line-height:20px;'>";
-	reviewhtml += "                                     상품평<br/>";
-	reviewhtml += "                                     <span class='subtxt_1905'>";
-	reviewhtml += "                                         (20자 이상<br/>&nbsp;200자 이하)";
-	reviewhtml += "                                     </span>";
-	reviewhtml += "                                 </label>";
-	reviewhtml += "                             </th>";
-	reviewhtml += "                             <td colspan='3'>";
-	reviewhtml += "                                 <textarea id='reviewHeadline' name='headline' cols='30' rows='5' style='width:98%;height:78px' maxlength='200'></textarea>";
-	reviewhtml += "                             </td>";
-	reviewhtml += "                         </tr>";
-	} else {
-	reviewhtml += "                         <tr>";
-	reviewhtml += "                             <th scope='row' class='th_space'>";
-										
-	reviewhtml += "                                 <label for='lb1' style='margin-top:8px;line-height:20px;'>";
-	reviewhtml += "                                     <strong class='reqd'>*</strong><label for='lb1'>상품평<br />(200자 이하)</label><br/>";
-	reviewhtml += "                                 </label>";
-											
-	reviewhtml += "                             </th>";
-	reviewhtml += "                             <td colspan='3'>";
-	reviewhtml += "                                 <textarea id='reviewHeadline' name='headline' cols='30' rows='5' style='width:98%;height:78px' maxlength='200'></textarea>";
-	reviewhtml += "                             </td>";
-	reviewhtml += "                         </tr>";
-	}
-	reviewhtml += "                         <tr>";
-	reviewhtml += "                             <th scope='row' class='th_space'><label for='file'>사진등록</label></th>";
-	reviewhtml += "                             <td colspan='3'>";
-	reviewhtml += "                                 <div class='file_upload hs_input_file_wrap2003'>";
-	reviewhtml += "                                     <div class='upload_wrap2003'>";
-	reviewhtml += "                                         <input type='text' id='textReviewFile' class='text' readonly='readonly' name='fileText'>";
-	reviewhtml += "                                         <div class='upload_btn'>";
-	reviewhtml += "                                             <input type='file' name='reviewFile' id='reviewFile' class='btn add_s' title='파일찾기'>";
-	reviewhtml += "                                             <label for='reviewFile'>";
-//	reviewhtml += "	                                            <button type='button' id='uploadFile1' class='img_upload' title='파일찾기'>";
-	reviewhtml += "                                             <span id='uploadFile1' class='img_upload'>파일찾기</span>";
-//	reviewhtml += "                                             </button>";
-	reviewhtml += "                                             </label>";
-	reviewhtml += "                                          </div>";
-	reviewhtml += "                                     </div>";
-	reviewhtml += "                                     <ul class='file_image_wrap2003'>";
-	reviewhtml += "                                     </ul>";
-	reviewhtml += "                                 </div>";
-	reviewhtml += "                                 <p class='txt_guide'>10MB 미만의 jpg,gif,png 파일만 첨부하실 수 있습니다.</p>";
-	reviewhtml += "                             </td>";
-	reviewhtml += "                         </tr>";
-	reviewhtml += "                     </tbody>";
-	reviewhtml += "                 </table>";
-	reviewhtml += "                 <p class='txt_guide'>";
-	reviewhtml += "                     <span style='color:#e46764; font-weight: bold;'>- 상품평과 무관한 내용이거나  상품 재판매, 광고, 동일 문자의 반복 및 기타 불법적인 내용은 통보 없이 삭제되며,<br/>&nbsp;&nbsp;해당 글 작성자 ID는 글쓰기 권한이 제한됩니다.</span><br/>- 반품, 취소 등의 CS관련 글은 고객센터>1:1문의로 이동될 수 있습니다.";
-		
-	reviewhtml += "                 </p>";
-	reviewhtml += "             </div>";
-	reviewhtml += "             <div class='btnwrap mt40'>";
-	reviewhtml += "                 <input type='button' id='reviewCancel' value='취소하기' class='btn wt'>";
-	reviewhtml += "                 <input type='button' id='reviewWriteSend' value='등록하기' class='btn gray mr0'>";
-	reviewhtml += "             </div>";
-	reviewhtml += "         </fieldset>";
-	reviewhtml += " </div>";
-	reviewhtml += "     <a href='javascript:void(0);' id='reviewCloseBtn' style='position: absolute; top: 20px; right: 20px; width: 20px; height: 20px;'><img src='/_ui/desktop/common/images/popup/ico_close.png' alt='닫기'></a>";
-	reviewhtml += "</div>";
-	reviewhtml += "</form>";
-	reviewhtml += "</div>";
-	$(reviewhtml).appendTo($('body'));
-	starCnt();
-	viewPopup("#reviewForm");
-	
-	$(".btn_close").on("click", function(){
-		hideProductLayer();
-		$("#customerReviewWriteDiv").remove();
-	});
-	
-	$("#reviewCancel, #reviewCloseBtn").on('click', function(){
-		var lc = new customLayerConfirm("취소하시겠습니까?", "확인", "취소");
-		lc.confirmAction = function(){
-			$(".btn_close").trigger("click");
-		};
-	});
-	
-	$(document).on("keyup","#height",function(){
-		$("#thHeight").css("color", "black");
-		$("#thHeight").css("font-weight","normal");
-		$(this).val( $(this).val().replace( /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, '' ) );
-		if($("#height").val().length > 0) {
-			var inputNumberchk = /^[0-9]+$/; // 숫자 체크
-			if (!inputNumberchk.test($("#height").val())){
-				$(this).val($(this).val().replace(/[^0-9]/gi,""));
-				var la = new layerAlert("숫자만 입력 가능합니다.");
-				la.confirmAction = function(){};
-			}
-		}
-	});
-	
-	$(document).on("keyup","#enjoySize",function(){
-		$("#thEnjoySize").css("color", "black");
-		$("#thEnjoySize").css("font-weight","normal");
-		$(this).val( $(this).val().replace( /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, '' ) );
-		if ($("#enjoySize").val().length > 0) {
-			var inputHangulchk = /[^ㄱ-ㅎ|ㅏ-ㅣ]+$/; // 초성(자음/모음) 체크
-			if (!inputHangulchk.test($("#enjoySize").val())){
-				$(this).val($(this).val().replace(/[^a-z0-9]/gi,""));
-				var la = new layerAlert("영문/숫자만 입력 가능합니다.");
-				la.confirmAction = function(){};
-			}
-		}
-	});
-	
-	$(".btn_star_score li a").on("click", function(){
-		$("#rating").val($(this).attr('value'));
-	});
-	
-	$(document).on("keyup", "#reviewHeadline", function() {
-		$(".write_star_wrap").next().next().next().find("th").css("color", "black");
-		$(".write_star_wrap").next().next().next().find("th").css("font-weight","normal");
-		if($(this).val().length >= 200) {
-			$(this).blur();
-			var la = new layerAlert('상품평 내용은 20~200자 사이입니다.');
-			return false;
-		}
-	});
-	
-	$('#reviewWriteSend').click(function(){
-		var inputNumberchk = /^[0-9]+$/; // 숫자 체크
-		var inputHangulchk = /[^ㄱ-ㅎ|ㅏ-ㅣ]+$/; // 초성(자음/모음) 체크
-		
-		if($('#orderWriteChk').val() == 'Y'){ // 상품평쓰기 화면에서 색상이 보일때만 체크
-			if($('.select_options_wrap .color_chip li a').hasClass('on') == false){
-				var la = new layerAlert('색상을 선택해 주세요.');
-				//$('.select_options_wrap .color_chip li a').focus();
-				$('.select_colors p').css("color", "#ff0000");
-				$('.select_colors p').css("font-weight","bold");
-				return false;
-			}
-		}
-		
-		if($('#orderWriteChk').val() == 'Y'){ // 상품평쓰기 화면에서 사이즈가 보일때만 체크
-			var productType = $('form[name=reviewForm] input[name=productCodeType]').val();
-			if(productType != 'ApparelSizeVariantProduct'){ //ApparelStyleVariantProduct
-				var la = new layerAlert('사이즈를 선택해 주세요.');
-				$('.select_options .select_size p').css("color", "#ff0000");
-				$('.select_options .select_size p').css("font-weight","bold");
-				
-				return false;
-			}
-		}
-		
-		var checkCategory = checkCategoryType(categoryCode);
-		
-		if(checkCategory == "top" || checkCategory == "bottoms") {
-			if ($("#height").val() == null || $.trim($("#height").val()) == '') {
-				$("#thHeight").css("color", "#ff0000");
-				$("#thHeight").css("font-weight","normal");
-				$("#height").focus();
-				var la = new layerAlert('키를 입력해주세요.');
-				return;
-			}
-			
-			if ($("#enjoySize").val() == null || $.trim($("#enjoySize").val()) == '') {
-				$("#thEnjoySize").css("color", "#ff0000");
-				$("#thEnjoySize").css("font-weight","normal");
-				$("#enjoySize").focus();
-				var la = new layerAlert('평소 사이즈를 입력해주세요.');
-				return;
-			}
-			
-			if ( $('input[name=bodyType]:checked').length < 1 ) {
-				$("#thBodyType").css("color", "#ff0000");
-				$("#thBodyType").css("font-weight","normal");
-				$("#thBodyType").focus();
-				var la = new layerAlert('체형을 선택해주세요.');
-				
-				$('input[name=bodyType]').on('click', function() {
-					$("#thBodyType").css("color", "black");
-					$("#thBodyType").css("font-weight","normal");
-				});
-				return;
-			}
-			
-			if(checkCategory == "top") {
-				if( $("input[name=shoulderWidth]:checked").length < 1 ) {
-					var la = new layerAlert('실착용 사이즈를 선택해주세요.');
-					$(".write_star_wrap").next().find("th").css("color", "#ff0000");
-					$(".write_star_wrap").next().find("th").css("font-weight","bold");
-					
-					$("input[name=shoulderWidth]").click(function() {
-						$(".write_star_wrap").next().find("th").css("color", "black");
-						$(".write_star_wrap").next().find("th").css("font-weight","normal");
-					});
-					$('#shoulderWidth_1').focus();
-					return;
-				}
-				if( $("input[name=chestSize]:checked").length < 1 ) {
-					var la = new layerAlert('실착용 사이즈를 선택해주세요.');
-					$(".write_star_wrap").next().find("th").css("color", "#ff0000");
-					$(".write_star_wrap").next().find("th").css("font-weight","bold");
-					
-					$("input[name=chestSize]").click(function() {
-						$(".write_star_wrap").next().find("th").css("color", "black");
-						$(".write_star_wrap").next().find("th").css("font-weight","normal");
-					});
-					$('#chestSize_1').focus();
-					return;
-				}
-			}
-			
-			if(checkCategory == "bottoms") {
-				if( $("input[name=waistSize]:checked").length < 1 ) {
-					var la = new layerAlert('실착용 사이즈를 선택해주세요.');
-					$(".write_star_wrap").next().find("th").css("color", "#ff0000");
-					$(".write_star_wrap").next().find("th").css("font-weight","bold");
-					
-					$("input[name=waistSize]").click(function() {
-						$(".write_star_wrap").next().find("th").css("color", "black");
-						$(".write_star_wrap").next().find("th").css("font-weight","normal");
-					});
-					$('#waistSize_1').focus();
-					return;
-				}
-				if( $("input[name=buttSize]:checked").length < 1 ) {
-					var la = new layerAlert('실착용 사이즈를 선택해주세요.');
-					$(".write_star_wrap").next().find("th").css("color", "#ff0000");
-					$(".write_star_wrap").next().find("th").css("font-weight","bold");
-					
-					$("input[name=buttSize]").click(function() {
-						$(".write_star_wrap").next().find("th").css("color", "black");
-						$(".write_star_wrap").next().find("th").css("font-weight","normal");
-					});
-					$('#buttSize_1').focus();
-					return;
-				}
-			}
-			
-			if($("input[name=totalSize]:checked").length < 1) {
-				var la = new layerAlert('실착용 사이즈를 선택해주세요.');
-				$(".write_star_wrap").next().find("th").css("color", "#ff0000");
-				$(".write_star_wrap").next().find("th").css("font-weight","bold");
-				
-				$("input[name=totalSize]").click(function() {
-					$(".write_star_wrap").next().find("th").css("color", "black");
-					$(".write_star_wrap").next().find("th").css("font-weight","normal");
-				});
-				$('#totalSize_1').focus();
-				return;
-			}
-			
-			if($("input:radio[name=realProductColor]:checked").length < 1){
-				var la = new layerAlert('실제품 색상을 선택해주세요.');
-				$(".write_star_wrap").next().next().find("th").css("color", "#ff0000");
-				$(".write_star_wrap").next().next().find("th").css("font-weight","bold");
-				la.confirmAction = function(){
-					$("#customerReviewWriteDiv").attr("tabindex", -1).focus();
-				};
-				
-				$("input:radio[name=realProductColor]").click(function(){
-					$(".write_star_wrap").next().next().find("th").css("color", "black");
-					$(".write_star_wrap").next().next().find("th").css("font-weight","normal");
-				});
-				return;
-			}
-		}
-		
-		if(checkCategory == "cosmetic") {
-		    if ( $('input[name=skinType]:checked').length < 1 ) {
-				$("#thSkinType").css("color", "#ff0000");
-				$("#thSkinType").css("font-weight","normal");
-				$("#thSkinType").focus();
-				var la = new layerAlert('피부 타입을 선택해주세요.');
-				
-				$('input[name=skinType]').on('click', function() {
-					$("#thSkinType").css("color", "black");
-					$("#thSkinType").css("font-weight","normal");
-				});
-				return;
-			}
-		    if( $("input[name=moisturize]:checked").length < 1 ) {
-				var la = new layerAlert('보습력을 선택해주세요.');
-				$(".write_star_wrap").next().find("th").css("color", "#ff0000");
-				$(".write_star_wrap").next().find("th").css("font-weight","bold");
-				
-				$("input[name=moisturize]").click(function() {
-					$(".write_star_wrap").next().find("th").css("color", "black");
-					$(".write_star_wrap").next().find("th").css("font-weight","normal");
-				});
-				$('#moisturize1').focus();
-				return;
-			}
-		    if( $("input[name=spreadability]:checked").length < 1 ) {
-				var la = new layerAlert('발림성을 선택해주세요.');
-				$(".write_star_wrap").next().next().find("th").css("color", "#ff0000");
-				$(".write_star_wrap").next().next().find("th").css("font-weight","bold");
-				
-				$("input[name=spreadability]").click(function() {
-					$(".write_star_wrap").next().next().find("th").css("color", "black");
-					$(".write_star_wrap").next().next().find("th").css("font-weight","normal");
-				});
-				$('#spreadability1').focus();
-				return;
-			}
-		    if( $("input[name=scent]:checked").length < 1 ) {
-				var la = new layerAlert('향을 선택해주세요.');
-				$(".write_star_wrap").next().next().next().find("th").css("color", "#ff0000");
-				$(".write_star_wrap").next().next().next().find("th").css("font-weight","bold");
-				
-				$("input[name=scent]").click(function() {
-					$(".write_star_wrap").next().next().next().find("th").css("color", "black");
-					$(".write_star_wrap").next().next().next().find("th").css("font-weight","normal");
-				});
-				$('#scent1').focus();
-				return;
-			}
-		    
-
-			var headline = $("#reviewHeadline").val();
-				
-			if(headline == null || headline.trim() == ''){
-				var la = new layerAlert('내용을 입력해 주세요.');
-				$(".write_star_wrap").next().next().next().next().find("th").css("color", "#ff0000");
-				$(".write_star_wrap").next().next().next().next().find("th").css("font-weight","bold");
-				return false;
-			}
-				
-			if(headline.trim().length < 20 || headline.trim().length > 200){
-				var la = new layerAlert('상품평 내용은 20~200자 사이입니다.');
-				$(".write_star_wrap").next().next().next().next().find("th").css("color", "#ff0000");
-				$(".write_star_wrap").next().next().next().next().find("th").css("font-weight","bold");
-				return false;
-			}
-		    
-		} else if (checkCategory == "perfume") {
-		    if ( $('input[name=skinType]:checked').length < 1 ) {
-                $("#thSkinType").css("color", "#ff0000");
-                $("#thSkinType").css("font-weight","normal");
-                $("#thSkinType").focus();
-                var la = new layerAlert('피부 타입을 선택해주세요.');
-                
-                $('input[name=skinType]').on('click', function() {
-                    $("#thSkinType").css("color", "black");
-                    $("#thSkinType").css("font-weight","normal");
-                });
-                return;
-            }
-		    
-		    if( $("input[name=scent]:checked").length < 1 ) {
-                var la = new layerAlert('향을 선택해주세요.');
-                $(".write_star_wrap").next().find("th").css("color", "#ff0000");
-                $(".write_star_wrap").next().find("th").css("font-weight","bold");
-                
-                $("input[name=scent]").click(function() {
-                    $(".write_star_wrap").next().find("th").css("color", "black");
-                    $(".write_star_wrap").next().find("th").css("font-weight","normal");
-                });
-                $('#scent1').focus();
-                return;
-            }
-		    
-            if( $("input[name=persistence]:checked").length < 1 ) {
-                var la = new layerAlert('지속성을 선택해주세요.');
-                $(".write_star_wrap").next().next().find("th").css("color", "#ff0000");
-                $(".write_star_wrap").next().next().find("th").css("font-weight","bold");
-                
-                $("input[name=persistence]").click(function() {
-                    $(".write_star_wrap").next().next().find("th").css("color", "black");
-                    $(".write_star_wrap").next().next().find("th").css("font-weight","normal");
-                });
-                $('#persistence1').focus();
-                return;
-            }
-
-            var headline = $("#reviewHeadline").val();
-                
-            if(headline == null || headline.trim() == ''){
-                var la = new layerAlert('내용을 입력해 주세요.');
-                $(".write_star_wrap").next().next().next().next().find("th").css("color", "#ff0000");
-                $(".write_star_wrap").next().next().next().next().find("th").css("font-weight","bold");
-                return false;
-            }
-                
-            if(headline.trim().length < 20 || headline.trim().length > 200){
-                var la = new layerAlert('상품평 내용은 20~200자 사이입니다.');
-                $(".write_star_wrap").next().next().next().next().find("th").css("color", "#ff0000");
-                $(".write_star_wrap").next().next().next().next().find("th").css("font-weight","bold");
-                return false;
-            }
-		} else { // none cosmetic includes top, bottom and etc
-		    var headline = $("#reviewHeadline").val();
-			
-			if(headline == null || headline.trim() == ''){
-				var la = new layerAlert('내용을 입력해 주세요.');
-				$(".write_star_wrap").next().next().next().find("th").css("color", "#ff0000");
-				$(".write_star_wrap").next().next().next().find("th").css("font-weight","bold");
-				return false;
-			}
-				
-			if(headline.trim().length < 20 || headline.trim().length > 200){
-				var la = new layerAlert('상품평 내용은 20~200자 사이입니다.');
-				$(".write_star_wrap").next().next().next().find("th").css("color", "#ff0000");
-				$(".write_star_wrap").next().next().next().find("th").css("font-weight","bold");
-				return false;
-			}
-		}
-		
-			
-		var lc = new customLayerConfirm("상품평을 등록하시겠습니까?", "확인", "취소"); // 상품평을 등록하시겠습니까?, 확인, 취소
-		lc.confirmAction = function(){
-			uploadFilesubmit('write', returnType);
-			$('.pop_cls').click();
-		}
-	});
-}
-
-function encodeText( s ) {
-	if ( !s ) {
-		return "";
-	}
-	
-	return s.replace( /['"<>&]/g, function( s ) {
-		switch ( s ) {
-			case "'":
-				return "&#039;";
-			case "\"":
-				return "&#034;"
-			case "\\(":
-				return "&#40;";
-			case "\\)":
-				return "&#41;";
-			case "<":
-				return "&lt;";
-			case ">":
-				return "&gt;";
-			case "&":
-				return "&amp;";
-		}
-	});
-}
-
-
-</script>
-
-
-	<%@include file="../../views/includes/qna_footer.jsp"%>
 <!-- Modal 시작-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-      <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"
-                aria-hidden="true">&times;</button>
-              <h4 class="modal-title" id="myModalLabel">REPLY MODAL</h4>
-            </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <label>댓글 작성</label> 
-                <input class="form-control" name='rcontent' value='New Reply!!!!'>
-              </div>      
-              <div class="form-group">
-                <input type="hidden" class="form-control" name='mid' value='${mid }'>
-                <input type="hidden" class="form-control" name='qid' value='${qna.qid}'>
-              </div>
-             
-            </div>
-	  <div class="modal-footer">
-	    <button id='modalModBtn' type="button" class="btn wt">Modify</button>
-        <button id='modalRemoveBtn' type="button" class="btn wt">Remove</button>
-        <button id='modalRegisterBtn' type="button" class="btn wt">Register</button>
-        <button id='modalCloseBtn' type="button" class="btn wt">Close</button>
-      </div>
-   </div><!-- /.modal-content -->
+		<div class="modal-content">
+			<!-- Modal 헤더 시작 -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">REPLY MODAL</h4>
+			</div>
+			<!-- Modal 헤더 끝 -->
+			<!-- Modal 바디 시작 -->
+			<div class="modal-body">
+				<div class="form-group">
+					<label>댓글 작성</label> 
+					<!-- 댓글 내용 입력 -->
+					<input class="form-control" name='rcontent' value='New Reply!!!!'>
+				</div>
+				<div class="form-group">
+					<!-- 댓글 작성자 정보 -->
+					<input type="hidden" class="form-control" name='mid'
+						value='${mid }'> <input type="hidden"
+						class="form-control" name='qid' value='${qna.qid}'>
+				</div>
+			</div>
+			<!-- Modal 바디 끝 -->
+			<div class="modal-footer">
+			<!-- Modal 버튼 -->
+				<button id='modalModBtn' type="button" class="btn wt">Modify</button>
+				<button id='modalRemoveBtn' type="button" class="btn wt">Remove</button>
+				<button id='modalRegisterBtn' type="button" class="btn wt">Register</button>
+				<button id='modalCloseBtn' type="button" class="btn wt">Close</button>
+			</div>
+		</div>
+			<!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div>
 <!-- modal 끝 -->
@@ -5325,40 +2493,38 @@ function encodeText( s ) {
 </body>
 <script type="text/javascript">
 
-
-
 $(function(){
 	
-	//모달 처리
+		//모달 처리
 		 var qidValue ='<c:out value="${qna.qid}"/>';
-		console.log("모달"+qidValue);
 		 var modal = $(".modal"); //input 태그 찾기
-		 var modalInputReply = modal.find("input[name='rcontent']");
+		//댓글 내용
+		 var modalInputReply = modal.find("input[name='rcontent']"); 
+		//댓글 작성자
 		 var modalInputReplyer = '<c:out value="${mid}"/>';
-		console.log("모달"+modalInputReplyer);
-		console.log("모달"+modalInputReply.val());
+		//댓글 작성일
 		 var modalInputReplyDate = modal.find("input[name='rdate']");
-		 var modalModBtn = $("#modalModBtn"); //버튼 찾기
-		 var modalRemoveBtn = $("#modalRemoveBtn");
-		 var modalRegisterBtn = $("#modalRegisterBtn");
+		 var modalModBtn = $("#modalModBtn"); //버튼
+		 var modalRemoveBtn = $("#modalRemoveBtn"); //삭제 버튼 
+		 var modalRegisterBtn = $("#modalRegisterBtn"); //작성 버튼
 	
 		//수정버튼 클릭 처리
 		 modalModBtn.on("click", function(e){
-			 //데이터 가져오기 input태그 ,모달 data-rno
-			 var reply = {rid:modal.data("rid"), rcontent: modalInputReply.val()};		 
+			//데이터 가져오기 input태그 ,모달 data-rid
+			var reply = {rid:modal.data("rid"), rcontent: modalInputReply.val()};		 
 			//DB 댓글 수정
 			if(modal.data("mid")==modalInputReplyer){
 				 replyService.update(reply, function(result){  
 					 alert("수정 "+result); //경고창
 					 modal.modal("hide"); //모달 숨기기
 					 showList(); //댓글 리스트 새로 가져오기 
-				});  //end    replyService.update
+				});
 			}
 			else{
 				alert("타 사용자의 댓글은 수정이 불가합니다!");
 			}
-		    });//end modalModBtn click
-		     
+		    });
+		
 		     //삭제버튼 클릭 처리
 		     modalRemoveBtn.on("click", function (e){
 		    	 var rid = modal.data("rid"); //데이터 가져오기
@@ -5375,13 +2541,13 @@ $(function(){
 			    	alert("타 사용자의 댓글은 삭제가 불가합니다!");
 			    }
 		    	 
-		      }); //modalRemoveBtn click"
+		      }); 
    
 		 
 		 //종료버튼 처리 모달 숨기기
 		 $("#modalCloseBtn").on("click", function(e){	    	
 		    	modal.modal('hide');
-		  });//end modalCloseBtn click
+		  });
 
 	  	 //특정댓글 클릭이벤트 처리
 		 $(".chat").on("click","li",function(e){		 
@@ -5401,42 +2567,42 @@ $(function(){
 		         modalModBtn.show(); //수정보튼 보여주기
 		         modalRemoveBtn.show(); //삭제버튼 보여주기		        
 		         $(".modal").modal("show"); //모달 보여주기		 	
-			 } )//end replyService.get
+			 } )
 			 
-		 })//end chat click
+		 })
 
+		 // 댓글 작성 버튼 클릭시
 		 modalRegisterBtn.on("click", function() {
 			 
 			 var reply={  //input 태그 내용 가져오기
 				mid : modalInputReplyer,
 				qid : qidValue,				
 				rcontent : modalInputReply.val()
-			 }		 // 댓글insert 처리
-			
+			 }		
+			 // 댓글insert 처리
 			 replyService.add(reply, function(result) {
 				alert("작성 "+result);
 				modal.find("input").val("");//input 태그 내용 지우기
 				console.log("성공!");
 				modal.modal("hide"); //모달 숨기기
 				showList(); //댓글 페이지 갱신
-			});//end replyService.add
-		 
-		 });//end ModalRegisterBtn click
+			});
+		 });
 
+		// 댓글 작성 완료 버튼 클릭시
 		 $("#addReplyBtn").on("click", function(e){
 			 modal.find("input").val(""); //input 값 지우기
 		    // modalInputReplyDate.closest("div").hide(); //버튼 숨기기
 		     modal.find("button[id !='modalCloseBtn']").hide(); //버튼 숨기기
-		      
 		     modalRegisterBtn.show(); //등록버튼 보이기
 		     $(".modal").modal("show"); //모달 보이기
 		  }); //end click 
-	//// 모달 처리 끝
+	// 모달 처리 끝
 
 	//댓글 처리 시
-
 	var replyUL = $(".chat");
 	
+	//댓글 목록 show
 	function showList(){	
 		console.log("showList()");
 	    replyService.getList({qid:qidValue}, function(list) {
@@ -5444,7 +2610,7 @@ $(function(){
 	    	if(list == null || list.length == 0){
 	    		replyUL.html("");
 	    		return;
-	    	}//end if
+	    	}
 	      for (var i = 0, len = list.length || 0; i < len; i++) {
 	    	console.log(list[i]);
 	    	str +="<li data-rid='"+list[i].rid+"'>";
@@ -5452,14 +2618,14 @@ $(function(){
 	        str +="   "+replyService.displayTime(list[i].rdate);+"</div>";
 	        str +="    <p>"+list[i].rcontent+"</p></div></li>";
 
-	      }//end for
+	      }
 	      replyUL.html(str);		 
-	    });//end getList
+	    });
 	    
-	}//end showList	
+	}
 	showList();	
 
-});//end ready
+});
 </script>
 
 

@@ -1,3 +1,5 @@
+<!-- QnA 게시판 조회 페이지 (작성자: 박주영, 진영서) -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
